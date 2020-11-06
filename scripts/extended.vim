@@ -13,7 +13,6 @@ colorscheme gruvbox
 " => Fast editing and reloading of vimrc configs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>e :e! ~/.vim/scripts/my_configs.vim<cr>
-autocmd! bufwritepost ~/.vim/scripts/my_configs.vim source ~/.vim/scripts/my_configs.vim
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -78,11 +77,6 @@ inoremap $e ""<esc>i
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Omni complete functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

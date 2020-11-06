@@ -1,0 +1,7 @@
+.netrwhist
+tmp
+pack
+view
+colors/gruvbox
+colors/gruvbox.vim
+autoload/plug.vim

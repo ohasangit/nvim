@@ -136,6 +136,8 @@ let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'
 let ale_lint_on_insert_leave = 0
 let ale_lint_on_text_changed = 0
 
+map <leader>af :ALEFix<cr>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ultisnips
