@@ -13,6 +13,8 @@ call plug#begin('~/.vim/pack/plugins/start')
 Plug 'mileszs/ack.vim'
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-fugitive'
+Plug 'rbong/vim-flog'
+Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'benknoble/vim-auto-origami'
 Plug 'suan/vim-instant-markdown'
@@ -32,33 +34,13 @@ Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'junegunn/vim-plug'
 Plug 'ekalinin/Dockerfile.vim'
+Plug 'gotcha/vimpdb'
+Plug 'tpope/vim-dispatch'
+Plug 'maralla/completor.vim'
 Plug 'morhetz/gruvbox', {'dir': '~/.vim/colors/gruvbox', 'rtp': 'colors', 'do': 'cp ~/.vim/colors/gruvbox/autoload/lightline/colorscheme/gruvbox.vim ~/.vim/pack/plugins/start/lightline.vim/autoload/lightline/colorscheme && cp ~/.vim/colors/gruvbox/colors/gruvbox.vim ~/.vim/colors/' }
 " Expect to install fzf manually since it modifies your bashrc.
 " Can make this part of vim's plugins if you want
 Plug '~/source-install/fzf/', {'rtp': 'plugin', 'do': 'ln -s ~/source-install/fzf/ ~/.vim/pack/plugins/start/fzf'}
-Plug '~/.vim/pack/plugins/start/YouCompleteMe'
-
-" ack.vim
-" ale
-" vim-fugitive
-" vim-gitgutter
-" vim-auto-origami
-" vim-instant-markdown
-" bufexplorer
-" ctrlp.vim
-" vim-yankstack
-" lightline.vim
-" ultisnips
-" vim-snippets
-" lightline-ale
-" vim-startify
-" vim-expand-region
-" vim-commentary
-" tabular
-" vim-repeat
-" vim-surround
-" nerdtree
-" vim-plug
 
 " Initialize plugin system
 call plug#end()
