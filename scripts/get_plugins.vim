@@ -37,6 +37,7 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'gotcha/vimpdb'
 Plug 'tpope/vim-dispatch'
 Plug 'maralla/completor.vim'
+Plug 'pearofducks/ansible-vim'
 Plug 'morhetz/gruvbox', {'dir': '~/.vim/colors/gruvbox', 'rtp': 'colors', 'do': 'cp ~/.vim/colors/gruvbox/autoload/lightline/colorscheme/gruvbox.vim ~/.vim/pack/plugins/start/lightline.vim/autoload/lightline/colorscheme && cp ~/.vim/colors/gruvbox/colors/gruvbox.vim ~/.vim/colors/' }
 " Expect to install fzf manually since it modifies your bashrc.
 " Can make this part of vim's plugins if you want
