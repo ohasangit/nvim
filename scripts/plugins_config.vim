@@ -42,7 +42,7 @@ set grepprg=/bin/grep\ -nH
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinPos = 'right'
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let g:NERDTreeWinSize=35
 map <leader>nn :NERDTreeToggle<cr>
@@ -50,6 +50,7 @@ map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => surround.vim config
@@ -120,7 +121,7 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-auto-origami
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:instant_markdown_browser = "firefox --new-window"
+let g:instant_markdown_browser = 'firefox --new-window'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -136,7 +137,9 @@ let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'
 let ale_lint_on_insert_leave = 0
 let ale_lint_on_text_changed = 0
 
-map <leader>af :ALEFix<cr>
+map <leader>af <Plug>(ale_fix)
+map <leader>an <Plug>(ale_next)
+map <leader>ap <Plug>(ale_previous)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -150,8 +153,8 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 " => Ultisnips
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:UltiSnipsExpandTrigger="<S-Tab>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+let g:UltiSnipsJumpForwardTrigger="<S-Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<C-A>"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -184,12 +187,6 @@ let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 " => Startify
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:startify_session_persistence = 1
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Deocomplete
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:deoplete#enable_at_startup = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -233,5 +230,7 @@ map <leader>p :cp<cr>
 nmap <leader>gw :Gw<cr>
 nmap <leader>gc :Gcommit<cr>
 nmap <leader>gp :Gpush<cr>
+nmap <leader>gf :G fetch<cr>
+nmap <leader>gfp :Gpull<cr>
 nmap <leader>gpn :Gpush -o ci.skip<cr>
 nmap <leader>gs :Gstatus<cr>
