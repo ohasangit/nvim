@@ -230,7 +230,7 @@ map <leader>p :cp<cr>
 nmap <leader>gw :Gw<cr>
 nmap <leader>gc :Gcommit<cr>
 nmap <leader>gp :Gpush<cr>
+nmap <leader>gpn :Gpush -o ci.skip<cr>
 nmap <leader>gf :G fetch<cr>
 nmap <leader>gfp :Gpull<cr>
-nmap <leader>gpn :Gpush -o ci.skip<cr>
 nmap <leader>gs :Gstatus<cr>
