@@ -21,7 +21,7 @@ nmap <leader>ev :vsplit ~/.vim/scripts/my_configs.vim<cr>
 map <leader>ee :edit <c-r>=expand("%:p:h")<cr>/
 
 " Show Line Numbers
-set nu
+set number
 
 " Map to removing trailing whitespace
 nmap <leader>W :%s/\s\+$//e<cr>
