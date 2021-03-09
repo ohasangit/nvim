@@ -1,11 +1,11 @@
 " Install vim-plug beforehand if not installed
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+if empty(glob('$XDG_CONFIG_HOME/nvim/autoload/plug.vim'))
+  silent !curl -fLo $XDG_CONFIG_HOME/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
 " Specify a directory for plugins
-call plug#begin('~/.vim/pack/plugins/start')
+call plug#begin('$XDG_CONFIG_HOME/nvim/pack/plugins/start')
 
 " Make sure you use single quotes
 
@@ -40,10 +40,10 @@ Plug 'maralla/completor.vim'
 Plug 'pearofducks/ansible-vim'
 Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
-Plug 'morhetz/gruvbox', {'dir': '~/.vim/colors/gruvbox', 'rtp': 'colors', 'do': 'cp ~/.vim/colors/gruvbox/autoload/lightline/colorscheme/gruvbox.vim ~/.vim/pack/plugins/start/lightline.vim/autoload/lightline/colorscheme && cp ~/.vim/colors/gruvbox/colors/gruvbox.vim ~/.vim/colors/' }
+Plug 'morhetz/gruvbox', {'dir': '$XDG_CONFIG_HOME/nvim/colors/gruvbox', 'rtp': 'colors', 'do': 'cp $XDG_CONFIG_HOME/nvim/colors/gruvbox/autoload/lightline/colorscheme/gruvbox.vim $XDG_CONFIG_HOME/nvim/pack/plugins/start/lightline.vim/autoload/lightline/colorscheme && cp $XDG_CONFIG_HOME/nvim/colors/gruvbox/colors/gruvbox.vim $XDG_CONFIG_HOME/nvim/colors/' }
 " Expect to install fzf manually since it modifies your bashrc.
 " Can make this part of vim's plugins if you want
-Plug '~/source-install/fzf/', {'rtp': 'plugin', 'do': 'ln -s ~/source-install/fzf/ ~/.vim/pack/plugins/start/fzf'}
+Plug '~/source-install/fzf/', {'rtp': 'plugin', 'do': 'ln -s ~/source-install/fzf/ $XDG_CONFIG_HOME/nvim/pack/plugins/start/fzf'}
 
 " Initialize plugin system
 call plug#end()
