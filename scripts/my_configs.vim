@@ -14,7 +14,7 @@ nmap <ENTER> :bn<cr>
 nmap <leader>cp gg"*yG
 
 " Fast Editing of this file
-nmap <leader>ev :vsplit ~/config/nvim/scripts/my_configs.vim<cr>
+nmap <leader>ev :vsplit ~/.config/nvim/scripts/my_configs.vim<cr>
 
 " Opens a new file with the current buffer's path
 " Super useful when editing files in the same directory
