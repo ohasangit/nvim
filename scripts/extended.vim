@@ -12,7 +12,7 @@ colorscheme gruvbox
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fast editing and reloading of vimrc configs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>e :e! ~/.vim/scripts/my_configs.vim<cr>
+map <leader>e :e! ~/.config/nvim/scripts/my_configs.vim<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -20,7 +20,7 @@ map <leader>e :e! ~/.vim/scripts/my_configs.vim<cr>
 "    means that you can undo even when you close a buffer/VIM
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 try
-    set undodir=~/.vim/tmp/undodir
+    set undodir=~/.config/nvim/tmp/undodir
     set undofile
 catch
 endtry
