@@ -44,6 +44,7 @@ Plug 'morhetz/gruvbox', {'dir': '$XDG_CONFIG_HOME/nvim/colors/gruvbox', 'rtp': '
 " Expect to install fzf manually since it modifies your bashrc.
 " Can make this part of vim's plugins if you want
 Plug '~/source-install/fzf/', {'rtp': 'plugin', 'do': 'ln -s ~/source-install/fzf/ $XDG_CONFIG_HOME/nvim/pack/plugins/start/fzf'}
+Plug 'kassio/neoterm'
 
 " Initialize plugin system
 call plug#end()

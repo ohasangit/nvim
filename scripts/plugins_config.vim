@@ -234,3 +234,8 @@ nmap <leader>gpn :Gpush -o ci.skip<cr>
 nmap <leader>gf :G fetch<cr>
 nmap <leader>gfp :Gpull<cr>
 nmap <leader>gs :Gstatus<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Neoterm
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:neoterm_default_mod = 'botright'
