@@ -141,6 +141,11 @@ map <leader>af <Plug>(ale_fix)
 map <leader>an <Plug>(ale_next)
 map <leader>ap <Plug>(ale_previous)
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => CoC
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ultisnips

@@ -35,6 +35,7 @@ Plug 'preservim/nerdtree'
 Plug 'junegunn/vim-plug'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'gotcha/vimpdb'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pearofducks/ansible-vim'
 Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
