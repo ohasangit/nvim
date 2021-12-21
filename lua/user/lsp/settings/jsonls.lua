@@ -1,3 +1,4 @@
+-- Find more schemas here: https://www.schemastore.org/json/
 local schemas = {
   {
     description = "TypeScript compiler configuration file",
@@ -166,6 +167,10 @@ local opts = {
   settings = {
     json = {
       schemas = schemas,
+    },
+    http = {
+      proxy = "http://proxy-lmi.global.lmco.com:80",
+      proxyStrictSSL = false,
     },
   },
   setup = {
