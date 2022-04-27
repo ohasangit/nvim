@@ -90,3 +90,9 @@ keymap("n", "<c-p>", "<cmd>Telescope registers " .. theme .. "<cr>", opts)
 keymap("n", "<leader>gs", "<cmd>Telescope git_status<cr>", opts)
 keymap("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", opts)
 keymap("n", "<leader>gl", "<cmd>Telescope git_commits<cr>", opts)
+
+-- Git --
+keymap("n", "<leader>gw", "<cmd>Gwrite<cr>", opts)
+keymap("n", "<leader>gc", "<cmd>Git commit<cr>", opts)
+keymap("n", "<leader>gp", "<cmd>Git push<cr>", opts)
+keymap("n", "<leader>gpp", "<cmd>Git pull<cr>", opts)
