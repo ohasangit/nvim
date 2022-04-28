@@ -107,7 +107,7 @@ local M = {}
 M.commit_snapshot = function()
   -- TODO Use current working directory instead of hardcoding
   require("packer").snapshot("/lhome/e357154/.config/nvim/packer-snapshot")
-  vim.cmd(':Gwrite "/lhome/e357154/.config/nvim/packer-snapshot"')
+  vim.cmd(':Git add "/lhome/e357154/.config/nvim/packer-snapshot"')
   vim.cmd(':Git commit -m "Updating snapshot"')
 end
 keymap('n', '<leader>ss', '<cmd>lua require("keymaps").commit_snapshot()<cr>', opts)
