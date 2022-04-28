@@ -117,5 +117,5 @@ M.commit_snapshot = function()
   vim.cmd(':Git add "/lhome/e357154/.config/nvim/packer-snapshot"')
   vim.cmd(':Git commit -m "Updating snapshot"')
 end
-keymap('n', '<leader>ss', '<cmd>lua require("keymaps").commit_snapshot()<cr>', opts)
+keymap('n', '<leader>ss', '<cmd>lua require("user.keymaps").commit_snapshot()<cr>', opts)
 return M
