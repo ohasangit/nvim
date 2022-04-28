@@ -34,7 +34,6 @@ local options = {
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
-  autochdir = true,                        -- temporary until a plugin can help manage projects
 }
 
 vim.opt.shortmess:append "c"

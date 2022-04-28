@@ -25,8 +25,6 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
-keymap("n", "<leader>n", ":Lex! 20<cr>", opts)
-
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)
@@ -106,6 +104,8 @@ keymap('n', '<leader>gy', '<cmd>lua require"gitlinker".get_repo_url({action_call
 keymap("n", "<leader>goo", ":OpenBrowserSmartSearch ", { noremap = true })
 keymap("n", "<c-g>", "<Plug>(openbrowser-smart-search)", term_opts)
 
+-- Nvim-tree --
+keymap("n", "<leader>n", "<cmd>NvimTreeToggle<cr>", opts)
 
 -- Packer --
 local M = {}
