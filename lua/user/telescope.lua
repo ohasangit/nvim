@@ -5,6 +5,7 @@ end
 
 telescope.load_extension('media_files')
 telescope.load_extension('fzf')
+telescope.load_extension('bookmarks')
 
 local actions = require "telescope.actions"
 
@@ -101,6 +102,10 @@ telescope.setup {
             case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
                                              -- the default case_mode is "smart_case"
       },
+      bookmarks = {
+        selected_browser = 'firefox',
+        -- url_open_plugin = 'open_browser'
+      }
     -- Your extension configuration goes here:
     -- extension_name = {
     --   extension_config_key = value,

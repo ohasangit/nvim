@@ -38,6 +38,7 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim" -- Easily comment stuff
   use 'lewis6991/impatient.nvim'
+  use 'ethanholz/nvim-lastplace'
 
   -- Colorschemes
   use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
@@ -63,6 +64,7 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope.nvim"
   use 'nvim-telescope/telescope-media-files.nvim'
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use { 'dhruvmanila/telescope-bookmarks.nvim', requires = { 'tami5/sqlite.lua', 'tyru/open-browser.vim' } }
 
   -- Treesitter
   --use {
