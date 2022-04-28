@@ -83,7 +83,8 @@ keymap("n", "<leader>f", "<cmd>Telescope oldfiles " .. theme .. "<cr>", opts)
 keymap("n", "<leader>'", "<cmd>Telescope command_history " .. theme .. "<cr>", opts)
 keymap("n", "<c-b>", "<cmd>Telescope buffers " .. theme .. "<cr>", opts)
 keymap("n", "<c-f>", "<cmd>Telescope git_files " .. theme .. "<cr>", opts)
-keymap("n", "<c-g>", "<cmd>Telescope live_grep " .. theme .. "<cr>", opts)
+keymap("n", "<leader>/", "<cmd>Telescope live_grep " .. theme .. "<cr>", opts)
+keymap("n", "<leader>\\", "<cmd>Telescope grep_string " .. theme .. "<cr>", opts)
 keymap("n", "<c-c>", "<cmd>Telescope commands " .. theme .. "<cr>", opts)
 keymap("n", "<leader>h", "<cmd>Telescope help_tags " .. theme .. "<cr>", opts)
 keymap("n", "<c-p>", "<cmd>Telescope registers " .. theme .. "<cr>", opts)
@@ -101,8 +102,12 @@ keymap("n", "<leader>gpn", "<cmd>Git push -o ci.skip<cr>", opts)
 keymap("n", "<leader>gpp", "<cmd>Git pull<cr>", opts)
 keymap('n', '<leader>gy', '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>', opts)
 
--- Packer --
+-- Browser --
+keymap("n", "<leader>goo", ":OpenBrowserSmartSearch ", { noremap = true })
+keymap("n", "<c-g>", "<Plug>(openbrowser-smart-search)", term_opts)
 
+
+-- Packer --
 local M = {}
 
 -- Creates a snapshot of the current plugin repos and commits it.

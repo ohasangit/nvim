@@ -3,10 +3,6 @@ if not status_ok then
   return
 end
 
-telescope.load_extension('media_files')
-telescope.load_extension('fzf')
-telescope.load_extension('bookmarks')
-
 local actions = require "telescope.actions"
 
 telescope.setup {
@@ -95,17 +91,17 @@ telescope.setup {
         filetypes = {"png", "webp", "jpg", "jpeg"},
         find_cmd = "rg" -- find command (defaults to `fd`)
       },
-      fzf = {
-            fuzzy = true,                    -- false will only do exact matching
-            override_generic_sorter = true,  -- override the generic sorter
-            override_file_sorter = true,     -- override the file sorter
-            case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-                                             -- the default case_mode is "smart_case"
-      },
-      bookmarks = {
-        selected_browser = 'firefox',
-        -- url_open_plugin = 'open_browser'
-      }
+    fzf = {
+          fuzzy = true,                    -- false will only do exact matching
+          override_generic_sorter = true,  -- override the generic sorter
+          override_file_sorter = true,     -- override the file sorter
+          case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                           -- the default case_mode is "smart_case"
+    },
+    bookmarks = {
+      selected_browser = 'firefox',
+      url_open_plugin = 'open_browser',
+    }
     -- Your extension configuration goes here:
     -- extension_name = {
     --   extension_config_key = value,
@@ -113,3 +109,7 @@ telescope.setup {
     -- please take a look at the readme of the extension you want to configure
   },
 }
+
+telescope.load_extension('media_files')
+telescope.load_extension('fzf')
+telescope.load_extension('bookmarks')

@@ -28,6 +28,7 @@ local options = {
   number = true,                           -- set numbered lines
   relativenumber = false,                  -- set relative numbered lines
   numberwidth = 2,                         -- set number column width to 2 {default 4}
+  textwidth = 100,                         -- set number column width to 2 {default 4}
   signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
   wrap = false,                            -- display lines as one long line
   scrolloff = 8,                           -- is one of my fav
@@ -44,4 +45,3 @@ end
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
---vim.cmd [[set formatoptions-=crot]] -- TODO: this doesn't seem to work
