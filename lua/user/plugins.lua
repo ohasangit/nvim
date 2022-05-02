@@ -37,23 +37,11 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim" -- Easily comment stuff
-  use 'lewis6991/impatient.nvim'
-  use 'ethanholz/nvim-lastplace'
-  use 'kyazdani42/nvim-web-devicons'
-  use 'kyazdani42/nvim-tree.lua'
+  use "lewis6991/impatient.nvim"
+  use "ethanholz/nvim-lastplace"
+  use "kyazdani42/nvim-web-devicons"
+  use "kyazdani42/nvim-tree.lua"
   use "ellisonleao/glow.nvim"
-
-  -- Scrolling
-  use {
-    'wfxr/minimap.vim',
-    run = "cargo install --locked code-minimap",
-    -- cmd = {"Minimap", "MinimapClose", "MinimapToggle", "MinimapRefresh", "MinimapUpdateHighlight"},
-    config = function()
-      vim.cmd("let g:minimap_width = 10")
-      vim.cmd("let g:minimap_auto_start = 1")
-      vim.cmd("let g:minimap_auto_start_win_enter = 1")
-    end,
-  }
 
   -- Colorschemes
   use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
@@ -78,10 +66,10 @@ return packer.startup(function(use)
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
-  use 'nvim-telescope/telescope-media-files.nvim'
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use { 'dhruvmanila/telescope-bookmarks.nvim', requires = { 'tami5/sqlite.lua', 'tyru/open-browser.vim' } }
-  use { 'ahmedkhalf/project.nvim', config = function() require("project_nvim").setup {} end }
+  use "nvim-telescope/telescope-media-files.nvim"
+  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+  use { "dhruvmanila/telescope-bookmarks.nvim", requires = { "tami5/sqlite.lua", "tyru/open-browser.vim" } }
+  use { "ahmedkhalf/project.nvim", config = function() require("project_nvim").setup {} end }
 
   -- Treesitter
   --use {
@@ -94,6 +82,31 @@ return packer.startup(function(use)
   use "tpope/vim-fugitive"
   use "ruifm/gitlinker.nvim"
   use "lewis6991/gitsigns.nvim"
+
+  -- Scrolling
+  use {
+    "wfxr/minimap.vim",
+    run = "cargo install --locked code-minimap",
+    config = function()
+      vim.cmd("let g:minimap_width = 10")
+      vim.cmd("let g:minimap_auto_start = 1")
+      vim.cmd("let g:minimap_auto_start_win_enter = 0")
+      vim.cmd("let g:minimap_git_colors = 1")
+      vim.cmd("let g:minimap_highlight_search = 1")
+      vim.cmd("let g:minimap_highlight_range = 1")
+      vim.cmd(":highlight minimapCursor guibg=#1D1F21 guifg=magenta")
+      vim.cmd(":highlight minimapRange guibg=#282A2E guifg=white")
+      vim.cmd(":highlight minimapDiffAdded guibg=#1D1F21 guifg=#587c0c")
+      vim.cmd(":highlight minimapRemoved guibg=#1D1F21 guifg=#94151b")
+      vim.cmd(":highlight minimapDiffLine guibg=#1D1F21 guifg=#0c7d9d")
+      vim.cmd(":highlight minimapCursorDiffAdded guibg=#1D1F21 guifg=#A4E400")
+      vim.cmd(":highlight minimapCursorDiffRemoved guibg=#1D1F21 guifg=red")
+      vim.cmd(":highlight minimapCursorDiffLine guibg=#1D1F21 guifg=#82A3BF")
+      vim.cmd(":highlight minimapRangeDiffAdded guibg=#282A2E guifg=#587c0c")
+      vim.cmd(":highlight minimapRangeDiffRemoved guibg=#282A2E guifg=#94151b")
+      vim.cmd(":highlight minimapRangeDiffLine guibg=#282A2E guifg=#0c7d9d")
+    end,
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
