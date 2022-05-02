@@ -25,7 +25,10 @@ lsp_installer.on_server_ready(function(server)
     local pyright_opts = require("user.lsp.settings.pyright")
     opts = vim.tbl_deep_extend("force", pyright_opts, opts)
   end
-  --
+
+  if server.name == "bashls" then
+    vim.tbl_deep_extend("force", {}, opts)
+  end
   -- if server.name == "yamlls" then
   -- 	local yamlls_opts = require("user.lsp.settings.yamlls")
   -- 	opts = vim.tbl_deep_extend("force", yamlls_opts, opts)

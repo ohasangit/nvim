@@ -13,3 +13,5 @@ require "user.comment"
 require "user.nvim-lastplace"
 require "user.nvim-tree"
 require "user.lsp.null-ls"
+
+vim.cmd("hi NonText gui=bold,italic guifg=#AEAFAD")
