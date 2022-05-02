@@ -4,6 +4,9 @@ return {
 		Lua = {
 			diagnostics = {
 				globals = { "vim" },
+        neededFileStatus = {
+          ["codestyle-check"] = "Any"
+        },
 			},
 			workspace = {
 				library = {
@@ -11,6 +14,14 @@ return {
 					[vim.fn.stdpath("config") .. "/lua"] = true,
 				},
 			},
+      format = {
+        enable = true,
+        defaultConfig = {
+          indent_style = "space",
+          indent_size = "2",
+          quote_style = "double"
+        }
+      },
 		},
 	},
 }

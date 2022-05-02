@@ -99,7 +99,7 @@ keymap("n", "<leader>gpu", "<cmd>Git push -u origin HEAD<cr>", opts)
 keymap("n", "<leader>gpf", "<cmd>Git push --force<cr>", opts)
 keymap("n", "<leader>gpn", "<cmd>Git push -o ci.skip<cr>", opts)
 keymap("n", "<leader>gpp", "<cmd>Git pull<cr>", opts)
-keymap('n', '<leader>gy', '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>', opts)
+keymap("n", "<leader>gy", '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>', opts)
 
 -- Browser --
 keymap("n", "<leader>goo", ":OpenBrowserSmartSearch ", { noremap = true })
@@ -118,5 +118,5 @@ M.commit_snapshot = function()
   vim.cmd(':Git add "/lhome/e357154/.config/nvim/packer-snapshot"')
   vim.cmd(':Git commit -m "Updating snapshot"')
 end
-keymap('n', '<leader>ss', '<cmd>lua require("user.keymaps").commit_snapshot()<cr>', opts)
+keymap("n", "<leader>ss", '<cmd>lua require("user.keymaps").commit_snapshot()<cr>', opts)
 return M

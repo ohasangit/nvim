@@ -43,6 +43,18 @@ return packer.startup(function(use)
   use 'kyazdani42/nvim-tree.lua'
   use "ellisonleao/glow.nvim"
 
+  -- Scrolling
+  use {
+    'wfxr/minimap.vim',
+    run = "cargo install --locked code-minimap",
+    -- cmd = {"Minimap", "MinimapClose", "MinimapToggle", "MinimapRefresh", "MinimapUpdateHighlight"},
+    config = function()
+      vim.cmd("let g:minimap_width = 10")
+      vim.cmd("let g:minimap_auto_start = 1")
+      vim.cmd("let g:minimap_auto_start_win_enter = 1")
+    end,
+  }
+
   -- Colorschemes
   use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
 
@@ -67,14 +79,14 @@ return packer.startup(function(use)
   -- Telescope
   use "nvim-telescope/telescope.nvim"
   use 'nvim-telescope/telescope-media-files.nvim'
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use { 'dhruvmanila/telescope-bookmarks.nvim', requires = { 'tami5/sqlite.lua', 'tyru/open-browser.vim' } }
-  use { 'ahmedkhalf/project.nvim', config = function () require("project_nvim").setup{} end }
+  use { 'ahmedkhalf/project.nvim', config = function() require("project_nvim").setup {} end }
 
   -- Treesitter
   --use {
-    --"nvim-treesitter/nvim-treesitter",
-    --run = ":TSUpdate",
+  --"nvim-treesitter/nvim-treesitter",
+  --run = ":TSUpdate",
   --}
   --use "p00f/nvim-ts-rainbow"
 
