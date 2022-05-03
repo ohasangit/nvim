@@ -42,6 +42,10 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-web-devicons"
   use "kyazdani42/nvim-tree.lua"
   use "ellisonleao/glow.nvim"
+  use {
+    "nvim-lualine/lualine.nvim",
+    requires = { "kyazdani42/nvim-web-devicons", opt = true }
+  }
 
   -- Colorschemes
   use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
@@ -84,18 +88,19 @@ return packer.startup(function(use)
   use "lewis6991/gitsigns.nvim"
 
   -- Scrolling
-  use {
-    "wfxr/minimap.vim",
-    run = "cargo install --locked code-minimap",
-    config = function()
-      vim.cmd("let g:minimap_width = 10")
-      vim.cmd("let g:minimap_auto_start = 1")
-      vim.cmd("let g:minimap_auto_start_win_enter = 0")
-      vim.cmd("let g:minimap_git_colors = 1")
-      vim.cmd("let g:minimap_highlight_search = 1")
-      vim.cmd("let g:minimap_highlight_range = 1")
-    end,
-  }
+  -- TODO: Fix this before using. Very buggy.
+  -- use {
+  --   "wfxr/minimap.vim",
+  --   run = "cargo install --locked code-minimap",
+  --   config = function()
+  --     vim.cmd("let g:minimap_width = 10")
+  --     vim.cmd("let g:minimap_auto_start = 1")
+  --     vim.cmd("let g:minimap_auto_start_win_enter = 0")
+  --     vim.cmd("let g:minimap_git_colors = 1")
+  --     vim.cmd("let g:minimap_highlight_search = 1")
+  --     vim.cmd("let g:minimap_highlight_range = 1")
+  --   end,
+  -- }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
