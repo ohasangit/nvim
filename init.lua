@@ -14,5 +14,6 @@ require "user.nvim-lastplace"
 require "user.nvim-tree"
 require "user.lsp.null-ls"
 require "user.lualine"
+require "user.which-key"
 
--- vim.cmd("hi NonText gui=bold,italic guifg=#AEAFAD")
+-- vim.cmd("hi NonText gui=bold,italic guifg=#AEAFgD")
