@@ -33,6 +33,14 @@ lsp_installer.on_server_ready(function(server)
   if server.name == "cmake" then
     vim.tbl_deep_extend("force", {}, opts)
   end
+
+  if server.name == "terraformls" then
+    vim.tbl_deep_extend("force", {}, opts)
+  end
+
+  if server.name == "tflint" then
+    vim.tbl_deep_extend("force", {}, opts)
+  end
   -- if server.name == "yamlls" then
   -- 	local yamlls_opts = require("user.lsp.settings.yamlls")
   -- 	opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
