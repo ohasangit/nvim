@@ -41,10 +41,11 @@ lsp_installer.on_server_ready(function(server)
   if server.name == "tflint" then
     vim.tbl_deep_extend("force", {}, opts)
   end
-  -- if server.name == "yamlls" then
-  -- 	local yamlls_opts = require("user.lsp.settings.yamlls")
-  -- 	opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
-  -- end
+
+  if server.name == "yamlls" then
+  	local yamlls_opts = require("user.lsp.settings.yamlls")
+  	opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
+  end
   --
   -- This setup() function is exactly the same as lspconfig's setup function.
   -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
