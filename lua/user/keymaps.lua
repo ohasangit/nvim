@@ -114,8 +114,8 @@ local M = {}
 -- Creates a snapshot of the current plugin repos and commits it.
 M.commit_snapshot = function()
   -- TODO Use current working directory instead of hardcoding
-  require("packer").snapshot("/lhome/e357154/.config/nvim/packer-snapshot")
-  vim.cmd(':Git add "/lhome/e357154/.config/nvim/packer-snapshot"')
+  require("packer").snapshot("~/.config/nvim/packer-snapshot")
+  vim.cmd(':Git add "~/.config/nvim/packer-snapshot"')
   vim.cmd(':Git commit -m "Updating snapshot"')
 end
 keymap("n", "<leader>ss", '<cmd>lua require("user.keymaps").commit_snapshot()<cr>', opts)
