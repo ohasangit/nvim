@@ -77,11 +77,11 @@ return packer.startup(function(use)
   use { "ahmedkhalf/project.nvim", config = function() require("project_nvim").setup {} end }
 
   -- Treesitter
-  --use {
-  --"nvim-treesitter/nvim-treesitter",
-  --run = ":TSUpdate",
-  --}
-  --use "p00f/nvim-ts-rainbow"
+  use {
+  "nvim-treesitter/nvim-treesitter",
+  run = ":TSUpdate",
+  }
+  use "p00f/nvim-ts-rainbow"
 
   -- Git
   use "tpope/vim-fugitive"
