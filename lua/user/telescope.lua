@@ -86,21 +86,21 @@ telescope.setup {
   },
   extensions = {
     media_files = {
-        -- filetypes whitelist
-        -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-        filetypes = {"png", "webp", "jpg", "jpeg"},
-        find_cmd = "rg" -- find command (defaults to `fd`)
-      },
+      -- filetypes whitelist
+      -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+      filetypes = { "png", "webp", "jpg", "jpeg" },
+      find_cmd = "rg" -- find command (defaults to `fd`)
+    },
     fzf = {
-          fuzzy = true,                    -- false will only do exact matching
-          override_generic_sorter = true,  -- override the generic sorter
-          override_file_sorter = true,     -- override the file sorter
-          case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-                                           -- the default case_mode is "smart_case"
+      fuzzy = true, -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true, -- override the file sorter
+      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+      -- the default case_mode is "smart_case"
     },
     bookmarks = {
-      selected_browser = 'firefox',
-      url_open_plugin = 'open_browser',
+      selected_browser = "firefox",
+      url_open_plugin = "open_browser",
     }
     -- Your extension configuration goes here:
     -- extension_name = {
@@ -110,7 +110,7 @@ telescope.setup {
   },
 }
 
-telescope.load_extension('media_files')
-telescope.load_extension('fzf')
-telescope.load_extension('bookmarks')
-telescope.load_extension('projects')
+telescope.load_extension("media_files")
+telescope.load_extension("fzf")
+telescope.load_extension("bookmarks")
+telescope.load_extension("projects")
