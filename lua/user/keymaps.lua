@@ -104,6 +104,7 @@ keymap("n", "<leader>gy", '<cmd>lua require"gitlinker".get_repo_url({action_call
 -- Browser --
 keymap("n", "<leader>goo", ":OpenBrowserSmartSearch ", { noremap = true })
 keymap("n", "<c-g>", "<Plug>(openbrowser-smart-search)", term_opts)
+keymap("n", "<leader>b", "<cmd>Telescope bookmarks<cr>", term_opts)
 
 -- Nvim-tree --
 keymap("n", "<leader>n", "<cmd>NvimTreeToggle<cr>", opts)
