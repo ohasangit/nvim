@@ -99,7 +99,7 @@ telescope.setup {
       -- the default case_mode is "smart_case"
     },
     bookmarks = {
-      selected_browser = "firefox",
+      selected_browser = "chrome",
       url_open_plugin = "open_browser",
     }
     -- Your extension configuration goes here:
