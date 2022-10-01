@@ -89,6 +89,17 @@ return packer.startup(function(use)
   use "tpope/vim-fugitive"
   use "ruifm/gitlinker.nvim"
   use "lewis6991/gitsigns.nvim"
+  use {
+    'pwntester/octo.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'kyazdani42/nvim-web-devicons',
+    },
+    config = function ()
+      require"octo".setup()
+    end
+  }
 
   -- Scrolling
   -- TODO: Fix this before using. Very buggy.
