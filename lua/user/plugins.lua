@@ -47,6 +47,8 @@ return packer.startup(function(use)
     requires = { "kyazdani42/nvim-web-devicons", opt = true }
   }
   use "folke/which-key.nvim"
+  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
+  use({'ckipp01/nvim-jenkinsfile-linter', requires = { "nvim-lua/plenary.nvim" } })
 
   -- Colorschemes
   use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
