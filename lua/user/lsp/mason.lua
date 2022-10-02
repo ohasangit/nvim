@@ -70,7 +70,9 @@ mason_lspconfig.setup {
 
 mason_lspconfig.setup_handlers({
   function(server_name)
-    require("lspconfig")[server_name].setup {}
+    require("lspconfig")[server_name].setup {
+      on_attach = on_attach,
+    }
   end,
   ["sumneko_lua"] = function()
     require("lspconfig").sumneko_lua.setup {
