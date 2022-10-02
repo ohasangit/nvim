@@ -1,9 +1,7 @@
-local fn = vim.fn
-
 -- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system {
+local install_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  PACKER_BOOTSTRAP = vim.fn.system {
     "git",
     "clone",
     "--depth",
@@ -14,14 +12,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
   print "Installing packer close and reopen Neovim..."
   vim.cmd [[packadd packer.nvim]]
 end
-
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]]
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -67,9 +57,17 @@ return packer.startup(function(use)
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
   -- LSP
-  use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  use "williamboman/mason.nvim"
+  use {"williamboman/mason-lspconfig.nvim"}
+  use {'neovim/nvim-lspconfig'} -- Configurations for Nvim LSP
+  use {
+      'junnplus/lsp-setup.nvim',
+      requires = {
+          'neovim/nvim-lspconfig',
+          'williamboman/mason.nvim',
+          'williamboman/mason-lspconfig.nvim',
+      }
+  }
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
@@ -100,21 +98,6 @@ return packer.startup(function(use)
       require"octo".setup()
     end
   }
-
-  -- Scrolling
-  -- TODO: Fix this before using. Very buggy.
-  -- use {
-  --   "wfxr/minimap.vim",
-  --   run = "cargo install --locked code-minimap",
-  --   config = function()
-  --     vim.cmd("let g:minimap_width = 10")
-  --     vim.cmd("let g:minimap_auto_start = 1")
-  --     vim.cmd("let g:minimap_auto_start_win_enter = 0")
-  --     vim.cmd("let g:minimap_git_colors = 1")
-  --     vim.cmd("let g:minimap_highlight_search = 1")
-  --     vim.cmd("let g:minimap_highlight_range = 1")
-  --   end,
-  -- }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
