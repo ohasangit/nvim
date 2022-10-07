@@ -107,7 +107,6 @@ cmp.setup {
         luasnip = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
-        cmdline = "[Cmdline]",
       })[entry.source.name]
       return vim_item
     end,
@@ -122,7 +121,6 @@ cmp.setup {
       }
     },
     { name = "path" },
-    { name = "cmdline" },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
@@ -138,15 +136,3 @@ cmp.setup {
     native_menu = false,
   },
 }
-
-require "cmp".setup.cmdline(":", {
-  sources = {
-    { name = "cmdline" }
-  }
-})
-
-require "cmp".setup.cmdline("/", {
-  sources = {
-    { name = "buffer" }
-  }
-})
