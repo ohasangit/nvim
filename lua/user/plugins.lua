@@ -37,8 +37,8 @@ return packer.startup(function(use)
     requires = { "kyazdani42/nvim-web-devicons", opt = true }
   }
   use "folke/which-key.nvim"
-  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
-  use({'ckipp01/nvim-jenkinsfile-linter', requires = { "nvim-lua/plenary.nvim" } })
+  use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
+  use({ 'ckipp01/nvim-jenkinsfile-linter', requires = { "nvim-lua/plenary.nvim" } })
 
   -- Colorschemes
   use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
@@ -58,15 +58,16 @@ return packer.startup(function(use)
 
   -- LSP
   use "williamboman/mason.nvim"
-  use {"williamboman/mason-lspconfig.nvim"}
-  use {'neovim/nvim-lspconfig'} -- Configurations for Nvim LSP
+  use { "williamboman/mason-lspconfig.nvim" }
+  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  use { 'neovim/nvim-lspconfig' } -- Configurations for Nvim LSP
   use {
-      'junnplus/lsp-setup.nvim',
-      requires = {
-          'neovim/nvim-lspconfig',
-          'williamboman/mason.nvim',
-          'williamboman/mason-lspconfig.nvim',
-      }
+    'junnplus/lsp-setup.nvim',
+    requires = {
+      'neovim/nvim-lspconfig',
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+    }
   }
 
   -- Telescope
@@ -78,8 +79,8 @@ return packer.startup(function(use)
 
   -- Treesitter
   use {
-  "nvim-treesitter/nvim-treesitter",
-  run = ":TSUpdate",
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
   }
   use "p00f/nvim-ts-rainbow"
 
@@ -94,8 +95,8 @@ return packer.startup(function(use)
       'nvim-telescope/telescope.nvim',
       'kyazdani42/nvim-web-devicons',
     },
-    config = function ()
-      require"octo".setup()
+    config = function()
+      require "octo".setup()
     end
   }
 
