@@ -7,6 +7,6 @@ end
 web_tools.setup({
   keymaps = {
     rename = nil, -- by default use same setup of lspconfig
-    repeat_rename = '.', -- . to repeat
+    repeat_rename = nil, -- . to repeat
   },
 })
