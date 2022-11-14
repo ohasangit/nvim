@@ -16,6 +16,7 @@ null_ls.setup({
 		formatting.autopep8,
 		-- formatting.black.with({ extra_args = { "--line-length", "79" } }),
 		-- formatting.black,
+		formatting.blue,
 		formatting.shellharden,
 		diagnostics.flake8,
 		diagnostics.shellcheck,
