@@ -50,6 +50,9 @@ keymap("n", "<leader>;", ":", { noremap = true })
 -- Remove Highlighting
 keymap("n", "<leader><cr>", ":noh<cr>", opts)
 
+-- Remove Highlighting
+keymap("n", "<leader>l", ":set invnumber<cr>", opts)
+
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
@@ -99,7 +102,12 @@ keymap("n", "<leader>gpu", "<cmd>Git push -u origin HEAD<cr>", opts)
 keymap("n", "<leader>gpf", "<cmd>Git push --force<cr>", opts)
 keymap("n", "<leader>gpn", "<cmd>Git push -o ci.skip<cr>", opts)
 keymap("n", "<leader>gpp", "<cmd>Git pull<cr>", opts)
-keymap("n", "<leader>gy", '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>', opts)
+keymap(
+  "n",
+  "<leader>gy",
+  '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>',
+  opts
+)
 
 -- Browser --
 keymap("n", "<leader>goo", ":OpenBrowserSmartSearch ", { noremap = true })
