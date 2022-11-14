@@ -1,21 +1,22 @@
-require "user.options"
-require "user.keymaps"
-require "user.impatient"
-require "user.plugins"
-require "user.colorscheme"
-require "user.cmp"
-require "user.telescope"
-require "user.treesitter"
-require "user.gitlinker"
-require "user.gitsigns"
-require "user.autopairs"
-require "user.comment"
-require "user.nvim-lastplace"
-require "user.nvim-tree"
-require "user.lualine"
-require "user.which-key"
-require "user.lsp.mason"
-require "user.lsp"
-require "user.web-tools"
-require "user.lsp.null-ls"
-require "user.project-nvim"
+require("user.options")
+require("user.keymaps")
+require("user.impatient")
+require("user.plugins")
+require("user.colorscheme")
+require("user.cmp")
+require("user.telescope-enhanced-find-files")
+require("user.telescope")
+require("user.treesitter")
+require("user.gitlinker")
+require("user.gitsigns")
+require("user.autopairs")
+require("user.comment")
+require("user.nvim-lastplace")
+require("user.nvim-tree")
+require("user.lualine")
+require("user.which-key")
+require("user.lsp.mason")
+require("user.lsp.lsp")
+require("user.web-tools")
+require("user.lsp.null-ls")
+require("user.project-nvim")
