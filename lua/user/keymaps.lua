@@ -103,10 +103,10 @@ keymap("n", "<leader>gpf", "<cmd>Git push --force<cr>", opts)
 keymap("n", "<leader>gpn", "<cmd>Git push -o ci.skip<cr>", opts)
 keymap("n", "<leader>gpp", "<cmd>Git pull<cr>", opts)
 keymap(
-  "n",
-  "<leader>gy",
-  '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>',
-  opts
+	"n",
+	"<leader>gy",
+	'<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>',
+	opts
 )
 
 -- Browser --
@@ -122,10 +122,10 @@ local M = {}
 
 -- Creates a snapshot of the current plugin repos and commits it.
 M.commit_snapshot = function()
-  -- TODO Use current working directory instead of hardcoding
-  require("packer").snapshot("~/.config/nvim/packer-snapshot")
-  vim.cmd(':Git add "~/.config/nvim/packer-snapshot"')
-  vim.cmd(':Git commit -m "Updating snapshot"')
+	local path = vim.fn.stdpath("config") .. "/packer-snapshot"
+	require("packer").snapshot(path)
+	vim.cmd(":Git add " .. path)
+	vim.cmd(':Git commit -m "Updating snapshot"')
 end
 keymap("n", "<leader>ss", '<cmd>lua require("user.keymaps").commit_snapshot()<cr>', opts)
 return M
