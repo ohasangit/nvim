@@ -39,9 +39,10 @@ return packer.startup(function(use)
 	use("folke/which-key.nvim")
 	use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install" })
 	use({ "ckipp01/nvim-jenkinsfile-linter", requires = { "nvim-lua/plenary.nvim" } })
+  use("lukas-reineke/indent-blankline.nvim")
+  use("NvChad/nvim-colorizer.lua")
 
 	-- Colorschemes
-	use("lunarvim/colorschemes")
 	use("folke/tokyonight.nvim")
 	use("marko-cerovac/material.nvim")
 
