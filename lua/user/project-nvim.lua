@@ -28,7 +28,7 @@ project_nvim.setup {
   exclude_dirs = {"submodules/*/.git"},
 
   -- Show hidden files in telescope
-  show_hidden = true,
+  show_hidden = false,
 
   -- When set to false, you will get a message when project.nvim changes your
   -- directory.
