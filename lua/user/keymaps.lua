@@ -124,8 +124,6 @@ local M = {}
 M.commit_snapshot = function()
 	local path = vim.fn.stdpath("config") .. "/packer-snapshot"
 	require("packer").snapshot(path)
-	vim.cmd(":Git add " .. path)
-	vim.cmd(':Git commit -m "Updating snapshot"')
 end
 keymap("n", "<leader>ss", '<cmd>lua require("user.keymaps").commit_snapshot()<cr>', opts)
 return M
