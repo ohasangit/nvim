@@ -65,7 +65,6 @@ require("tokyonight").setup({
     }
     hl.IndentBlanklineIndent2 = {
       bg = c.black,
-      fg = c.black,
     }
   end,
 })
