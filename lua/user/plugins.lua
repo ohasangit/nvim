@@ -103,6 +103,15 @@ return packer.startup(function(use)
   -- Web Development
   use("ray-x/web-tools.nvim")
 
+  -- DAP
+  use("mfussenegger/nvim-dap")
+  use { "rcarriga/nvim-dap-ui",
+    requires = { "mfussenegger/nvim-dap" },
+    config = function ()
+      require("dapui").setup()
+    end
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
