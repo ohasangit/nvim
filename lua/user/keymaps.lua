@@ -118,7 +118,11 @@ keymap("n", "<leader>b", "<cmd>Telescope bookmarks<cr>", term_opts)
 keymap("n", "<leader>n", "<cmd>NvimTreeToggle<cr>", opts)
 
 -- cellular-automaton --
-keymap("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<cr>", opts)
+keymap("n", "<leader>qq", "<cmd>CellularAutomaton make_it_rain<cr>", opts)
+
+-- Octo --
+vim.api.nvim_buf_set_keymap(0, "i", "@", "@<C-x><C-o>", { silent = true, noremap = true })
+vim.api.nvim_buf_set_keymap(0, "i", "#", "#<C-x><C-o>", { silent = true, noremap = true })
 
 -- Packer --
 local M = {}
