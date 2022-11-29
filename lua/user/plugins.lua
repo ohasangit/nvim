@@ -39,6 +39,7 @@ return packer.startup(function(use)
   use({ "ckipp01/nvim-jenkinsfile-linter", requires = { "nvim-lua/plenary.nvim" } })
   use("lukas-reineke/indent-blankline.nvim")
   use("NvChad/nvim-colorizer.lua")
+  use 'eandrju/cellular-automaton.nvim'
 
   -- Colorschemes
   use("folke/tokyonight.nvim")
@@ -83,6 +84,13 @@ return packer.startup(function(use)
     run = ":TSUpdate",
   })
   use("p00f/nvim-ts-rainbow")
+  use {
+    'm-demare/hlargs.nvim',
+    requires = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require("hlargs").setup()
+    end,
+  }
 
   -- Git
   use("tpope/vim-fugitive")
