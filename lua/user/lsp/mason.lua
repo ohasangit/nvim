@@ -28,7 +28,7 @@ local function lsp_highlight_document(client)
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
-    ]] ,
+    ]],
       false
     )
   end
@@ -64,9 +64,6 @@ mason_lspconfig.setup({
   ensure_installed = { 'sumneko_lua' },
   -- automatic_installation = false,
 })
-
--- Apparently below is how you do automatic setup of all servers... however they aren't getting attached to
--- buffers, so not sure what's going on.
 
 mason_lspconfig.setup_handlers({
   function(server_name)
