@@ -118,7 +118,7 @@ keymap('n', '<leader>b', '<cmd>Telescope bookmarks<cr>', term_opts)
 keymap('n', '<leader>n', '<cmd>NvimTreeToggle<cr>', opts)
 
 -- cellular-automaton --
-keymap('n', '<leader>qq', '<cmd>CellularAutomaton make_it_rain<cr>', opts)
+keymap('n', '<leader><Tab>', '<cmd>CellularAutomaton make_it_rain<cr>', opts)
 
 -- Packer --
 local M = {}
