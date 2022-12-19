@@ -120,6 +120,11 @@ keymap('n', '<leader>n', '<cmd>NvimTreeToggle<cr>', opts)
 -- cellular-automaton --
 keymap('n', '<leader><Tab>', '<cmd>CellularAutomaton make_it_rain<cr>', opts)
 
+-- Octo --
+keymap('n', '<leader>op', '<cmd>Octo pr create<cr>', opts)
+keymap('n', '<leader>os', '<cmd>Octo search<cr>', opts)
+keymap('n', '<leader>ol', '<cmd>Octo pr list<cr>', opts)
+
 -- Packer --
 local M = {}
 
