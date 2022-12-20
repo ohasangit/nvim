@@ -101,6 +101,7 @@ telescope.setup {
     bookmarks = {
       selected_browser = "chrome",
       url_open_plugin = "open_browser",
+      full_path = false
     }
     -- Your extension configuration goes here:
     -- extension_name = {
