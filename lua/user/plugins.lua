@@ -108,6 +108,7 @@ return packer.startup(function(use)
       require('octo').setup()
     end,
   })
+  use('github/copilot.vim')
 
   -- Web Development
   use('ray-x/web-tools.nvim')
