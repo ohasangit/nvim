@@ -4,6 +4,12 @@ if not status_ok then
   return
 end
 
+vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''})
+
+-- vim.api.nvim_create_autocmd("DapAutoComplete", {
+--   command = "require('dap.ext.autocompl').attach()",
+-- })
+
 dap.adapters.python = {
   type = 'executable',
   command = 'python',
