@@ -40,7 +40,19 @@ return packer.startup(function(use)
   use('lukas-reineke/indent-blankline.nvim')
   use('NvChad/nvim-colorizer.lua')
   use('eandrju/cellular-automaton.nvim')
-
+  use({
+    'jackMort/ChatGPT.nvim',
+    config = function()
+      require('chatgpt').setup({
+        -- optional configuration
+      })
+    end,
+    requires = {
+      'MunifTanjim/nui.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+    },
+  })
   -- Colorschemes
   use('folke/tokyonight.nvim')
 
