@@ -125,6 +125,9 @@ keymap('n', '<leader>op', '<cmd>Octo pr create<cr>', opts)
 keymap('n', '<leader>os', '<cmd>Octo search<cr>', opts)
 keymap('n', '<leader>ol', '<cmd>Octo pr list<cr>', opts)
 
+-- Keymap for neovim terminal command
+keymap('n', '<leader>tt', '<cmd>terminal<cr>', opts)
+
 -- Packer --
 local M = {}
 
