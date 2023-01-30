@@ -83,6 +83,7 @@ return packer.startup(function(use)
       'williamboman/mason-lspconfig.nvim',
     },
   })
+  use({ 'folke/trouble.nvim' })
 
   -- Telescope
   use('nvim-telescope/telescope.nvim')
