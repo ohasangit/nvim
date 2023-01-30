@@ -125,8 +125,21 @@ keymap('n', '<leader>op', '<cmd>Octo pr create<cr>', opts)
 keymap('n', '<leader>os', '<cmd>Octo search<cr>', opts)
 keymap('n', '<leader>ol', '<cmd>Octo pr list<cr>', opts)
 
--- Keymap for neovim terminal command
-keymap('n', '<leader>tt', '<cmd>terminal<cr>', opts)
+-- Terminal --
+-- Keymap for neovim terminal command in a horizontal split with 30% height
+keymap('n', '<leader>tt', '<cmd>24split | terminal<cr>', opts)
+
+-- ChatGPT --
+-- Keymap for Chatgpt command
+keymap('n', '<leader>cc', '<cmd>ChatGPT<cr>', opts)
+
+-- Trouble --
+keymap('n', '<leader>di', '<cmd>TroubleToggle<cr>', opts)
+keymap('n', '<leader>dw', '<cmd>TroubleToggle workspace_diagnostics<cr>', opts)
+keymap('n', '<leader>di', '<cmd>TroubleToggle document_diagnostics<cr>', opts)
+keymap('n', '<leader>dl', '<cmd>TroubleToggle loclist<cr>', opts)
+keymap('n', '<leader>dq', '<cmd>TroubleToggle quickfix<cr>', opts)
+keymap('n', '<leader>dg', '<cmd>TroubleToggle lsp_references<cr>', opts)
 
 -- Packer --
 local M = {}
