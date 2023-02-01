@@ -5,7 +5,6 @@ if not status_ok then
 end
 
 trouble_config.setup({
-  position = 'right',
-  height = 20,
+  height = 25,
   use_diagnostic_signs = true,
 })
