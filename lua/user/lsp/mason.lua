@@ -60,8 +60,7 @@ local on_attach = function(client, bufnr)
 end
 
 mason_lspconfig.setup({
-  ensure_installed = { 'sumneko_lua' },
-  -- automatic_installation = false,
+  ensure_installed = { 'lua_ls' },
 })
 
 mason_lspconfig.setup_handlers({
@@ -70,8 +69,8 @@ mason_lspconfig.setup_handlers({
       on_attach = on_attach,
     })
   end,
-  ['sumneko_lua'] = function()
-    require('lspconfig').sumneko_lua.setup({
+  ['lua_ls'] = function()
+    require('lspconfig').lua_ls.setup({
       on_attach = on_attach,
       settings = {
         Lua = {
@@ -96,3 +95,51 @@ mason_lspconfig.setup_handlers({
     })
   end,
 })
+
+local dap_status_ok, dap = pcall(require, 'dap')
+if not dap_status_ok then
+  return
+end
+
+-- require('mason-nvim-dap').setup()
+-- require('mason-nvim-dap').setup_handlers({
+--   function(source_name)
+--     -- all sources with no handler get passed here
+
+--     -- Keep original functionality of `automatic_setup = true`
+--     require('mason-nvim-dap.automatic_setup')(source_name)
+--   end,
+--   python = function(source_name)
+--     dap.adapters.python = {
+--       type = 'executable',
+--       command = 'python',
+--       args = {
+--         '-m',
+--         'debugpy.adapter',
+--       },
+--       -- options: {
+--       --   env {
+--       --     ['PYTHONPATH'] = '/usr/local/lib/python3.9/site-packages',
+--       --   },
+--       -- },
+--     }
+
+--     dap.configurations.python = {
+--       {
+--         type = 'python',
+--         request = 'launch',
+--         name = 'Launch file',
+--         program = '${file}',
+--         pythonPath = 'python',
+--         -- pythonPath = function()
+--         --   local cwd = vim.fn.getcwd()
+--         --   local venv = cwd .. '/.venv/bin/python'
+--         --   if vim.fn.executable(venv) == 1 then
+--         --     return venv
+--         --   end
+--         --   return 'python'
+--         -- end,
+--       },
+--     }
+--   end,
+-- })
