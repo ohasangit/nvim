@@ -92,7 +92,13 @@ keymap('n', '<leader>hh', '<cmd>Telescope help_tags ' .. theme .. '<cr>', opts)
 keymap('n', '<c-p>', '<cmd>Telescope registers ' .. theme .. '<cr>', opts)
 keymap('n', '<leader>gs', '<cmd>Telescope git_status<cr>', opts)
 keymap('n', '<leader>gb', '<cmd>Telescope git_branches<cr>', opts)
-keymap('n', '<leader>gl', '<cmd>Telescope git_commits<cr>', opts)
+keymap('n', '<leader>gl', '<cmd>Telescope git_bcommits<cr>', opts)
+keymap('n', '<leader>gS', '<cmd>Telescope git_stash<cr>', opts)
+keymap('n', '<leader>gL', '<cmd>Telescope git_commits<cr>', opts)
+keymap('n', '<leader>r', '<cmd>Telescope lsp_references<cr>', opts)
+keymap('n', '<leader>ls', '<cmd>Telescope lsp_document_symbols<cr>', opts)
+keymap('n', '<leader>lw', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', opts)
+keymap('n', '<leader>m', '<cmd>Telescope keymaps<cr>', opts)
 
 -- Git --
 keymap('n', '<leader>gw', '<cmd>Gwrite<cr>', opts)
@@ -140,6 +146,17 @@ keymap('n', '<leader>di', '<cmd>TroubleToggle document_diagnostics<cr>', opts)
 keymap('n', '<leader>dl', '<cmd>TroubleToggle loclist<cr>', opts)
 keymap('n', '<leader>dq', '<cmd>TroubleToggle quickfix<cr>', opts)
 keymap('n', '<leader>dg', '<cmd>TroubleToggle lsp_references<cr>', opts)
+
+-- DAP --
+keymap('n', '<leader>db', '<cmd>lua require"dap".toggle_breakpoint()<cr>', opts)
+keymap('n', '<leader>dB', '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint Condition: "))<cr>', opts)
+keymap('n', '<leader>dc', '<cmd>lua require"dap".continue()<cr>', opts)
+keymap('n', '<leader>ds', '<cmd>lua require"dap".step_into()<cr>', opts)
+keymap('n', '<leader><leader>', '<cmd>lua require"dap".step_over()<cr>', opts)
+keymap('n', '<leader>du', '<cmd>lua require"dap".step_out()<cr>', opts)
+keymap('n', '<leader>dd', '<cmd>lua require"dapui".toggle()<cr>', opts)
+keymap('n', '<leader>dt', '<cmd>lua require"dap-python".test_method()<cr>', opts)
+keymap('n', '<leader>dr', '<cmd>lua require"dap".run_last()<cr>', opts)
 
 -- Packer --
 local M = {}
