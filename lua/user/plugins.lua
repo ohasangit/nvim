@@ -57,6 +57,8 @@ return packer.startup(function(use)
 
   -- Colorschemes
   use('folke/tokyonight.nvim')
+  use('Abstract-IDE/Abstract-cs')
+  use('marko-cerovac/material.nvim')
 
   -- cmp plugins
   use('hrsh7th/nvim-cmp')
