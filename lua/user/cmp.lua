@@ -143,6 +143,7 @@ local kind_icons = {
   Event = '',
   Operator = '',
   TypeParameter = '',
+  Copilot = '',
 }
 
 cmp.setup({
@@ -164,7 +165,11 @@ cmp.setup({
     }),
     -- Accept currently selected item. If none selected, `select` first item.
     -- Set `select` to `false` to only confirm explicitly selected items.
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<CR>'] = cmp.mapping.confirm({
+      -- this is the important line
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = false,
+    }),
     ['<Tab>'] = cmp.mapping(function(fallback)
       if luasnip.expandable() then
         luasnip.expand()
@@ -204,11 +209,13 @@ cmp.setup({
         buffer = '[Buffer]',
         path = '[Path]',
         git = '[Git]',
+        copilot = '[Copilot]',
       })[entry.source.name]
       return vim_item
     end,
   },
   sources = {
+    { name = 'copilot' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
     { name = 'luasnip' },
@@ -234,6 +241,24 @@ cmp.setup({
   experimental = {
     ghost_text = true,
     native_menu = false,
+  },
+  sorting = {
+    priority_weight = 2,
+    comparators = {
+      require('copilot_cmp.comparators').prioritize,
+
+      -- Below is the default comparitor list and order for nvim-cmp
+      cmp.config.compare.offset,
+      -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
+      cmp.config.compare.recently_used,
+      cmp.config.compare.locality,
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    },
   },
 })
 

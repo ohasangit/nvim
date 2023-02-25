@@ -69,6 +69,15 @@ return packer.startup(function(use)
   use('hrsh7th/cmp-nvim-lsp')
   use('hrsh7th/cmp-nvim-lua')
   use('petertriho/cmp-git')
+  use({
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    event = 'InsertEnter',
+  })
+  use({
+    'zbirenbaum/copilot-cmp',
+    after = { 'copilot.lua' },
+  })
 
   -- snippets
   use('L3MON4D3/LuaSnip')
@@ -125,7 +134,6 @@ return packer.startup(function(use)
       require('octo').setup()
     end,
   })
-  use('github/copilot.vim')
 
   -- Web Development
   use('ray-x/web-tools.nvim')
