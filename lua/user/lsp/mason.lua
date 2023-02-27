@@ -63,6 +63,36 @@ mason_lspconfig.setup({
   ensure_installed = { 'lua_ls' },
 })
 
+local util = require('lspconfig/util')
+
+local path = util.path
+
+local function extract_virtualenv_path(str)
+  local pattern = "%S*virtualenv%S*"
+  local match = string.match(str, pattern)
+  if match then
+    return string.match(match, "%S+")
+  end
+end
+
+local function get_python_path(workspace)
+  -- Use activated virtualenv.
+  if vim.env.VIRTUAL_ENV then
+    return path.join(vim.env.VIRTUAL_ENV, 'bin', 'python')
+  end
+
+  -- Find and use virtualenv from pipenv in workspace directory.
+  local match = vim.fn.glob(path.join(workspace, 'Pipfile'))
+  if match ~= '' then
+    local venv = vim.fn.trim(vim.fn.system('PIPENV_PIPFILE=' .. match .. ' pipenv --venv'))
+    venv = extract_virtualenv_path(venv)
+    return path.join(venv, 'bin', 'python')
+  end
+
+  -- Fallback to system Python.
+  return vim.fn.exepath('python3') or vim.fn.exepath('python') or 'python'
+end
+
 mason_lspconfig.setup_handlers({
   function(server_name)
     require('lspconfig')[server_name].setup({
@@ -90,6 +120,30 @@ mason_lspconfig.setup_handlers({
           -- Do not send telemetry data containing a randomized but unique identifier
           telemetry = {
             enable = false,
+          },
+        },
+      },
+    })
+  end,
+  ['pyright'] = function()
+    require('lspconfig').pyright.setup({
+      on_attach = on_attach,
+      on_init = function(client)
+        local python_path = get_python_path(client.config.root_dir)
+        print(python_path)
+        client.config.settings.python.pythonPath = python_path
+      end,
+      settings = {
+        python = {
+          -- venvPath = '/home/ohasan/.local/share/virtualenvs/atmc-cloud-nXf4VJD4/',
+          -- pythonPath = '/usr/bin/python3',
+          analysis = {
+            useLibraryCodeForTypes = true,
+            diagnosticSeverityOverrides = {
+              reportMissingTypeStubs = 'information',
+              reportImportCycles = 'information',
+              reportDeprecated = 'information',
+            },
           },
         },
       },
