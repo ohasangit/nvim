@@ -4,5 +4,5 @@ if not status_ok then
 end
 
 neodev.setup({
-  library = { plugins = { 'nvim-dap-ui' }, types = true },
+  library = { plugins = { 'nvim-dap-ui', 'neotest' }, types = true },
 })

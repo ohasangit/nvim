@@ -54,6 +54,17 @@ return packer.startup(function(use)
     },
   })
   use('folke/neodev.nvim')
+  use({
+    'nvim-neotest/neotest',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'antoinemadec/FixCursorHold.nvim',
+    },
+  })
+  use({
+    'nvim-neotest/neotest-python'
+  })
 
   -- Colorschemes
   use('folke/tokyonight.nvim')
