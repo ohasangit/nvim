@@ -3,10 +3,10 @@ if not null_ls_status_ok then
   return
 end
 
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 local formatting = null_ls.builtins.formatting
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 local diagnostics = null_ls.builtins.diagnostics
+local code_actions = null_ls.builtins.code_actions
+local hover = null_ls.builtins.hover
 
 null_ls.setup({
   debug = false,
@@ -15,16 +15,27 @@ null_ls.setup({
     formatting.stylua,
     formatting.shfmt,
     formatting.fixjson,
-    -- formatting.autopep8,
     formatting.black.with({ extra_args = { "--line-length", "120" } }),
-    -- formatting.black,
-    -- formatting.blue,
     formatting.shellharden,
-    -- diagnostics.flake8,
+    formatting.markdownlint,
+    formatting.taplo,
     diagnostics.shellcheck,
     diagnostics.hadolint,
     diagnostics.markdownlint,
     diagnostics.jsonlint,
-    -- null_ls.builtins.code_actions.refactoring,
+    diagnostics.actionlint,
+    diagnostics.write_good,
+    diagnostics.codespell,
+    diagnostics.commitlint,
+    diagnostics.tfsec,
+    diagnostics.todo_comments,
+    diagnostics.trail_space,
+    -- diagnostics.vacuum,
+    code_actions.gitsigns,
+    -- code_actions.prettier,
+    code_actions.refactoring,
+    code_actions.shellcheck,
+    -- hover.printenv,
+    -- hover.dictionary,
   },
 })
