@@ -63,8 +63,9 @@ return packer.startup(function(use)
     },
   })
   use({
-    'nvim-neotest/neotest-python'
+    'nvim-neotest/neotest-python',
   })
+  use('m4xshen/smartcolumn.nvim')
 
   -- Colorschemes
   use('folke/tokyonight.nvim')
@@ -115,6 +116,7 @@ return packer.startup(function(use)
   use({ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' })
   use({ 'dhruvmanila/telescope-bookmarks.nvim', requires = { 'tami5/sqlite.lua', 'tyru/open-browser.vim' } })
   use({ 'ahmedkhalf/project.nvim' })
+  use({ 'nvim-telescope/telescope-dap.nvim' })
 
   -- Treesitter
   use({
