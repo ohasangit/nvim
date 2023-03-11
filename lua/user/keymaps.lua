@@ -50,9 +50,6 @@ keymap('n', '<leader>;', ':', { noremap = true })
 -- Remove Highlighting
 keymap('n', '<leader><cr>', ':noh<cr>', opts)
 
--- Remove Highlighting
-keymap('n', '<leader>l', ':set invnumber<cr>', opts)
-
 -- Visual --
 -- Stay in indent mode
 keymap('v', '<', '<gv', opts)
@@ -160,9 +157,6 @@ keymap('n', '<leader>dR', '<cmd>lua require"dap".run_last()<cr>', opts)
 keymap('n', '<leader>do', '<cmd>lua require"dap".run_to_cursor()<cr>', opts)
 keymap('n', '<leader>df', '<cmd>lua require"dap".focus_frame()<cr>', opts)
 keymap('n', '<leader>dr', '<cmd>lua require"dap".restart()<cr>', opts)
-
-
-
 
 -- Packer --
 local M = {}
