@@ -12,7 +12,7 @@ null_ls.setup({
   debug = false,
   sources = {
     formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
-    formatting.stylua,
+    -- formatting.stylua,
     formatting.shfmt,
     formatting.fixjson,
     formatting.black.with({ extra_args = { "--line-length", "120" } }),
