@@ -89,15 +89,8 @@ return packer.startup(function(use)
   use('hrsh7th/cmp-nvim-lsp')
   use('hrsh7th/cmp-nvim-lua')
   use('petertriho/cmp-git')
-  use({
-    'zbirenbaum/copilot.lua',
-    cmd = 'Copilot',
-    event = 'InsertEnter',
-  })
-  use({
-    'zbirenbaum/copilot-cmp',
-    after = { 'copilot.lua' },
-  })
+  use('zbirenbaum/copilot.lua')
+  use('zbirenbaum/copilot-cmp')
 
   -- snippets
   use('L3MON4D3/LuaSnip')
