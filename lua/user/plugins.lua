@@ -75,6 +75,8 @@ return packer.startup(function(use)
       })
     end,
   })
+  use({ 'michaelb/sniprun', run = 'bash ./install.sh' })
+
   -- Colorschemes
   use('folke/tokyonight.nvim')
   use('Abstract-IDE/Abstract-cs')
