@@ -21,10 +21,10 @@ end
 
 return packer.startup(function(use)
   use('wbthomason/packer.nvim') -- Have packer manage itself
-  use('nvim-lua/popup.nvim') -- An implementation of the Popup API from vim in Neovim
-  use('nvim-lua/plenary.nvim') -- Useful lua functions used ny lots of plugins
-  use('windwp/nvim-autopairs') -- Autopairs, integrates with both cmp and treesitter
-  use('numToStr/Comment.nvim') -- Easily comment stuff
+  use('nvim-lua/popup.nvim')    -- An implementation of the Popup API from vim in Neovim
+  use('nvim-lua/plenary.nvim')  -- Useful lua functions used ny lots of plugins
+  use('windwp/nvim-autopairs')  -- Autopairs, integrates with both cmp and treesitter
+  use('numToStr/Comment.nvim')  -- Easily comment stuff
   use('lewis6991/impatient.nvim')
   use('ethanholz/nvim-lastplace')
   use('kyazdani42/nvim-web-devicons')
@@ -66,7 +66,15 @@ return packer.startup(function(use)
     'nvim-neotest/neotest-python',
   })
   use('m4xshen/smartcolumn.nvim')
-
+  use({
+    'kylechui/nvim-surround',
+    tag = '*', -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+      require('nvim-surround').setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end,
+  })
   -- Colorschemes
   use('folke/tokyonight.nvim')
   use('Abstract-IDE/Abstract-cs')
@@ -99,7 +107,7 @@ return packer.startup(function(use)
   use('williamboman/mason.nvim')
   use({ 'williamboman/mason-lspconfig.nvim' })
   use('jose-elias-alvarez/null-ls.nvim') -- for formatters and linters
-  use({ 'neovim/nvim-lspconfig' }) -- Configurations for Nvim LSP
+  use({ 'neovim/nvim-lspconfig' })       -- Configurations for Nvim LSP
   use({
     'junnplus/lsp-setup.nvim',
     requires = {
