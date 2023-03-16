@@ -127,6 +127,7 @@ keymap('n', '<leader><Tab>', '<cmd>CellularAutomaton make_it_rain<cr>', opts)
 keymap('n', '<leader>op', '<cmd>Octo pr create<cr>', opts)
 keymap('n', '<leader>os', '<cmd>Octo search<cr>', opts)
 keymap('n', '<leader>ol', '<cmd>Octo pr list<cr>', opts)
+keymap('n', '<leader>om', '<cmd>Octo pr merge squash<cr>', opts)
 
 -- Terminal --
 -- Keymap for neovim terminal command in a horizontal split with 30% height
