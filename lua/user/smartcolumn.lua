@@ -6,4 +6,5 @@ end
 
 smart_column.setup({
   custom_colorcolumn = { python = '120' },
+  disabled_filetypes = { 'help', 'text', 'markdown', 'gitcommit' },
 })
