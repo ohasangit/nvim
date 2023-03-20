@@ -136,6 +136,11 @@ keymap('n', '<leader>tt', '<cmd>24split | terminal<cr>', opts)
 -- ChatGPT --
 -- Keymap for Chatgpt command
 keymap('n', '<leader>cc', '<cmd>ChatGPT<cr>', opts)
+keymap('v', '<C-O>', '<cmd>ChatGPTRun optimize_code<cr>', opts)
+keymap('v', '<C-T>', '<cmd>ChatGPTRun add_tests<cr>', opts)
+keymap('v', '<C-D>', '<cmd>ChatGPTRun docstring<cr>', opts)
+keymap('v', '<C-F>', '<cmd>ChatGPTRun fix_bugs<cr>', opts)
+keymap('n', '<leader>ce', '<cmd>ChatGPTEditWithInstructions<cr>', opts)
 
 -- Trouble --
 keymap('n', '<leader>di', '<cmd>TroubleToggle<cr>', opts)
@@ -158,6 +163,12 @@ keymap('n', '<leader>dR', '<cmd>lua require"dap".run_last()<cr>', opts)
 keymap('n', '<leader>do', '<cmd>lua require"dap".run_to_cursor()<cr>', opts)
 keymap('n', '<leader>df', '<cmd>lua require"dap".focus_frame()<cr>', opts)
 keymap('n', '<leader>dr', '<cmd>lua require"dap".restart()<cr>', opts)
+
+-- Neotest --
+keymap('n', '<leader>tr', '<cmd>lua require"neotest".run.run()<cr>', opts)
+keymap('n', '<leader>tr', '<cmd>lua require"neotest".run.run(vim.fn.expand("%"))<cr>', opts)
+keymap('n', '<leader>ts', '<cmd>lua require"neotest".summary.open()<cr>', opts)
+keymap('n', '<leader>ts', '<cmd>lua require"neotest".summary.toggle()<cr>', opts)
 
 -- Packer --
 local M = {}
