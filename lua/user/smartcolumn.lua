@@ -13,6 +13,9 @@ smart_column.setup({
     'gitcommit',
     'octo',
     'git',
-    'dockerfile'
+    'dockerfile',
+    'yaml',
+    'qf',
+    'Trouble',
   },
 })
