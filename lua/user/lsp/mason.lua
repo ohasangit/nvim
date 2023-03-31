@@ -149,6 +149,17 @@ mason_lspconfig.setup_handlers({
       },
     })
   end,
+  ['yamlls'] = function()
+    require('lspconfig').yamlls.setup({
+      on_attach = on_attach,
+      settings = {
+        yaml = {
+          keyOrdering = false,
+        }
+      },
+    })
+
+  end
 })
 
 local dap_status_ok, dap = pcall(require, 'dap')
