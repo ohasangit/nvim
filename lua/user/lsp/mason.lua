@@ -140,7 +140,6 @@ mason_lspconfig.setup_handlers({
           analysis = {
             useLibraryCodeForTypes = true,
             diagnosticSeverityOverrides = {
-              reportMissingTypeStubs = 'information',
               reportImportCycles = 'information',
               reportDeprecated = 'information',
             },
