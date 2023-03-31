@@ -71,7 +71,12 @@ return packer.startup(function(use)
     end,
   })
   use({ 'michaelb/sniprun', run = 'bash ./install.sh' })
-
+  use {
+    'rmagatti/goto-preview',
+    config = function()
+      require('goto-preview').setup {}
+    end
+  }
   -- Colorschemes
   use('folke/tokyonight.nvim')
   use('Abstract-IDE/Abstract-cs')
