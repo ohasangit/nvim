@@ -17,5 +17,6 @@ smart_column.setup({
     'yaml',
     'qf',
     'Trouble',
+    'NvimTree',
   },
 })
