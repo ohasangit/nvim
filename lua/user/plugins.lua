@@ -81,7 +81,15 @@ return packer.startup(function(use)
   use('folke/tokyonight.nvim')
   use('Abstract-IDE/Abstract-cs')
   use('marko-cerovac/material.nvim')
-
+  use({
+    "neanias/everforest-nvim",
+    -- Optional; default configuration will be used if setup isn't called.
+    config = function()
+      require("everforest").setup({
+        background = "hard",
+      })
+    end,
+  })
   -- cmp plugins
   use('hrsh7th/nvim-cmp')
   use('hrsh7th/cmp-buffer')
