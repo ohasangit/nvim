@@ -150,6 +150,7 @@ return packer.startup(function(use)
       require('octo').setup()
     end,
   })
+  use { 'akinsho/git-conflict.nvim', tag = "*" }
 
   -- Web Development
   use('ray-x/web-tools.nvim')
