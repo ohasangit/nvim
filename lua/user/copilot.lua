@@ -10,6 +10,7 @@ copilot.setup({
   filetypes = {
     gitcommit = true,
     yaml = true,
+    markdown = true,
   },
 })
 
