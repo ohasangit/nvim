@@ -29,7 +29,7 @@ null_ls.setup({
     diagnostics.codespell,
     diagnostics.commitlint,
     diagnostics.tfsec,
-    diagnostics.todo_comments,
+    -- diagnostics.todo_comments,
     diagnostics.trail_space,
     -- diagnostics.yamllint,
     -- diagnostics.vacuum,
