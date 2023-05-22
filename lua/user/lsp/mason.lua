@@ -134,10 +134,11 @@ mason_lspconfig.setup_handlers({
         print(python_path)
         client.config.settings.python.pythonPath = python_path
       end,
+      root_dir = function(fname)
+          return util.find_git_ancestor(fname) or util.path.dirname(fname)
+        end,
       settings = {
         python = {
-          -- venvPath = '/home/ohasan/.local/share/virtualenvs/atmc-cloud-nXf4VJD4/',
-          -- pythonPath = '/usr/bin/python3',
           analysis = {
             useLibraryCodeForTypes = true,
             diagnosticSeverityOverrides = {
