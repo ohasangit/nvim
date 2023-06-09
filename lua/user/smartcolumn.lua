@@ -18,5 +18,6 @@ smart_column.setup({
     'qf',
     'Trouble',
     'NvimTree',
+    'terraform'
   },
 })
