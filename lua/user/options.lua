@@ -1,48 +1,41 @@
-local options = {
-  -- spell = true, -- spell
-  backup = false, -- creates a backup file
-  clipboard = 'unnamedplus', -- allows neovim to access the system clipboard
-  cmdheight = 1, -- more space in the neovim command line for displaying messages
-  completeopt = { 'menuone', 'noselect' }, -- mostly just for cmp
-  conceallevel = 0, -- so that `` is visible in markdown files
-  fileencoding = 'utf-8', -- the encoding written to a file
-  hlsearch = true, -- highlight all matches on previous search pattern
-  ignorecase = true, -- ignore case in search patterns
-  mouse = 'a', -- allow the mouse to be used in neovim
-  pumheight = 10, -- pop up menu height
-  showmode = false, -- we don't need to see things like -- INSERT -- anymore
-  showtabline = 0, -- always show tabs
-  smartcase = true, -- smart case
-  smartindent = true, -- make indenting smarter again
-  splitbelow = true, -- force all horizontal splits to go below current window
-  splitright = true, -- force all vertical splits to go to the right of current window
-  swapfile = false, -- creates a swapfile
-  termguicolors = true, -- set term gui colors (most terminals support this)
-  timeoutlen = 500, -- time to wait for a mapped sequence to complete (in milliseconds)
-  undofile = true, -- enable persistent undo
-  updatetime = 300, -- faster completion (4000ms default)
-  writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-  expandtab = true, -- convert tabs to spaces
-  shiftwidth = 2, -- the number of spaces inserted for each indentation
-  tabstop = 2, -- insert 2 spaces for a tab
-  cursorline = true, -- highlight the current line
-  number = true, -- set numbered lines
-  relativenumber = false, -- set relative numbered lines
-  numberwidth = 2, -- set number column width to 2 {default 4}
-  textwidth = 100, -- set number column width to 2 {default 4}
-  signcolumn = 'yes', -- always show the sign column, otherwise it would shift the text each time
-  wrap = false, -- display lines as one long line
-  scrolloff = 8, -- is one of my fav
-  sidescrolloff = 8,
-  guifont = 'monospace:h17', -- the font used in graphical neovim applications
-}
+vim.g.mapleader = " "
 
-vim.opt.shortmess:append('c')
+local opt = vim.opt
 
-for k, v in pairs(options) do
-  vim.opt[k] = v
-end
+opt.clipboard = 'unnamedplus' -- Use system clipboard
+opt.completeopt = 'menuone,noselect'
+opt.confirm = true
+opt.cursorline = true
+opt.expandtab = true
+opt.ignorecase = true
+opt.list = true
+opt.mouse = 'a'
+opt.number = true
+opt.numberwidth = 2
+opt.pumblend = 10
+opt.pumheight = 10
+opt.scrolloff = 8
+opt.shiftround = true
+opt.shiftwidth = 2
+opt.shortmess:append({ c = true })
+opt.showmode = false -- Statusline plugin replaces this
+opt.showtabline = 0 -- Hide tabs
+opt.sidescrolloff = 8
+opt.signcolumn = 'yes' -- always show the sign column, otherwise it would shift the text each time
+opt.smartcase = true
+opt.smartindent = true
+opt.splitbelow = true
+opt.splitright = true
+opt.swapfile = false
+opt.tabstop = 2
+opt.termguicolors = true
+opt.timeoutlen = 500
+opt.undofile = true
+opt.updatetime = 300
+opt.wrap = false
 
-vim.cmd('set whichwrap+=<,>,[,],h,l')
-vim.cmd([[set iskeyword+=-]])
 vim.g.python3_host_prog = '/usr/bin/python3'
+
+if vim.fn.has("nvim-0.9.0") == 1 then
+  opt.splitkeep = "screen"
+end
