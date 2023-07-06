@@ -56,28 +56,6 @@ map('t', '<C-l>', '<C-\\><C-N><C-w>l', { noremap = true, silent = true, desc = "
 map('n', '<leader><CR>', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = "Plugin (Lazy) Menu" })
 
 --[[ Commenting plugin specific keybinds for now
--- Telescope --
-local theme = 'theme=ivy'
-keymap('n', '<leader>f', '<cmd>Telescope oldfiles ' .. theme .. '<cr>', opts)
-keymap('n', "<leader>'", '<cmd>Telescope command_history ' .. theme .. '<cr>', opts)
-keymap('n', '<c-b>', '<cmd>Telescope buffers ' .. theme .. '<cr>', opts)
-keymap('n', '<c-f>', '<cmd>Telescope git_files ' .. theme .. '<cr>', opts)
-keymap('n', '<leader>p', '<cmd>Telescope projects  ' .. theme .. '<cr>', opts)
-keymap('n', '<leader>/', '<cmd>Telescope live_grep ' .. theme .. '<cr>', opts)
-keymap('n', '<leader>\\', '<cmd>Telescope grep_string ' .. theme .. '<cr>', opts)
-keymap('n', '<c-c>', '<cmd>Telescope commands ' .. theme .. '<cr>', opts)
-keymap('n', '<leader>hh', '<cmd>Telescope help_tags ' .. theme .. '<cr>', opts)
-keymap('n', '<c-p>', '<cmd>Telescope registers ' .. theme .. '<cr>', opts)
-keymap('n', '<leader>gs', '<cmd>Telescope git_status<cr>', opts)
-keymap('n', '<leader>gb', '<cmd>Telescope git_branches<cr>', opts)
-keymap('n', '<leader>gl', '<cmd>Telescope git_bcommits<cr>', opts)
-keymap('n', '<leader>gS', '<cmd>Telescope git_stash<cr>', opts)
-keymap('n', '<leader>gL', '<cmd>Telescope git_commits<cr>', opts)
-keymap('n', '<leader>r', '<cmd>Telescope lsp_references<cr>', opts)
-keymap('n', '<leader>ls', '<cmd>Telescope lsp_document_symbols<cr>', opts)
-keymap('n', '<leader>lw', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', opts)
-keymap('n', '<leader>m', '<cmd>Telescope keymaps<cr>', opts)
-
 -- Git --
 keymap('n', '<leader>gw', '<cmd>Gwrite<cr>', opts)
 keymap('n', '<leader>gc', '<cmd>Git commit<cr>', opts)
@@ -97,9 +75,6 @@ keymap(
 keymap('n', '<leader>goo', ':OpenBrowserSmartSearch ', { noremap = true })
 keymap('n', '<c-g>', '<Plug>(openbrowser-smart-search)', term_opts)
 keymap('n', '<leader>b', '<cmd>Telescope bookmarks<cr>', term_opts)
-
--- Nvim-tree --
-keymap('n', '<leader>n', '<cmd>NvimTreeToggle<cr>', opts)
 
 -- cellular-automaton --
 keymap('n', '<leader><Tab>', '<cmd>CellularAutomaton make_it_rain<cr>', opts)
