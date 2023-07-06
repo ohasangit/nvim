@@ -76,9 +76,6 @@ keymap('n', '<leader>goo', ':OpenBrowserSmartSearch ', { noremap = true })
 keymap('n', '<c-g>', '<Plug>(openbrowser-smart-search)', term_opts)
 keymap('n', '<leader>b', '<cmd>Telescope bookmarks<cr>', term_opts)
 
--- cellular-automaton --
-keymap('n', '<leader><Tab>', '<cmd>CellularAutomaton make_it_rain<cr>', opts)
-
 -- Octo --
 keymap('n', '<leader>op', '<cmd>Octo pr create<cr>', opts)
 keymap('n', '<leader>os', '<cmd>Octo search<cr>', opts)
@@ -126,14 +123,4 @@ keymap('n', '<leader>ta', '<cmd>lua require"neotest".run.run(vim.fn.expand("%"))
 keymap('n', '<leader>ts', '<cmd>lua require"neotest".summary.toggle()<cr>', opts)
 keymap('n', '<leader>tr', '<cmd>lua require"neotest".output.open({ enter = true })<cr>', opts)
 
--- Packer --
-local M = {}
-
--- Creates a snapshot of the current plugin repos and commits it.
-M.commit_snapshot = function()
-  local path = vim.fn.stdpath('config') .. '/packer-snapshot'
-  require('packer').snapshot(path)
-end
-keymap('n', '<leader>ss', '<cmd>lua require("user.keymaps").commit_snapshot()<cr>', opts)
-return M
 --]]
