@@ -1,80 +1,61 @@
-local opts = { noremap = true, silent = true }
-
-local term_opts = { silent = true }
-
--- Shorten function name
-local keymap = vim.api.nvim_set_keymap
-
---Remap space as leader key
-keymap('', '<Space>', '<Nop>', opts)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
--- Modes
---   normal_mode = "n",
---   insert_mode = "i",
---   visual_mode = "v",
---   visual_block_mode = "x",
---   term_mode = "t",
---   command_mode = "c",
+local map = vim.keymap.set
 
 -- Normal --
 -- Better window navigation
-keymap('n', '<C-h>', '<C-w>h', opts)
-keymap('n', '<C-j>', '<C-w>j', opts)
-keymap('n', '<C-k>', '<C-w>k', opts)
-keymap('n', '<C-l>', '<C-w>l', opts)
+map('n', '<C-h>', '<C-w>h', { noremap = true, silent = true, desc = "Move to window left"})
+map('n', '<C-j>', '<C-w>j', { noremap = true, silent = true, desc = "Move to window down"})
+map('n', '<C-k>', '<C-w>k', { noremap = true, silent = true, desc = "Move to window up"})
+map('n', '<C-l>', '<C-w>l', { noremap = true, silent = true, desc = "Move to window right"})
 
 -- Resize with arrows
-keymap('n', '<C-Up>', ':resize -2<CR>', opts)
-keymap('n', '<C-Down>', ':resize +2<CR>', opts)
-keymap('n', '<C-Left>', ':vertical resize -2<CR>', opts)
-keymap('n', '<C-Right>', ':vertical resize +2<CR>', opts)
-
--- Navigate buffers
-keymap('n', '<S-l>', ':bnext<CR>', opts)
-keymap('n', '<S-h>', ':bprevious<CR>', opts)
+map('n', '<C-Up>', '<cmd>resize +2<CR>', { noremap = true, silent = true, desc = "Resize window upwards" })
+map('n', '<C-Down>', '<cmd>resize -2<CR>', { noremap = true, silent = true, desc = "Resize window downwards" })
+map('n', '<C-Left>', '<cmd>vertical resize -2<CR>', { noremap = true, silent = true, desc = "Resize window to the left" })
+map('n', '<C-Right>', '<cmd>vertical resize +2<CR>', { noremap = true, silent = true, desc = "Resize window to the right" })
 
 -- Quick Saving --
-keymap('n', '<leader>w', ':w<cr>', opts)
+map('n', '<leader>w', ':w<cr>', { noremap = true, silent = true, desc = "Write buffer to file" })
 
 -- Quick Window Close/Exit --
-keymap('n', '<leader>q', ':q<cr>', opts)
+map('n', '<leader>q', ':q<cr>', { noremap = true, silent = true, desc = "Quit" })
 
 -- Quick Buffer Close --
-keymap('n', '<leader>bd', ':bd<cr>', opts)
+map('n', '<leader>bd', ':bd<cr>', { noremap = true, silent = true, desc = "Close Buffer" })
 
 -- Quick Commands --
-keymap('n', '<leader>;', ':', { noremap = true })
+map('n', '<leader>;', ':', { noremap = true, desc = "Enter Command Mode" })
 
 -- Remove Highlighting
-keymap('n', '<leader><cr>', ':noh<cr>', opts)
+map('n', '<cr>', ':noh<cr>', { noremap = true, silent = true, desc = "Clear search highlighting" })
 
 -- Visual --
 -- Stay in indent mode
-keymap('v', '<', '<gv', opts)
-keymap('v', '>', '>gv', opts)
+map('v', '<', '<gv', { noremap = true, silent = true })
+map('v', '>', '>gv', { noremap = true, silent = true })
 
 -- Move text up and down
-keymap('v', '<A-j>', ':m .+1<CR>==', opts)
-keymap('v', '<A-k>', ':m .-2<CR>==', opts)
+map('v', '<A-k>', ':m .-2<CR>==', { noremap = true, silent = true, desc = "Move selection up" })
+map('v', '<A-j>', ':m .+1<CR>==', { noremap = true, silent = true, desc = "Move selection down" })
 
-keymap('v', 'p', '"_dP', opts)
+-- Replace with buffer
+map('v', 'p', '"_dP', { noremap = true, silent = true, desc = "Replace selection with register contents" })
 
 -- Visual Block --
 -- Move text up and down
-keymap('x', 'J', ":move '>+0<CR>gv-gv", opts)
-keymap('x', 'K', ":move '<-2<CR>gv-gv", opts)
-keymap('x', '<A-j>', ":move '>+1<CR>gv-gv", opts)
-keymap('x', '<A-k>', ":move '<-2<CR>gv-gv", opts)
+map('x', '<A-k>', ":move '<-2<CR>gv-gv", { noremap = true, silent = true, desc = "Move selection up" })
+map('x', '<A-j>', ":move '>+1<CR>gv-gv", { noremap = true, silent = true, desc = "Move selection down" })
 
 -- Terminal --
 -- Better terminal navigation
-keymap('t', '<C-h>', '<C-\\><C-N><C-w>h', term_opts)
-keymap('t', '<C-j>', '<C-\\><C-N><C-w>j', term_opts)
-keymap('t', '<C-k>', '<C-\\><C-N><C-w>k', term_opts)
-keymap('t', '<C-l>', '<C-\\><C-N><C-w>l', term_opts)
+map('t', '<C-h>', '<C-\\><C-N><C-w>h', { noremap = true, silent = true, desc = "Move to window left" })
+map('t', '<C-j>', '<C-\\><C-N><C-w>j', { noremap = true, silent = true, desc = "Move to window down" })
+map('t', '<C-k>', '<C-\\><C-N><C-w>k', { noremap = true, silent = true, desc = "Move to window up" })
+map('t', '<C-l>', '<C-\\><C-N><C-w>l', { noremap = true, silent = true, desc = "Move to window right" })
 
+-- Lazy (Not sure of a better place)
+map('n', '<leader><CR>', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = "Plugin (Lazy) Menu" })
+
+--[[ Commenting plugin specific keybinds for now
 -- Telescope --
 local theme = 'theme=ivy'
 keymap('n', '<leader>f', '<cmd>Telescope oldfiles ' .. theme .. '<cr>', opts)
@@ -180,3 +161,4 @@ M.commit_snapshot = function()
 end
 keymap('n', '<leader>ss', '<cmd>lua require("user.keymaps").commit_snapshot()<cr>', opts)
 return M
+--]]
