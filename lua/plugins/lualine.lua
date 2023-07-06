@@ -10,7 +10,16 @@ return {
     },
     sections = {
       lualine_a = { "mode" },
-      lualine_b = { "branch", "diff", "diagnostics" },
+      lualine_b = { 
+        "branch",
+        "diff",
+        "diagnostics",
+        {
+          require("lazy.status").updates,
+          cond = require("lazy.status").has_updates,
+          color = { fg = "#ff9e64" },
+        },
+      },
       lualine_c = {
         {
           "filename", path = 3
