@@ -60,7 +60,6 @@ return packer.startup(function(use)
   use({
     'nvim-neotest/neotest-python',
   })
-  use('m4xshen/smartcolumn.nvim')
   use({
     'kylechui/nvim-surround',
     tag = '*', -- Use for stability; omit to use `main` branch for the latest features
