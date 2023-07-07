@@ -1,13 +1,14 @@
 return {
   'nvim-treesitter/nvim-treesitter',
+  branch = "master",
   build = ":TSUpdate",
   opts = {
     ensure_installed = "all",
     sync_install = false,
-    ignore_install = {},
+    ignore_install = {"comment"},
     highlight = {
       enable = true,
-      disable = { "" },
+      disable = { "comment", "lua" }, -- Comment these out for now since they have really bad performance
       additional_vim_regex_highlighting = true,
     },
     indent = { enable = true, disable = { "yaml" } },
