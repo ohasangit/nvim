@@ -1,6 +1,6 @@
 return {
   'numToStr/Comment.nvim',
-  keys = 'gcc',
+  keys = {'gcc', {'gc', mode = 'v'}},
   opts = {
     ignore = "^$"
   },
