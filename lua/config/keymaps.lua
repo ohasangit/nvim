@@ -2,16 +2,17 @@ local map = vim.keymap.set
 
 -- Normal --
 -- Better window navigation
-map('n', '<C-h>', '<C-w>h', { noremap = true, silent = true, desc = "Move to window left"})
-map('n', '<C-j>', '<C-w>j', { noremap = true, silent = true, desc = "Move to window down"})
-map('n', '<C-k>', '<C-w>k', { noremap = true, silent = true, desc = "Move to window up"})
-map('n', '<C-l>', '<C-w>l', { noremap = true, silent = true, desc = "Move to window right"})
+map('n', '<C-h>', '<C-w>h', { noremap = true, silent = true, desc = "Move to window left" })
+map('n', '<C-j>', '<C-w>j', { noremap = true, silent = true, desc = "Move to window down" })
+map('n', '<C-k>', '<C-w>k', { noremap = true, silent = true, desc = "Move to window up" })
+map('n', '<C-l>', '<C-w>l', { noremap = true, silent = true, desc = "Move to window right" })
 
 -- Resize with arrows
 map('n', '<C-Up>', '<cmd>resize +2<CR>', { noremap = true, silent = true, desc = "Resize window upwards" })
 map('n', '<C-Down>', '<cmd>resize -2<CR>', { noremap = true, silent = true, desc = "Resize window downwards" })
 map('n', '<C-Left>', '<cmd>vertical resize -2<CR>', { noremap = true, silent = true, desc = "Resize window to the left" })
-map('n', '<C-Right>', '<cmd>vertical resize +2<CR>', { noremap = true, silent = true, desc = "Resize window to the right" })
+map('n', '<C-Right>', '<cmd>vertical resize +2<CR>',
+  { noremap = true, silent = true, desc = "Resize window to the right" })
 
 -- Quick Saving --
 map('n', '<leader>w', ':w<cr>', { noremap = true, silent = true, desc = "Write buffer to file" })

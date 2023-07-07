@@ -1,30 +1,30 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
-    dependencies = { 
+    dependencies = {
       'nvim-lua/plenary.nvim',
     },
     keys = {
-      {"<leader>f", "<cmd>Telescope oldfiles theme=ivy<cr>", desc = "Recent Files"},
-      {"<c-f>", "<cmd>Telescope git_files theme=ivy<cr>", desc = "Git files"},
-      {"<c-b>", "<cmd>Telescope buffers theme=ivy<cr>", desc = "Buffers"},
-      {"<leader>p", "<cmd>Telescope projects theme=ivy<cr>", desc = "Projects"},
-      {"<leader>'", "<cmd>Telescope command_history theme=ivy<cr>", desc = "Command History"},
-      {"<c-c>", "<cmd>Telescope commands theme=ivy<cr>", desc = "Commands"},
-      {"<leader>/", "<cmd>Telescope live_grep theme=ivy<cr>", desc = "Grep word under cursor"},
-      {"<leader>\\", "<cmd>Telescope grep_string theme=ivy<cr>", desc = "Grep string"},
-      {"<leader>hh", "<cmd>Telescope help_tags theme=ivy<cr>", desc = "Help docs"},
-      {"<c-p>", "<cmd>Telescope registers theme=ivy<cr>", desc = "Registers"},
-      {"<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Git status"},
-      {"<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Git branch"},
-      {"<leader>gl", "<cmd>Telescope git_bcommits<cr>", desc = "Git buffer commits"},
-      {"<leader>gL", "<cmd>Telescope git_commits<cr>", desc = "Git commits"},
-      {"<leader>gS", "<cmd>Telescope git_stash<cr>", desc = "Git stash"},
-      {"<leader>r", "<cmd>Telescope lsp_references<cr>", desc = "LSP references"},
-      {"<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", desc = "LSP document symbols"},
-      {"<leader>lw", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "LSP dynamic workspace symbols"},
-      {"<leader>m", "<cmd>Telescope keymaps<cr>", desc = "Keymaps"},
-      {"<leader>b", "<cmd>Telescope bookmarks<cr>", desc = "Keymaps"},
+      { "<leader>f",  "<cmd>Telescope oldfiles theme=ivy<cr>",            desc = "Recent Files" },
+      { "<c-f>",      "<cmd>Telescope git_files theme=ivy<cr>",           desc = "Git files" },
+      { "<c-b>",      "<cmd>Telescope buffers theme=ivy<cr>",             desc = "Buffers" },
+      { "<leader>p",  "<cmd>Telescope projects theme=ivy<cr>",            desc = "Projects" },
+      { "<leader>'",  "<cmd>Telescope command_history theme=ivy<cr>",     desc = "Command History" },
+      { "<c-c>",      "<cmd>Telescope commands theme=ivy<cr>",            desc = "Commands" },
+      { "<leader>/",  "<cmd>Telescope live_grep theme=ivy<cr>",           desc = "Grep word under cursor" },
+      { "<leader>\\", "<cmd>Telescope grep_string theme=ivy<cr>",         desc = "Grep string" },
+      { "<leader>hh", "<cmd>Telescope help_tags theme=ivy<cr>",           desc = "Help docs" },
+      { "<c-p>",      "<cmd>Telescope registers theme=ivy<cr>",           desc = "Registers" },
+      { "<leader>gs", "<cmd>Telescope git_status<cr>",                    desc = "Git status" },
+      { "<leader>gb", "<cmd>Telescope git_branches<cr>",                  desc = "Git branch" },
+      { "<leader>gl", "<cmd>Telescope git_bcommits<cr>",                  desc = "Git buffer commits" },
+      { "<leader>gL", "<cmd>Telescope git_commits<cr>",                   desc = "Git commits" },
+      { "<leader>gS", "<cmd>Telescope git_stash<cr>",                     desc = "Git stash" },
+      { "<leader>r",  "<cmd>Telescope lsp_references<cr>",                desc = "LSP references" },
+      { "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>",          desc = "LSP document symbols" },
+      { "<leader>lw", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "LSP dynamic workspace symbols" },
+      { "<leader>m",  "<cmd>Telescope keymaps<cr>",                       desc = "Keymaps" },
+      { "<leader>b",  "<cmd>Telescope bookmarks<cr>",                     desc = "Keymaps" },
     },
     opts = {
       defaults = {
@@ -53,20 +53,20 @@ return {
   {
     'nvim-telescope/telescope-media-files.nvim',
     config = function()
-      require"telescope".load_extension("media_files")
+      require "telescope".load_extension("media_files")
     end,
   },
   {
     'nvim-telescope/telescope-fzf-native.nvim',
     build = 'make',
     config = function()
-      require"telescope".load_extension("fzf")
+      require "telescope".load_extension("fzf")
     end,
   },
   {
     'dhruvmanila/browser-bookmarks.nvim',
     config = function()
-      require"telescope".load_extension("bookmarks")
+      require "telescope".load_extension("bookmarks")
     end,
     dependencies = {
       'nvim-telescope/telescope.nvim'

@@ -1,4 +1,4 @@
 return {
   'ethanholz/nvim-lastplace',
-  opts = {}
+  config = true
 }
