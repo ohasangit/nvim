@@ -27,7 +27,7 @@ map('n', '<leader>bd', ':bd<cr>', { noremap = true, silent = true, desc = "Close
 map('n', '<leader>;', ':', { noremap = true, desc = "Enter Command Mode" })
 
 -- Remove Highlighting
-map('n', '<cr>', ':noh<cr>', { noremap = true, silent = true, desc = "Clear search highlighting" })
+map('n', '<leader><cr>', ':noh<cr>', { noremap = true, silent = true, desc = "Clear search highlighting" })
 
 -- Visual --
 -- Stay in indent mode
@@ -57,13 +57,6 @@ map('t', '<C-l>', '<C-\\><C-N><C-w>l', { noremap = true, silent = true, desc = "
 map('n', '<leader>hj', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = "Plugin (Lazy) Menu" })
 
 --[[ Commenting plugin specific keybinds for now
--- Git --
-keymap(
-  'n',
-  '<leader>gy',
-  '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>',
-  opts
-)
 
 -- Browser --
 keymap('n', '<leader>goo', ':OpenBrowserSmartSearch ', { noremap = true })
@@ -75,10 +68,6 @@ keymap('n', '<leader>op', '<cmd>Octo pr create<cr>', opts)
 keymap('n', '<leader>os', '<cmd>Octo search<cr>', opts)
 keymap('n', '<leader>ol', '<cmd>Octo pr list<cr>', opts)
 keymap('n', '<leader>om', '<cmd>Octo pr merge squash<cr>', opts)
-
--- Terminal --
--- Keymap for neovim terminal command in a horizontal split with 30% height
-keymap('n', '<leader>tt', '<cmd>24split | terminal<cr>', opts)
 
 -- ChatGPT --
 -- Keymap for Chatgpt command
