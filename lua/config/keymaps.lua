@@ -53,17 +53,10 @@ map('t', '<C-k>', '<C-\\><C-N><C-w>k', { noremap = true, silent = true, desc = "
 map('t', '<C-l>', '<C-\\><C-N><C-w>l', { noremap = true, silent = true, desc = "Move to window right" })
 
 -- Lazy (Not sure of a better place)
-map('n', '<leader><CR>', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = "Plugin (Lazy) Menu" })
+map('n', '<leader>hj', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = "Plugin (Lazy) Menu" })
 
 --[[ Commenting plugin specific keybinds for now
 -- Git --
-keymap('n', '<leader>gw', '<cmd>Gwrite<cr>', opts)
-keymap('n', '<leader>gc', '<cmd>Git commit<cr>', opts)
-keymap('n', '<leader>gp', '<cmd>Git push<cr>', opts)
-keymap('n', '<leader>gpu', '<cmd>Git push -u origin HEAD<cr>', opts)
-keymap('n', '<leader>gpf', '<cmd>Git push --force<cr>', opts)
-keymap('n', '<leader>gpn', '<cmd>Git push -o ci.skip<cr>', opts)
-keymap('n', '<leader>gpp', '<cmd>Git pull<cr>', opts)
 keymap(
   'n',
   '<leader>gy',
