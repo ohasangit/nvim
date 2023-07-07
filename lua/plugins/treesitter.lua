@@ -3,12 +3,12 @@ return {
   branch = "master",
   build = ":TSUpdate",
   opts = {
-    ensure_installed = "all",
+    ensure_installed = {"lua", "python", "json", "bash", "c", "cmake", "cpp", "dockerfile", "diff", "git_config", "git_rebase", "gitcommit", "gitignore", "gitattributes", "http", "jq", "json", "json5", "yaml"},
     sync_install = false,
-    ignore_install = {"comment"},
+    ignore_install = {},
     highlight = {
       enable = true,
-      disable = { "comment", "lua" }, -- Comment these out for now since they have really bad performance
+      disable = {},
       additional_vim_regex_highlighting = true,
     },
     indent = { enable = true, disable = { "yaml" } },
