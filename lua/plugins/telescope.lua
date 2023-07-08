@@ -24,7 +24,6 @@ return {
       { "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>",          desc = "LSP document symbols" },
       { "<leader>lw", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "LSP dynamic workspace symbols" },
       { "<leader>m",  "<cmd>Telescope keymaps<cr>",                       desc = "Keymaps" },
-      { "<leader>b",  "<cmd>Telescope bookmarks<cr>",                     desc = "Keymaps" },
     },
     opts = {
       defaults = {
@@ -52,6 +51,9 @@ return {
   },
   {
     'nvim-telescope/telescope-media-files.nvim',
+    keys = {
+      { "<leader>mf", "<cmd>Telescope media_files theme=ivy<cr>", desc = "Media files" },
+    },
     config = function()
       require "telescope".load_extension("media_files")
     end,
@@ -65,11 +67,15 @@ return {
   },
   {
     'dhruvmanila/browser-bookmarks.nvim',
+    keys = {
+      { "<leader>bb", "<cmd>Telescope bookmarks<cr>", desc = "Browser bookmarks" },
+    },
     config = function()
       require "telescope".load_extension("bookmarks")
     end,
     dependencies = {
-      'nvim-telescope/telescope.nvim'
+      'nvim-telescope/telescope.nvim',
+      'tyru/open-browser.vim'
     }
   },
 }
