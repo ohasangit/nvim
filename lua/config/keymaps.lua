@@ -78,14 +78,6 @@ keymap('v', '<C-D>', '<cmd>ChatGPTRun docstring<cr>', opts)
 keymap('v', '<C-F>', '<cmd>ChatGPTRun fix_bugs<cr>', opts)
 keymap('n', '<leader>ce', '<cmd>ChatGPTEditWithInstructions<cr>', opts)
 
--- Trouble --
-keymap('n', '<leader>di', '<cmd>TroubleToggle<cr>', opts)
-keymap('n', '<leader>dw', '<cmd>TroubleToggle workspace_diagnostics<cr>', opts)
-keymap('n', '<leader>di', '<cmd>TroubleToggle document_diagnostics<cr>', opts)
-keymap('n', '<leader>dl', '<cmd>TroubleToggle loclist<cr>', opts)
-keymap('n', '<leader>dq', '<cmd>TroubleToggle quickfix<cr>', opts)
-keymap('n', '<leader>dg', '<cmd>TroubleToggle lsp_references<cr>', opts)
-
 -- DAP --
 keymap('n', '<leader>db', '<cmd>lua require"dap".toggle_breakpoint()<cr>', opts)
 keymap('n', '<leader>dB', '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint Condition: "))<cr>', opts)
