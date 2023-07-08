@@ -58,11 +58,6 @@ map('n', '<leader>hj', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = 
 
 --[[ Commenting plugin specific keybinds for now
 
--- Browser --
-keymap('n', '<leader>goo', ':OpenBrowserSmartSearch ', { noremap = true })
-keymap('n', '<c-g>', '<Plug>(openbrowser-smart-search)', term_opts)
-keymap('n', '<leader>b', '<cmd>Telescope bookmarks<cr>', term_opts)
-
 -- Octo --
 keymap('n', '<leader>op', '<cmd>Octo pr create<cr>', opts)
 keymap('n', '<leader>os', '<cmd>Octo search<cr>', opts)
