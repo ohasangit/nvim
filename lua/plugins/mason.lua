@@ -21,8 +21,7 @@ return {
       {
         'neovim/nvim-lspconfig',
         branch = 'master'
-      },
-      { 'rmagatti/goto-preview' }
+      }
     },
     init = function()
       local function lsp_highlight_document(client)
@@ -45,8 +44,6 @@ return {
         local opts = { noremap = true, silent = true }
         vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gf', '<cmd>lua require("goto-preview").goto_preview_definition()<CR>',
-          opts)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
@@ -107,5 +104,20 @@ return {
       })
     end,
     config = true
+  },
+  {
+    'rmagatti/goto-preview',
+    keys = { 'gp', 'gpr' },
+    config = function()
+      require("goto-preview").setup({
+        references = {
+          telescope = require("telescope.themes").get_ivy()
+        }
+      }) -- May not need this in the future: https://github.com/rmagatti/goto-preview/issues/88
+      vim.keymap.set('n', 'gp', '<cmd>lua require("goto-preview").goto_preview_definition()<CR>',
+        { noremap = true, silent = true })
+      vim.keymap.set('n', 'gpr', '<cmd>lua require("goto-preview").goto_preview_references()<CR>',
+        { noremap = true, silent = true })
+    end,
   }
 }
