@@ -15,6 +15,7 @@ return {
     indent = { enable = true, disable = { 'yaml' } },
     rainbow = { enable = true, extended_mode = true }
   },
+  -- TODO: Move to https://github.com/hiphish/rainbow-delimiters.nvim
   dependencies = {
     'p00f/nvim-ts-rainbow'
   },
