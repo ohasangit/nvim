@@ -15,6 +15,9 @@ return {
     indent = { enable = true, disable = { 'yaml' } },
     rainbow = { enable = true, extended_mode = true }
   },
+  dependencies = {
+    'p00f/nvim-ts-rainbow'
+  },
   config = function(_, opts)
     require('nvim-treesitter.configs').setup(opts)
   end
