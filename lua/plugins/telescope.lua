@@ -78,4 +78,20 @@ return {
       'tyru/open-browser.vim'
     }
   },
+  {
+    'ahmedkhalf/project.nvim',
+    keys = {
+      { "<leader>p", "<cmd>Telescope projects<cr>", desc = "Projects" },
+    },
+    config = function()
+      require('project_nvim').setup {
+        detection_methods = { "pattern", "lsp", "cwd" },
+        patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "Cargo.toml" },
+        show_hidden = true,
+        silent_chdir = false,
+        exclude_dirs = { "node_modules", ".git" },
+      }
+      require("telescope").load_extension("projects")
+    end
+  }
 }
