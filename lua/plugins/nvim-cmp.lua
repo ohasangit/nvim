@@ -13,6 +13,7 @@ return {
     {
       'L3MON4D3/LuaSnip',
       build = 'make install_jsregexp',
+      branch = 'master'
     },
     -- 'petertriho/cmp-git',
   },
@@ -124,6 +125,26 @@ return {
       sources = {
         { name = 'buffer' }
       }
+    })
+
+    cmp.setup.cmdline(':', {
+      mapping = {
+        ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'c' }),
+        ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'c' }),
+        ['<Tab>'] = cmp.mapping(cmp.mapping.complete_common_string(), { 'c' }),
+        ['<Enter>'] = cmp.mapping(cmp.mapping.confirm({ select = true }), { 'c' }),
+        ['<C-e>'] = cmp.mapping(cmp.mapping.close(), { 'c' }),
+      },
+      sources = cmp.config.sources({
+        { name = 'path' }
+      }, {
+        {
+          name = 'cmdline',
+          option = {
+            ignore_cmds = { 'Man', '!' }
+          }
+        }
+      })
     })
   end,
 
