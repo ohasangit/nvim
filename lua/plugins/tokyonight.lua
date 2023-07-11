@@ -7,7 +7,7 @@ return {
   end,
   opts = function()
     return {
-      style = "night",
+      style = "moon",
       styles = {
         functions = { bold = true },
         -- Background styles. Can be "dark", "transparent" or "normal"
