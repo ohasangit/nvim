@@ -14,7 +14,7 @@ return {
       build = 'make install_jsregexp',
       branch = 'master'
     },
-    -- 'petertriho/cmp-git',
+    'petertriho/cmp-git',
   },
   config = function()
     local cmp = require('cmp')
@@ -65,7 +65,7 @@ return {
             luasnip = '[Snippet]',
             buffer = '[Buffer]',
             path = '[Path]',
-            -- git = '[Git]',
+            git = '[Git]',
             -- copilot = '[Copilot]',
           })[entry.source.name]
           return vim_item
@@ -148,6 +148,24 @@ return {
           }
         }
       })
+    })
+
+    cmp.setup.filetype('gitcommit', {
+      sources = cmp.config.sources({
+        { name = 'nvim_lsp' }
+      }, {
+        { name = 'git' }
+      }, {
+        { name = 'buffer' }
+      })
+    })
+
+    cmp.setup.filetype('octo', {
+      sources = cmp.config.sources({
+        { name = 'git' },
+      }, {
+        { name = 'buffer' },
+      }),
     })
   end,
 }
