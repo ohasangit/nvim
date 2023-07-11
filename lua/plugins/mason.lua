@@ -24,7 +24,8 @@ return {
         dependencies = {
           { "folke/neodev.nvim", opts = {} }
         }
-      }
+      },
+      { 'cmp-nvim-lsp' }
     },
     init = function()
       local function lsp_highlight_document(client)
@@ -62,6 +63,7 @@ return {
         vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
       end
 
+
       local on_attach = function(client, bufnr)
         if client.name == 'tsserver' then
           client.server_capabilities.documentFormattingProvider = false
@@ -70,12 +72,14 @@ return {
         lsp_highlight_document(client)
       end
 
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local mason_lspconfig = require("mason-lspconfig")
 
       mason_lspconfig.setup_handlers({
         function(server_name)
           require('lspconfig')[server_name].setup({
             on_attach = on_attach,
+            capabilities = capabilities
           })
         end,
       })
