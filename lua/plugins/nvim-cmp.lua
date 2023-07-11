@@ -19,6 +19,7 @@ return {
       config = true
     },
   },
+  event = "InsertEnter",
   config = function()
     local cmp = require('cmp')
     local luasnip = require('luasnip')
@@ -69,7 +70,7 @@ return {
             buffer = '[Buffer]',
             path = '[Path]',
             git = '[Git]',
-            -- copilot = '[Copilot]',
+            copilot = '[Copilot]',
           })[entry.source.name]
           return vim_item
         end,
@@ -101,8 +102,9 @@ return {
       },
       sources = cmp.config.sources(
         {
+          { name = 'copilot' },
           { name = 'nvim_lua' },
-          { name = 'nvim_lsp' }
+          { name = 'nvim_lsp' },
         },
         {
           { name = 'luasnip' },
