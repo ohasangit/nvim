@@ -19,7 +19,7 @@ return {
       config = true
     },
   },
-  event = "InsertEnter",
+  event = 'InsertEnter',
   config = function()
     local cmp = require('cmp')
     local luasnip = require('luasnip')

@@ -1,8 +1,8 @@
 return {
   {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    event = 'InsertEnter',
     opts = {
       panel = { enabled = false, },
       suggestion = { enabled = false, },
@@ -14,9 +14,9 @@ return {
     }
   },
   {
-    "zbirenbaum/copilot-cmp",
-    event = "InsertEnter",
-    dependencies = { "zbirenbaum/copilot.lua" },
+    'zbirenbaum/copilot-cmp',
+    event = 'InsertEnter',
+    dependencies = { 'zbirenbaum/copilot.lua' },
     config = true
   }
 }

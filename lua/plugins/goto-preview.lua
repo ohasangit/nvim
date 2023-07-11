@@ -5,9 +5,9 @@ return {
     { 'gpr', '<cmd>lua require("goto-preview").goto_preview_references()<CR>', desc = 'Preview References' },
   },
   config = function()
-    require("goto-preview").setup({
+    require('goto-preview').setup({
       references = {
-        telescope = require("telescope.themes").get_ivy()
+        telescope = require('telescope.themes').get_ivy()
       }
     })
   end,

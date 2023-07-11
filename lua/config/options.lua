@@ -1,4 +1,4 @@
-vim.g.mapleader = " "
+vim.g.mapleader = ' '
 
 local opt = vim.opt
 
@@ -36,6 +36,6 @@ opt.wrap = false
 
 vim.g.python3_host_prog = '/usr/bin/python3'
 
-if vim.fn.has("nvim-0.9.0") == 1 then
-  opt.splitkeep = "screen"
+if vim.fn.has('nvim-0.9.0') == 1 then
+  opt.splitkeep = 'screen'
 end

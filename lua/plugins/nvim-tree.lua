@@ -1,11 +1,11 @@
 return {
-  "nvim-tree/nvim-tree.lua",
-  version = "*",
+  'nvim-tree/nvim-tree.lua',
+  version = '*',
   dependencies = {
-    "nvim-tree/nvim-web-devicons",
+    'nvim-tree/nvim-web-devicons',
   },
   keys = {
-    { "<leader>n", "<cmd>NvimTreeToggle<cr>", desc = "Toggle File Explorer" }
+    { '<leader>n', '<cmd>NvimTreeToggle<cr>', desc = 'Toggle File Explorer' }
   },
   opts = function()
     local function on_attach(bufnr)
@@ -78,16 +78,16 @@ return {
       reload_on_bufenter = true,
       view = {
         width = 50,
-        side = "right",
+        side = 'right',
       },
       renderer = {
         icons = {
-          git_placement = "after",
+          git_placement = 'after',
           glyphs = {
             git = {
-              unstaged = "",
-              staged = "S",
-              untracked = "U",
+              unstaged = '',
+              staged = 'S',
+              untracked = 'U',
             },
           },
         },

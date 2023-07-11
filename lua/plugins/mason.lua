@@ -2,7 +2,7 @@ return {
   {
     'williamboman/mason.nvim',
     keys = {
-      { "<leader>hk", "<cmd>Mason<cr>", desc = "LSP Manager" },
+      { '<leader>hk', '<cmd>Mason<cr>', desc = 'LSP Manager' },
     },
     opts = {
       ui = {
@@ -22,7 +22,7 @@ return {
         'neovim/nvim-lspconfig',
         branch = 'master',
         dependencies = {
-          { "folke/neodev.nvim", opts = {} }
+          { 'folke/neodev.nvim', opts = {} }
         }
       },
       { 'cmp-nvim-lsp' }
@@ -73,7 +73,7 @@ return {
       end
 
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
-      local mason_lspconfig = require("mason-lspconfig")
+      local mason_lspconfig = require('mason-lspconfig')
 
       mason_lspconfig.setup_handlers({
         function(server_name)
