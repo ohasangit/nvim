@@ -5,7 +5,7 @@ return {
   opts = {
     ensure_installed = { 'lua', 'python', 'json', 'bash', 'c', 'cmake', 'cpp', 'dockerfile', 'diff', 'git_config',
       'git_rebase', 'gitcommit', 'gitignore', 'gitattributes', 'http', 'jq', 'json', 'json5', 'yaml', 'terraform',
-      'javascript' },
+      'javascript', 'markdown' },
     sync_install = false,
     ignore_install = { 'comment' }, -- For some reason this parser has become super unperformant
     highlight = {
