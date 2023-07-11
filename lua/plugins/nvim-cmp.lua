@@ -125,7 +125,7 @@ return {
         ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'c' }),
         ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'c' }),
         ['<Tab>'] = cmp.mapping(cmp.mapping.complete_common_string(), { 'c' }),
-        ['<Enter>'] = cmp.mapping(cmp.mapping.confirm({ select = true }), { 'c' }),
+        ['<Enter>'] = cmp.mapping(cmp.mapping.confirm({ select = false }), { 'c' }),
         ['<C-e>'] = cmp.mapping(cmp.mapping.close(), { 'c' }),
       },
       sources = {
@@ -138,7 +138,7 @@ return {
         ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'c' }),
         ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'c' }),
         ['<Tab>'] = cmp.mapping(cmp.mapping.complete_common_string(), { 'c' }),
-        ['<Enter>'] = cmp.mapping(cmp.mapping.confirm({ select = true }), { 'c' }),
+        ['<Enter>'] = cmp.mapping(cmp.mapping.confirm({ select = false }), { 'c' }),
         ['<C-e>'] = cmp.mapping(cmp.mapping.close(), { 'c' }),
       },
       sources = cmp.config.sources({
