@@ -14,7 +14,10 @@ return {
       build = 'make install_jsregexp',
       branch = 'master'
     },
-    'petertriho/cmp-git',
+    {
+      'petertriho/cmp-git',
+      setup = true
+    },
   },
   config = function()
     local cmp = require('cmp')
