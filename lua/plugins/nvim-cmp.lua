@@ -16,7 +16,7 @@ return {
     },
     {
       'petertriho/cmp-git',
-      setup = true
+      config = true
     },
   },
   config = function()
