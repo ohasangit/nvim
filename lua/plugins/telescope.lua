@@ -9,7 +9,7 @@ return {
       { '<c-f>',      '<cmd>Telescope git_files theme=ivy<cr>',           desc = 'Git files' },
       { '<c-b>',      '<cmd>Telescope buffers theme=ivy<cr>',             desc = 'Buffers' },
       { '<leader>p',  '<cmd>Telescope projects theme=ivy<cr>',            desc = 'Projects' },
-      { '<leader>"',  '<cmd>Telescope command_history theme=ivy<cr>',     desc = 'Command History' },
+      { '<leader>\'', '<cmd>Telescope command_history theme=ivy<cr>',     desc = 'Command History' },
       { '<c-c>',      '<cmd>Telescope commands theme=ivy<cr>',            desc = 'Commands' },
       { '<leader>/',  '<cmd>Telescope live_grep theme=ivy<cr>',           desc = 'Grep word under cursor' },
       { '<leader>\\', '<cmd>Telescope grep_string theme=ivy<cr>',         desc = 'Grep string' },
