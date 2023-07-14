@@ -74,6 +74,7 @@ return {
 
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local mason_lspconfig = require('mason-lspconfig')
+      local cfg = require("yaml-companion").setup()
 
       mason_lspconfig.setup_handlers({
         function(server_name)
@@ -82,6 +83,7 @@ return {
             capabilities = capabilities
           })
         end,
+        require('lspconfig').yamlls.setup(cfg)
       })
     end,
     config = true
