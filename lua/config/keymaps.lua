@@ -58,21 +58,6 @@ map('n', '<leader>hj', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = 
 
 --[[ Commenting plugin specific keybinds for now
 
--- Octo --
-keymap('n', '<leader>op', '<cmd>Octo pr create<cr>', opts)
-keymap('n', '<leader>os', '<cmd>Octo search<cr>', opts)
-keymap('n', '<leader>ol', '<cmd>Octo pr list<cr>', opts)
-keymap('n', '<leader>om', '<cmd>Octo pr merge squash<cr>', opts)
-
--- ChatGPT --
--- Keymap for Chatgpt command
-keymap('n', '<leader>cc', '<cmd>ChatGPT<cr>', opts)
-keymap('v', '<C-O>', '<cmd>ChatGPTRun optimize_code<cr>', opts)
-keymap('v', '<C-T>', '<cmd>ChatGPTRun add_tests<cr>', opts)
-keymap('v', '<C-D>', '<cmd>ChatGPTRun docstring<cr>', opts)
-keymap('v', '<C-F>', '<cmd>ChatGPTRun fix_bugs<cr>', opts)
-keymap('n', '<leader>ce', '<cmd>ChatGPTEditWithInstructions<cr>', opts)
-
 -- DAP --
 keymap('n', '<leader>db', '<cmd>lua require'dap'.toggle_breakpoint()<cr>', opts)
 keymap('n', '<leader>dB', '<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint Condition: '))<cr>', opts)
