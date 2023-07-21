@@ -31,7 +31,7 @@ opt.tabstop = 2
 opt.termguicolors = true
 opt.timeoutlen = 500
 opt.undofile = true
-opt.updatetime = 300
+opt.updatetime = 100
 opt.wrap = false
 
 vim.g.python3_host_prog = '/usr/bin/python3'
