@@ -28,9 +28,23 @@ return {
       { 'cmp-nvim-lsp' }
     },
     init = function()
-      local function lsp_highlight_document(client)
+      local function lsp_highlight_document(client, bufnr)
         -- Set autocommands conditional on server_capabilities
         if client.server_capabilities.documentHighlightProvider then
+          -- vim.api.nvim_create_augroup("lsp_highlight_document")
+          -- vim.api.nvim_clear_autocmds({ buffer = bufnr, group = "lsp_highlight_document" })
+          -- vim.api.nvim_create_autocmd("CursorHold", {
+          --   buffer = 0,
+          --   callback = vim.lsp.buf.document_highlight(),
+          --   group = "lsp_highlight_document",
+          -- })
+          -- vim.api.nvim_create_autocmd("CursorMoved", {
+          --   buffer = 0,
+          --   callback = vim.lsp.buf.clear_references(),
+          --   group = "lsp_highlight_document"
+          -- })
+
+
           vim.api.nvim_exec(
             [[
             augroup lsp_document_highlight
@@ -65,11 +79,8 @@ return {
 
 
       local on_attach = function(client, bufnr)
-        if client.name == 'tsserver' then
-          client.server_capabilities.documentFormattingProvider = false
-        end
         lsp_keymaps(bufnr)
-        lsp_highlight_document(client)
+        lsp_highlight_document(client, bufnr)
       end
 
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -83,7 +94,14 @@ return {
             capabilities = capabilities
           })
         end,
-        require('lspconfig').yamlls.setup(cfg)
+        ['yamlls'] = function()
+          require('lspconfig').yamlls.setup(cfg)
+        end,
+        ['marksman'] = function()
+          require('lspconfig').marksman.setup({
+            on_attach = on_attach,
+          })
+        end,
       })
     end,
     config = true

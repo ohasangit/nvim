@@ -1,4 +1,8 @@
 require('config.options')
 require('config.keymaps')
-require('config.lsp')
+
+local lsp = require('config.lsp')
+lsp.init()
+
 require('config.lazy')
+-- require('config.autocmds')
