@@ -31,6 +31,11 @@ M.init = function()
   vim.diagnostic.config(config)
 end
 
+M.on_attach = function (client, bufnr)
+  M.lsp_keymaps(bufnr)
+  M.lsp_highlight_document(client, bufnr)
+end
+
 M.lsp_keymaps = function(bufnr)
   local opts = { noremap = true, silent = true }
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
