@@ -1,8 +1,9 @@
 return {
   'linux-cultist/venv-selector.nvim',
-  keys = { {
-    '<leader>vs', '<cmd>:VenvSelect<cr>', desc = 'Select Virtualenv'
-  } },
+  keys = {
+    { '<leader>vs', '<cmd>:VenvSelect<cr>', desc = 'Select Virtualenv' },
+    { '<leader>vc', '<cmd>:VenvSelectCached<cr>', desc = 'Select Cached Virtualenv' }
+  },
   dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim' },
   opts = {
     search = false,
