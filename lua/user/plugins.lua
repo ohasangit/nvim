@@ -3,18 +3,6 @@ return packer.startup(function(use)
   use({ 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' })
   use({ 'ckipp01/nvim-jenkinsfile-linter', requires = { 'nvim-lua/plenary.nvim' } })
   use('folke/neodev.nvim')
-  use({
-    'nvim-neotest/neotest',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'nvim-treesitter/nvim-treesitter',
-      'antoinemadec/FixCursorHold.nvim',
-    },
-  })
-  use({
-    'nvim-neotest/neotest-python',
-  })
-  use({ 'michaelb/sniprun', run = 'bash ./install.sh' })
 
   -- Telescope
   use('nvim-telescope/telescope.nvim')

@@ -72,10 +72,4 @@ keymap('n', '<leader>do', '<cmd>lua require'dap'.run_to_cursor()<cr>', opts)
 keymap('n', '<leader>df', '<cmd>lua require'dap'.focus_frame()<cr>', opts)
 keymap('n', '<leader>dr', '<cmd>lua require'dap'.restart()<cr>', opts)
 
--- Neotest --
-keymap('n', '<leader>tt', '<cmd>lua require'neotest'.run.run()<cr>', opts)
-keymap('n', '<leader>ta', '<cmd>lua require'neotest'.run.run(vim.fn.expand('%'))<cr>', opts)
-keymap('n', '<leader>ts', '<cmd>lua require'neotest'.summary.toggle()<cr>', opts)
-keymap('n', '<leader>tr', '<cmd>lua require'neotest'.output.open({ enter = true })<cr>', opts)
-
 --]]
