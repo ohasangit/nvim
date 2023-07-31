@@ -1,12 +1,17 @@
 return {
   'linux-cultist/venv-selector.nvim',
   keys = {
-    { '<leader>vs', '<cmd>:VenvSelect<cr>', desc = 'Select Virtualenv' },
+    { '<leader>vs', '<cmd>:VenvSelect<cr>',       desc = 'Select Virtualenv' },
     { '<leader>vc', '<cmd>:VenvSelectCached<cr>', desc = 'Select Cached Virtualenv' }
   },
-  dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim' },
+  dependencies = {
+    'neovim/nvim-lspconfig',
+    'nvim-telescope/telescope.nvim',
+    'mfussenegger/nvim-dap-python'
+  },
   opts = {
     search = false,
+    dap_enabled = true,
   },
   config = function(_, opts)
     local venv_selector = require('venv-selector')

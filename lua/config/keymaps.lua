@@ -59,17 +59,6 @@ map('n', '<leader>hj', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = 
 --[[ Commenting plugin specific keybinds for now
 
 -- DAP --
-keymap('n', '<leader>db', '<cmd>lua require'dap'.toggle_breakpoint()<cr>', opts)
-keymap('n', '<leader>dB', '<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint Condition: '))<cr>', opts)
-keymap('n', '<leader>dc', '<cmd>lua require'dap'.continue()<cr>', opts)
-keymap('n', '<leader>ds', '<cmd>lua require'dap'.step_into()<cr>', opts)
-keymap('n', '<leader><leader>', '<cmd>lua require'dap'.step_over()<cr>', opts)
-keymap('n', '<leader>du', '<cmd>lua require'dap'.step_out()<cr>', opts)
 keymap('n', '<leader>dd', '<cmd>lua require'dapui'.toggle()<cr>', opts)
-keymap('n', '<leader>dt', '<cmd>lua require'dap-python'.test_method()<cr>', opts)
-keymap('n', '<leader>dR', '<cmd>lua require'dap'.run_last()<cr>', opts)
-keymap('n', '<leader>do', '<cmd>lua require'dap'.run_to_cursor()<cr>', opts)
-keymap('n', '<leader>df', '<cmd>lua require'dap'.focus_frame()<cr>', opts)
-keymap('n', '<leader>dr', '<cmd>lua require'dap'.restart()<cr>', opts)
 
 --]]

@@ -20,8 +20,6 @@ return packer.startup(function(use)
     end,
   })
 
-  -- DAP
-  use('mfussenegger/nvim-dap')
   use({
     'rcarriga/nvim-dap-ui',
     requires = { 'mfussenegger/nvim-dap' },
@@ -30,5 +28,3 @@ return packer.startup(function(use)
     end,
   })
   -- use('jay-babu/mason-nvim-dap.nvim')
-  use('mfussenegger/nvim-dap-python')
-  use('theHamsta/nvim-dap-virtual-text')

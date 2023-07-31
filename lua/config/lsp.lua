@@ -3,14 +3,31 @@ local M = {}
 M.init = function()
   local signs = {
     { name = 'DiagnosticSignError', text = '' },
-    { name = 'DiagnosticSignWarn',  text = '' },
-    { name = 'DiagnosticSignHint',  text = '' },
-    { name = 'DiagnosticSignInfo',  text = '' },
+    { name = 'DiagnosticSignWarn', text = '' },
+    { name = 'DiagnosticSignHint', text = '' },
+    { name = 'DiagnosticSignInfo', text = '' },
   }
 
   for _, sign in ipairs(signs) do
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = '' })
   end
+
+  vim.fn.sign_define('DapBreakpoint',
+    {
+      text = '',
+      texthl = 'DiagnosticVirtualTextWarn',
+      linehl = 'DiagnosticVirtualTextWarn',
+      numhl = 'DiagnosticVirtualTextWarn'
+    })
+  vim.fn.sign_define('DapBreakpointCondition',
+    {
+      text = '',
+      texthl = 'DiagnosticVirtualTextError',
+      linehl = 'DiagnosticVirtualTextError',
+      numhl = 'DiagnosticVirtualTextError'
+    })
+  vim.fn.sign_define('DapStopped',
+    { text = '', texthl = 'BufferAlternateHINT', linehl = 'BufferAlternateHINT', numhl = 'BufferAlternateHINT' })
 
   local config = {
     virtual_text = false,
@@ -31,7 +48,7 @@ M.init = function()
   vim.diagnostic.config(config)
 end
 
-M.on_attach = function (client, bufnr)
+M.on_attach = function(client, bufnr)
   M.lsp_keymaps(bufnr)
   M.lsp_highlight_document(client, bufnr)
 end
