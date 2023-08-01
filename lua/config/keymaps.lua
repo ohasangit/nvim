@@ -55,10 +55,3 @@ map('t', '<C-l>', '<C-\\><C-N><C-w>l', { noremap = true, silent = true, desc = '
 
 -- Lazy (Not sure of a better place)
 map('n', '<leader>hj', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = 'Plugin (Lazy) Menu' })
-
---[[ Commenting plugin specific keybinds for now
-
--- DAP --
-keymap('n', '<leader>dd', '<cmd>lua require'dapui'.toggle()<cr>', opts)
-
---]]

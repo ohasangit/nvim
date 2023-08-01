@@ -20,11 +20,4 @@ return packer.startup(function(use)
     end,
   })
 
-  use({
-    'rcarriga/nvim-dap-ui',
-    requires = { 'mfussenegger/nvim-dap' },
-    config = function()
-      require('dapui').setup()
-    end,
-  })
   -- use('jay-babu/mason-nvim-dap.nvim')

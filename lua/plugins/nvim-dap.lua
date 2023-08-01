@@ -86,5 +86,26 @@ return {
       virt_text_win_col = 80,
     },
     lazy = true,
+  },
+  {
+    'rcarriga/nvim-dap-ui',
+    keys = {
+      {
+        '<leader>dd',
+        '<cmd>lua require"dapui".toggle()<cr>',
+        desc =
+        'Toggle DAP UI'
+      }
+    },
+    dependencies = {
+      'mfussenegger/nvim-dap',
+    },
+    config = function()
+      local dap, dapui = require('dap'), require('dapui')
+      dapui.setup()
+      dap.listeners.after.event_initialized['dapui_config'] = function()
+        dapui.open()
+      end
+    end,
   }
 }
