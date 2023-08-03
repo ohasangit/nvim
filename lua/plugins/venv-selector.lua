@@ -14,12 +14,11 @@ return {
     dap_enabled = true,
   },
   config = function(_, opts)
-    local venv_selector = require('venv-selector')
-
     --- @param venv_path string A string containing the absolute path to selected virtualenv
     --- @param venv_python string A string containing the absolute path to python binary in selected venv
     local pyright_hook = function(venv_path, venv_python)
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      vim.api.nvim_clear_autocmds({ buffer = vim.api.nvim_get_current_buf(), group = "lsp_document_highlight" })
       require('lspconfig').pyright.setup({
         on_attach = Lsp.on_attach,
         capabilities = capabilities,
