@@ -1,4 +1,4 @@
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd("BufWinEnter", {
   desc = "Auto select virtualenv Nvim open",
   pattern = "*.py",
   callback = function()
