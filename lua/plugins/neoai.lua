@@ -17,8 +17,10 @@ return {
     "NeoAIInjectContextCode",
   },
   keys = {
-    { "<leader>as", desc = "Summarize text" },
-    { "<leader>ag", desc = "Generate git message" },
+    { "<leader>as",  desc = "Summarize text" },
+    { "<leader>ag",  desc = "Generate git message" },
+    { "<leader>cc",  "<cmd>NeoAI<CR>",             desc = "Toggle NeoAI" },
+    { "<leader>ccc", "<cmd>NeoAIContext<CR>",      desc = "Toggle NeoAI with buffer context" },
   },
   opts = {
     models = {
