@@ -26,6 +26,7 @@ return {
         diagnostics.commitlint,
         diagnostics.tfsec,
         diagnostics.trail_space,
+        diagnostics.buildifier,
         code_actions.gitsigns,
         code_actions.refactoring,
         code_actions.shellcheck,
