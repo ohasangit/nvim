@@ -21,7 +21,6 @@ return {
         diagnostics.markdownlint,
         diagnostics.jsonlint,
         diagnostics.actionlint,
-        diagnostics.write_good,
         diagnostics.codespell,
         diagnostics.commitlint,
         diagnostics.tfsec,

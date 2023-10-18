@@ -1,5 +1,12 @@
 return {
   'michaelb/sniprun',
   build = 'bash ./install.sh',
-  config = true
+  opts = {
+    display = {
+      "Classic",
+      "VirtualTextOk",
+      "Terminal",
+      "NvimNotify",
+    }
+  }
 }
