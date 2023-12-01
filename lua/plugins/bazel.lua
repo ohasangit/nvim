@@ -1,8 +1,31 @@
+function GetRelativeBazelPath()
+  local file = vim.fn.expand("%:p")
+  local workspace = require("bazel").get_workspace()
+
+  -- Find the position where the file path starts differing from the dir path
+  local i = 1
+  while i <= #workspace and i <= #file and string.sub(workspace, i, i) == string.sub(file, i, i) do
+    i = i + 1
+  end
+
+  -- If the directory is the root of the file path
+  if i > #workspace then
+    return "/" .. file:sub(i):match("(.*/)"):match("^(.-)/?$") .. ":all"
+  else
+    return nil -- File is not in the directory tree
+  end
+end
+
 return {
   'alexander-born/bazel.nvim',
   dependencies = { 'nvim-treesitter/nvim-treesitter' },
   keys = {
     { '<leader>ba', '<cmd>lua require("bazel").run_here("build", vim.g.bazel_config)<CR>', desc = 'Bazel build' },
+    { '<leader>br', '<cmd>lua require("bazel").run_here("run", vim.g.bazel_config)<CR>',   desc = 'Bazel run' },
+    { '<leader>bc', '<cmd>lua require("bazel").run_here("clean", vim.g.bazel_config)<CR>', desc = 'Bazel clean' },
+    { '<leader>bt', '<cmd>lua require("bazel").run_here("test", vim.g.bazel_config)<CR>',  desc = 'Bazel test' },
+    { '<leader>bl', '<cmd>lua require("bazel").run_last()<CR>',                            desc = 'Bazel run last' },
+    { '<leader>bq', '<cmd>lua require("bazel").query(GetRelativeBazelPath())<CR>',         desc = 'Bazel query' },
   },
   config = function()
     -- Info: to make tab completion work copy '/etc/bash_completion.d/bazel-complete.bash' to '/etc/bash_completion.d/bazel'
@@ -56,5 +79,4 @@ return {
         set errorformat+=%f:%l:\ %m                            " <filename>:<line>: <message>
         ]])
   end,
-
 }

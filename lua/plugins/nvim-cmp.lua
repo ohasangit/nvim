@@ -9,6 +9,7 @@ return {
     'hrsh7th/cmp-cmdline',
     'saadparwaiz1/cmp_luasnip',
     'rafamadriz/friendly-snippets',
+    'alexander-born/cmp-bazel',
     {
       'L3MON4D3/LuaSnip',
       build = 'make install_jsregexp',
@@ -105,6 +106,7 @@ return {
           { name = 'copilot' },
           { name = 'nvim_lua' },
           { name = 'nvim_lsp' },
+          { name = 'bazel' },
           { name = 'path' },
           { name = 'luasnip' },
           {

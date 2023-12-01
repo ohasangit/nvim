@@ -16,6 +16,7 @@ return {
         formatting.markdownlint,
         formatting.taplo,
         formatting.yamlfmt,
+        formatting.buildifier,
         diagnostics.shellcheck,
         diagnostics.hadolint,
         diagnostics.markdownlint,
