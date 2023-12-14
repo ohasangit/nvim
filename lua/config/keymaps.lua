@@ -57,5 +57,5 @@ map('t', '<C-l>', '<C-\\><C-N><C-w>l', { noremap = true, silent = true, desc = '
 map('n', '<leader>hj', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = 'Plugin (Lazy) Menu' })
 
 -- Format file
-map('n', '<leader>af', '<cmd>lua vim.lsp.buf.format({async = true})<CR>',
+map('n', '<leader>af', '<cmd>lua Lsp.select_formatter()<CR>',
   { noremap = true, silent = true, desc = 'Format file' })
