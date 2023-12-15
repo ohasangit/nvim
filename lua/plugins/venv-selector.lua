@@ -18,11 +18,17 @@ return {
     --- @param venv_path string A string containing the absolute path to selected virtualenv
     --- @param venv_python string A string containing the absolute path to python binary in selected venv
     local pyright_hook = function(venv_path, venv_python)
+      local lspconfig = require('lspconfig')
+
+      if lspconfig.pyright.manager.config.settings.python.pythonPath == venv_python then
+        return
+      end
+
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       vim.api.nvim_clear_autocmds({ buffer = vim.api.nvim_get_current_buf(), group = "lsp_document_highlight" })
       local notify = require('notify')
       notify.notify('Virtualenv changed to ' .. venv_path, 'info', { title = 'VenvSelector' })
-      require('lspconfig').pyright.setup({
+      lspconfig.pyright.setup({
         on_attach = Lsp.on_attach,
         capabilities = capabilities,
         settings = {
