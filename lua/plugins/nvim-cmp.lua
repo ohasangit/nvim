@@ -56,6 +56,9 @@ return {
     }
 
     cmp.setup({
+      performance = {
+        max_view_entries = 20,
+      },
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
