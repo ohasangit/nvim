@@ -105,7 +105,7 @@ M.select_formatter = function()
 
   print("\nSelected: " .. selected_client)
 
-  vim.lsp.buf.format({ async = true, filter = function(client) return client.name ~= selected_client end })
+  vim.lsp.buf.format({ async = true, filter = function(client) return client.name == selected_client end })
 end
 
 M.lsp_highlight_document = function(client, bufnr)
