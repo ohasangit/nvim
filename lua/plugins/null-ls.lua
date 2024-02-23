@@ -27,7 +27,6 @@ return {
         diagnostics.trail_space,
         diagnostics.buildifier,
         diagnostics.golangci_lint,
-        diagnostics.revive,
         code_actions.gitsigns,
         code_actions.refactoring,
         code_actions.shellcheck,
