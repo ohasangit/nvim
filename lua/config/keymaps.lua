@@ -47,11 +47,7 @@ map('x', '<A-k>', ':move \'<-2<CR>gv-gv', { noremap = true, silent = true, desc 
 map('x', '<A-j>', ':move \'>+1<CR>gv-gv', { noremap = true, silent = true, desc = 'Move selection down' })
 
 -- Terminal --
--- Better terminal navigation
-map('t', '<C-h>', '<C-\\><C-N><C-w>h', { noremap = true, silent = true, desc = 'Move to window left' })
-map('t', '<C-j>', '<C-\\><C-N><C-w>j', { noremap = true, silent = true, desc = 'Move to window down' })
-map('t', '<C-k>', '<C-\\><C-N><C-w>k', { noremap = true, silent = true, desc = 'Move to window up' })
-map('t', '<C-l>', '<C-\\><C-N><C-w>l', { noremap = true, silent = true, desc = 'Move to window right' })
+map('t', '<C-Esc>', '<C-\\><C-n>', { noremap = true, silent = true, desc = 'Exit Terminal Mode' })
 
 -- Lazy (Not sure of a better place)
 map('n', '<leader>hj', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = 'Plugin (Lazy) Menu' })
