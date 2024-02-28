@@ -55,3 +55,7 @@ map('n', '<leader>hj', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = 
 -- Format file
 map('n', '<leader>af', '<cmd>lua Lsp.select_formatter()<CR>',
   { noremap = true, silent = true, desc = 'Format file' })
+
+-- Keymap for pasting in terminal mode
+vim.api.nvim_set_keymap('t', '<C-V>', '<C-\\><C-n>"+gP<C-\\><C-n>i',
+  { noremap = true, silent = true, desc = "Terminal mode paste" })
