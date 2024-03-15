@@ -20,7 +20,7 @@ return {
         diagnostics.shellcheck,
         diagnostics.hadolint,
         diagnostics.jsonlint,
-        diagnostics.actionlint,
+        diagnostics.actionlint.with({ extra_args = { '-ignore', 'customer-tools' } }),
         diagnostics.codespell,
         diagnostics.commitlint,
         diagnostics.tfsec,
