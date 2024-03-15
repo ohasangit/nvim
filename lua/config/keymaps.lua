@@ -48,6 +48,9 @@ map('x', '<A-j>', ':move \'>+1<CR>gv-gv', { noremap = true, silent = true, desc 
 
 -- Terminal --
 map('t', '<C-Esc>', '<C-\\><C-n>', { noremap = true, silent = true, desc = 'Exit Terminal Mode' })
+-- Resize with arrows
+map('t', '<C-Up>', '<cmd>resize +2<CR>', { noremap = true, silent = true, desc = 'Resize window upwards' })
+map('t', '<C-Down>', '<cmd>resize -2<CR>', { noremap = true, silent = true, desc = 'Resize window downwards' })
 
 -- Lazy (Not sure of a better place)
 map('n', '<leader>hj', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = 'Plugin (Lazy) Menu' })
