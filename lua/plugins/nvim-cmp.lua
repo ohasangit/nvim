@@ -10,6 +10,7 @@ return {
     'saadparwaiz1/cmp_luasnip',
     'rafamadriz/friendly-snippets',
     'alexander-born/cmp-bazel',
+    'hrsh7th/cmp-nvim-lsp-signature-help',
     {
       'L3MON4D3/LuaSnip',
       build = 'make install_jsregexp',
@@ -106,6 +107,7 @@ return {
       },
       sources = cmp.config.sources(
         {
+          { name = 'nvim_lsp_signature_help' },
           { name = 'copilot' },
           { name = 'nvim_lua' },
           { name = 'nvim_lsp' },
@@ -119,6 +121,9 @@ return {
                 return vim.api.nvim_list_bufs()
               end,
             },
+            entry_filter = function(entry, _)
+              return #entry.completion_item.label <= 150
+            end,
           },
         }),
     })
