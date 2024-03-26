@@ -41,11 +41,6 @@ return {
         media_files = {
           find_cmd = 'rg',
         },
-        bookmarks = {
-          selected_browser = 'chrome',
-          url_open_plugin = 'open_browser',
-          full_path = false,
-        },
       },
     },
   },
@@ -71,6 +66,11 @@ return {
       { '<leader>bb', '<cmd>Telescope bookmarks<cr>', desc = 'Browser bookmarks' },
     },
     config = function()
+      require 'browser_bookmarks'.setup {
+          selected_browser = 'chrome',
+          url_open_plugin = 'open_browser',
+          full_path = false,
+      }
       require 'telescope'.load_extension('bookmarks')
     end,
     dependencies = {
