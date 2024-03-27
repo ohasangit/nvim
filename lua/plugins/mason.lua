@@ -16,6 +16,9 @@ return {
   },
   {
     'williamboman/mason-lspconfig.nvim',
+    ensure_installed = {
+      'pyright'
+    },
     dependencies = {
       { 'williamboman/mason.nvim' },
       {
