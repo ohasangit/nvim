@@ -50,6 +50,16 @@ return {
             on_attach = Lsp.on_attach,
           })
         end,
+        ['clangd'] = function()
+          require("lspconfig").clangd.setup {
+            on_attach = Lsp.on_attach,
+            capabilities = capabilities,
+            cmd = {
+              "clangd",
+              "--offset-encoding=utf-16",
+            },
+          }
+        end,
       })
     end,
     config = true
