@@ -107,6 +107,9 @@ return {
       },
       sources = cmp.config.sources(
         {
+          {
+            name = 'lazydev',
+          },
           { name = 'nvim_lsp_signature_help' },
           { name = 'copilot' },
           { name = 'nvim_lua' },

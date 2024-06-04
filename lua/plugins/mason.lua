@@ -21,13 +21,7 @@ return {
     },
     dependencies = {
       { 'williamboman/mason.nvim' },
-      {
-        'neovim/nvim-lspconfig',
-        branch = 'master',
-        dependencies = {
-          { 'folke/neodev.nvim', opts = {} }
-        }
-      },
+      { 'neovim/nvim-lspconfig', },
       { 'cmp-nvim-lsp' }
     },
     init = function()

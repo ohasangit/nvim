@@ -72,7 +72,8 @@ end
 
 M.select_formatter = function()
   local bufnr = vim.api.nvim_get_current_buf()
-  local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
+  local clients = vim.lsp.get_clients({ bufnr = bufnr })
+
 
   local formatting_clients = {}
   for _, client in pairs(clients) do
@@ -88,6 +89,11 @@ M.select_formatter = function()
 
   if #formatting_clients == 1 then
     vim.lsp.buf.format({ async = true })
+    return
+  end
+
+  if #formatting_clients == 2 and formatting_clients[1] == 'null-ls' or formatting_clients[2] == 'null-ls' then
+    vim.lsp.buf.format({ async = true, filter = function(client) return client.name ~= 'null-ls' end })
     return
   end
 
@@ -125,7 +131,7 @@ M.lsp_highlight_document = function(client, bufnr)
     -- })
 
 
-    vim.api.nvim_exec(
+    vim.api.nvim_exec2(
       [[
       augroup lsp_document_highlight
         autocmd! * <buffer>
@@ -133,7 +139,7 @@ M.lsp_highlight_document = function(client, bufnr)
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
       ]],
-      false
+      {}
     )
   end
 end
