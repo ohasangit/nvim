@@ -52,6 +52,18 @@ map('t', '<C-Esc>', '<C-\\><C-n>', { noremap = true, silent = true, desc = 'Exit
 map('t', '<C-Up>', '<cmd>resize +2<CR>', { noremap = true, silent = true, desc = 'Resize window upwards' })
 map('t', '<C-Down>', '<cmd>resize -2<CR>', { noremap = true, silent = true, desc = 'Resize window downwards' })
 
+-- Function to yank the current terminal command without the prompt
+function YankCurrentCommand()
+  local line = vim.api.nvim_get_current_line()
+  -- Extract the command part by removing everything before the last $
+  local command = string.match(line, ".-%$%s*(.*)")
+  -- Yank the command to the unnamed register
+  vim.fn.setreg('+', command)
+end
+
+-- Keymap to call the function in terminal mode
+vim.api.nvim_set_keymap('t', '<C-y>', '<C-\\><C-n>:lua YankCurrentCommand()<CR>i', { noremap = true, silent = true })
+
 -- Lazy (Not sure of a better place)
 map('n', '<leader>hj', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = 'Plugin (Lazy) Menu' })
 
