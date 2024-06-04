@@ -16,9 +16,6 @@ return {
   },
   {
     'williamboman/mason-lspconfig.nvim',
-    ensure_installed = {
-      'pyright'
-    },
     dependencies = {
       { 'williamboman/mason.nvim' },
       { 'neovim/nvim-lspconfig', },
@@ -56,6 +53,27 @@ return {
         end,
       })
     end,
-    config = true
-  },
+    opts = {
+      ensure_installed = {
+        'bashls',
+        'bzl',
+        'docker_compose_language_service',
+        'dockerls',
+        'eslint',
+        'gopls',
+        'groovyls',
+        'jsonls',
+        'lua_ls',
+        'pyright',
+        'remark_ls',
+        'rust_analyzer',
+        'tailwindcss',
+        'taplo',
+        'terraformls',
+        'tflint',
+        'tsserver',
+        'yamlls'
+      },
+    },
+  }
 }
