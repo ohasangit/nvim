@@ -7,5 +7,6 @@ return {
     { '<leader>gpu', '<cmd>G push -u origin HEAD<cr>', desc = 'Git push and track' },
     { '<leader>gpf', '<cmd>G push --force<cr>',        desc = 'Git force push' },
     { '<leader>gpp', '<cmd>G pull<cr>',                desc = 'Git pull' },
+    { '<leader>gpr', '<cmd>G remote prune origin<cr>', desc = 'Git prune' },
   }
 }
