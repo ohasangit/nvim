@@ -49,6 +49,12 @@ M.init = function()
 end
 
 M.on_attach = function(client, bufnr)
+  if vim.bo[bufnr].filetype == "NvimTree" then
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+    return
+  end
+
   M.lsp_keymaps(bufnr)
   M.lsp_highlight_document(client, bufnr)
 end
