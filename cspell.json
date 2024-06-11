@@ -1,0 +1,38 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "autopairs",
+    "bazel",
+    "nvim",
+    "neovim",
+    "null-ls",
+    "cspell",
+    "clangd",
+    "groovyls",
+    "bashls",
+    "yamlls",
+    "pyright",
+    "gopls",
+    "dockerls",
+    "bashls",
+    "jsonls",
+    "tailwindcss",
+    "taplo",
+    "terraformls",
+    "tflint",
+    "lspconfig",
+    "virtualenv",
+    "venv",
+    "autocmd",
+    "augroup",
+    "autocmd"
+  ],
+  "ignoreWords": [
+    "windwp",
+    "bufnr"
+  ],
+  "ignoreRegExpList": [
+    "\\b[\\w-]+\\/[\\w-]+\\.nvim\\b"
+  ]
+}

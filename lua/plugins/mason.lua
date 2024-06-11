@@ -72,7 +72,8 @@ return {
         'terraformls',
         'tflint',
         'tsserver',
-        'yamlls'
+        'yamlls',
+        'cspell'
       },
     },
   }
