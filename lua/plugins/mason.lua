@@ -51,6 +51,13 @@ return {
             },
           }
         end,
+        ['tailwindcss'] = function()
+          require('lspconfig').tailwindcss.setup {
+            on_attach = Lsp.on_attach,
+            capabilities = capabilities,
+            filetypes = { 'html', 'css', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' } -- Disable for markdown
+          }
+        end,
       })
     end,
     opts = {
