@@ -26,13 +26,29 @@
     "venv",
     "autocmd",
     "augroup",
-    "autocmd"
+    "octo",
+    "cmdline",
+    "luasnip",
+    "lualine",
+    "sniprun",
+    "nvim-lastplace",
+    "luvit",
+    "neogit",
+    "neotest",
+    "devicons",
+    "everblush"
   ],
   "ignoreWords": [
     "windwp",
-    "bufnr"
+    "bufnr",
+    "filetypedetect",
+    "noremap",
+    "keymap",
+    "setreg",
+    "stdpath"
   ],
   "ignoreRegExpList": [
-    "\\b[\\w-]+\\/[\\w-]+\\.nvim\\b"
+    "\\b[\\w-]+\\/[\\w-]+\\.nvim\\b",
+    "\\b[\\w-]+\\.nvim\\b"
   ]
 }
