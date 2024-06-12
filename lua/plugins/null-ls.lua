@@ -18,13 +18,13 @@ return {
         formatting.buildifier,
         formatting.gofmt,
         formatting.npm_groovy_lint,
-        diagnostics.cspell.with({
-          diagnostics_postprocess = function(diagnostic)
-            diagnostic.severity = vim.diagnostic.severity.HINT
-          end,
-          extra_args = { '--config', vim.fn.stdpath('config') .. '/cspell.json' },
-          disabled_filetypes = { "NvimTree" }
-        }),
+        -- diagnostics.cspell.with({
+        --   diagnostics_postprocess = function(diagnostic)
+        --     diagnostic.severity = vim.diagnostic.severity.HINT
+        --   end,
+        --   extra_args = { '--config', vim.fn.stdpath('config') .. '/cspell.json' },
+        --   disabled_filetypes = { "NvimTree" }
+        -- }),
         diagnostics.hadolint,
         diagnostics.jsonlint,
         diagnostics.actionlint.with({ extra_args = { '-ignore', 'customer-tools' } }),
