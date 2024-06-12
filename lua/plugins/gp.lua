@@ -1,7 +1,7 @@
 return {
   "robitx/gp.nvim",
   keys = {
-    { '<leader>hn', '<cmd>GpNew<CR>',        desc = 'Chat New' },
+    { '<leader>hn', '<cmd>GpChatNew<CR>',    desc = 'Chat New' },
     { '<leader>ht', '<cmd>GpChatToggle<CR>', desc = 'Chat Toggle' },
     { '<leader>hf', '<cmd>GpChatFinder<CR>', desc = 'Chat Finder' },
   },
