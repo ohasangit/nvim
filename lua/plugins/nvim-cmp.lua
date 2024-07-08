@@ -165,11 +165,18 @@ return {
     cmp.setup.filetype('gitcommit', {
       sources = cmp.config.sources({
         { name = 'nvim_lsp' },
-        { name = 'luasnip' }
-      }, {
-        { name = 'git' }
-      }, {
-        { name = 'buffer' }
+        { name = 'git' },
+        {
+          name = 'buffer',
+          option = {
+            get_bufnrs = function()
+              return vim.api.nvim_list_bufs()
+            end,
+          },
+          entry_filter = function(entry, _)
+            return #entry.completion_item.label <= 150
+          end,
+        },
       })
     })
 

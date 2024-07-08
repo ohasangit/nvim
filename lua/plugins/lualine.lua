@@ -11,6 +11,13 @@ return {
     }
   },
   config = function()
+    local function venv_status()
+      if vim.bo.filetype == 'python' then
+        return vim.env.VIRTUAL_ENV or 'No venv'
+      end
+      return ''
+    end
+
     require('lualine').setup({
       options = {
         component_separators = { left = '', right = '' },
@@ -34,7 +41,8 @@ return {
           },
           {
             require('lsp-progress').progress,
-          }
+          },
+          { venv_status }
         },
         lualine_x = {
           {
