@@ -55,6 +55,12 @@ M.on_attach = function(client, bufnr)
     return
   end
 
+  -- FIXME: Should use editorconfig or something like that
+  if vim.bo[bufnr].filetype == "cpp" then
+    vim.bo[bufnr].shiftwidth = 4
+    vim.bo[bufnr].tabstop = 4
+  end
+
   M.lsp_keymaps(bufnr)
   M.lsp_highlight_document(client, bufnr)
 end
