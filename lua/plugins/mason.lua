@@ -78,7 +78,6 @@ return {
         'taplo',
         'terraformls',
         'tflint',
-        'tsserver',
         'yamlls'
       },
     },
