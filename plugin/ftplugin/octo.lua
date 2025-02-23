@@ -1,3 +1,7 @@
+if vim.bo.filetype ~= "octo" then
+  return
+end
+
 local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 
