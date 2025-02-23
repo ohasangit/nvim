@@ -58,6 +58,17 @@ return {
             filetypes = { 'html', 'css', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' } -- Disable for markdown
           }
         end,
+        ['remark_ls'] = function()
+          require('lspconfig').remark_ls.setup {
+            on_attach = Lsp.on_attach,
+            capabilities = capabilities,
+            settings = {
+              remark = {
+                requireConfig = true
+              }
+            }
+          }
+        end,
       })
     end,
     opts = {
