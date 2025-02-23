@@ -67,9 +67,9 @@ return {
     },
     config = function()
       require 'browser_bookmarks'.setup {
-          selected_browser = 'chrome',
-          url_open_plugin = 'open_browser',
-          full_path = false,
+        selected_browser = 'chrome',
+        url_open_plugin = 'open_browser',
+        full_path = false,
       }
       require 'telescope'.load_extension('bookmarks')
     end,
