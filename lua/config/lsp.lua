@@ -80,50 +80,7 @@ M.lsp_keymaps = function(bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>',
     opts)
-end
-
-M.select_formatter = function()
-  local bufnr = vim.api.nvim_get_current_buf()
-  local clients = vim.lsp.get_clients({ bufnr = bufnr })
-
-
-  local formatting_clients = {}
-  for _, client in pairs(clients) do
-    if client.server_capabilities.documentFormattingProvider then
-      table.insert(formatting_clients, client.name)
-    end
-  end
-
-  if #formatting_clients == 0 then
-    print('No clients available for formatting')
-    return
-  end
-
-  if #formatting_clients == 1 then
-    vim.lsp.buf.format({ async = true })
-    return
-  end
-
-  if #formatting_clients == 2 and formatting_clients[1] == 'null-ls' or formatting_clients[2] == 'null-ls' then
-    vim.lsp.buf.format({ async = true, filter = function(client) return client.name ~= 'null-ls' end })
-    return
-  end
-
-  print('Select a formatter:')
-  for i, client_name in ipairs(formatting_clients) do
-    print(i .. ". " .. client_name)
-  end
-  local choice = tonumber(vim.fn.input("Formatter number: "))
-  local selected_client = formatting_clients[choice]
-
-  if not selected_client then
-    print("Invalid selection")
-    return
-  end
-
-  print("\nSelected: " .. selected_client)
-
-  vim.lsp.buf.format({ async = true, filter = function(client) return client.name == selected_client end })
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>af', '<cmd>lua require("conform").format()<CR>', opts)
 end
 
 M.lsp_highlight_document = function(client, bufnr)

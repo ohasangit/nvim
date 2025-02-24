@@ -7,18 +7,18 @@ return {
       lua = { "luacheck" },
       dockerfile = { "hadolint" },
       json = { "jsonlint" },
-      -- gitcommit = { "commitlint" },
       ghaction = { "actionlint" },
-      -- go = { "golangcilint" },
+      gitcommit = { "commitlint" },
+      go = { "golangcilint" },
     }
 
     -- TODO: Figure out how to configure action lint properly
-    lint.linters = {
-      actionlint = {
-        args = { "-ignore", "customer-tools" },
-        cmd = "actionlint",
-      },
-    }
+    -- lint.linters = {
+    --   actionlint = {
+    --     args = { "-ignore", "customer-tools" },
+    --     cmd = "actionlint",
+    --   },
+    -- }
 
     vim.api.nvim_create_autocmd({ "BufWritePost", "BufRead" }, {
       callback = function()
