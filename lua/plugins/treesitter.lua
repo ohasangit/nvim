@@ -32,7 +32,8 @@ return {
       'toml',
       'starlark',
       'vimdoc',
-      'go'
+      'go',
+      'latex'
     },
     sync_install = false,
     ignore_install = { 'comment' }, -- For some reason this parser has become super unperformant
