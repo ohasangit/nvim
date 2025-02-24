@@ -1,6 +1,6 @@
 function GetRelativeBazelPath()
-  local file = vim.fn.expand("%:p")
-  local workspace = require("bazel").get_workspace()
+  local file = vim.fn.expand('%:p')
+  local workspace = require('bazel').get_workspace()
 
   -- Find the position where the file path starts differing from the dir path
   local i = 1
@@ -10,7 +10,7 @@ function GetRelativeBazelPath()
 
   -- If the directory is the root of the file path
   if i > #workspace then
-    return "/" .. file:sub(i):match("(.*/)"):match("^(.-)/?$") .. ":all"
+    return '/' .. file:sub(i):match('(.*/)'):match('^(.-)/?$') .. ':all'
   else
     return nil -- File is not in the directory tree
   end
@@ -30,7 +30,7 @@ return {
   config = function()
     -- Info: to make tab completion work copy '/etc/bash_completion.d/bazel-complete.bash' to '/etc/bash_completion.d/bazel'
 
-    vim.g.bazel_config = vim.g.bazel_config or ""
+    vim.g.bazel_config = vim.g.bazel_config or ''
 
     vim.cmd([[
         set errorformat=ERROR:\ %f:%l:%c:%m
