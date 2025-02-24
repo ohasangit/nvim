@@ -77,10 +77,8 @@ M.lsp_keymaps = function(bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>',
     opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>',
     opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>af', '<cmd>lua require("conform").format()<CR>', opts)
 end
 
 M.lsp_highlight_document = function(client, bufnr)

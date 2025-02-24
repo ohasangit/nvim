@@ -67,6 +67,10 @@ vim.api.nvim_set_keymap('t', '<C-y>', '<C-\\><C-n>:lua YankCurrentCommand()<CR>i
 -- Lazy (Not sure of a better place)
 map('n', '<leader>hj', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = 'Plugin (Lazy) Menu' })
 
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>af', '<cmd>lua require("conform").format()<CR>', opts)
+
 -- Keymap for pasting in terminal mode
 vim.api.nvim_set_keymap('t', '<C-V>', '<C-\\><C-n>"+gP<C-\\><C-n>i',
   { noremap = true, silent = true, desc = "Terminal mode paste" })
