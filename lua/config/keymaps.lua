@@ -10,9 +10,18 @@ map('n', '<C-l>', '<C-w>l', { noremap = true, silent = true, desc = 'Move to win
 -- Resize with arrows
 map('n', '<C-Up>', '<cmd>resize +2<CR>', { noremap = true, silent = true, desc = 'Resize window upwards' })
 map('n', '<C-Down>', '<cmd>resize -2<CR>', { noremap = true, silent = true, desc = 'Resize window downwards' })
-map('n', '<C-Left>', '<cmd>vertical resize -2<CR>', { noremap = true, silent = true, desc = 'Resize window to the left' })
-map('n', '<C-Right>', '<cmd>vertical resize +2<CR>',
-  { noremap = true, silent = true, desc = 'Resize window to the right' })
+map(
+  'n',
+  '<C-Left>',
+  '<cmd>vertical resize -2<CR>',
+  { noremap = true, silent = true, desc = 'Resize window to the left' }
+)
+map(
+  'n',
+  '<C-Right>',
+  '<cmd>vertical resize +2<CR>',
+  { noremap = true, silent = true, desc = 'Resize window to the right' }
+)
 
 -- Quick Saving --
 map('n', '<leader>w', ':w<cr>', { noremap = true, silent = true, desc = 'Write buffer to file' })
@@ -43,8 +52,8 @@ map('v', 'p', '"_dP', { noremap = true, silent = true, desc = 'Replace selection
 
 -- Visual Block --
 -- Move text up and down
-map('x', '<A-k>', ':move \'<-2<CR>gv-gv', { noremap = true, silent = true, desc = 'Move selection up' })
-map('x', '<A-j>', ':move \'>+1<CR>gv-gv', { noremap = true, silent = true, desc = 'Move selection down' })
+map('x', '<A-k>', ":move '<-2<CR>gv-gv", { noremap = true, silent = true, desc = 'Move selection up' })
+map('x', '<A-j>', ":move '>+1<CR>gv-gv", { noremap = true, silent = true, desc = 'Move selection down' })
 
 -- Terminal --
 map('t', '<C-Esc>', '<C-\\><C-n>', { noremap = true, silent = true, desc = 'Exit Terminal Mode' })
@@ -56,7 +65,7 @@ map('t', '<C-Down>', '<cmd>resize -2<CR>', { noremap = true, silent = true, desc
 function YankCurrentCommand()
   local line = vim.api.nvim_get_current_line()
   -- Extract the command part by removing everything before the last $
-  local command = string.match(line, ".-%$%s*(.*)")
+  local command = string.match(line, '.-%$%s*(.*)')
   -- Yank the command to the unnamed register
   vim.fn.setreg('+', command)
 end
