@@ -62,7 +62,7 @@ vim.lsp.config['remark_ls'] = {
   },
 }
 
-vim.api.nvim_create_augroup('lsp_highlight_document', {})
+local lsp_highlight_document_autogroup = vim.api.nvim_create_augroup('lsp_highlight_document', {})
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach-custom', {}),
@@ -72,12 +72,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.api.nvim_create_autocmd('CursorHold', {
         buffer = args.buf,
         callback = vim.lsp.buf.document_highlight,
-        group = 'lsp_highlight_document',
+        group = lsp_highlight_document_autogroup
       })
       vim.api.nvim_create_autocmd('CursorMoved', {
         buffer = args.buf,
         callback = vim.lsp.buf.clear_references,
-        group = 'lsp_highlight_document',
+        group = lsp_highlight_document_autogroup
       })
     end
   end,
