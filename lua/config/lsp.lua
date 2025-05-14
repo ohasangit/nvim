@@ -54,6 +54,14 @@ vim.lsp.config['clangd'] = {
   },
 }
 
+vim.lsp.config['remark_ls'] = {
+  settings = {
+    remark = {
+      requireConfig = false,
+    },
+  },
+}
+
 vim.api.nvim_create_augroup("lsp_highlight_document", {})
 
 vim.api.nvim_create_autocmd('LspAttach', {
