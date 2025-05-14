@@ -21,56 +21,6 @@ return {
       { 'neovim/nvim-lspconfig', },
       { 'cmp-nvim-lsp' }
     },
-    init = function()
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
-      local mason_lspconfig = require('mason-lspconfig')
-      local cfg = require("yaml-companion").setup()
-
-      mason_lspconfig.setup_handlers({
-        function(server_name)
-          require('lspconfig')[server_name].setup({
-            on_attach = Lsp.on_attach,
-            capabilities = capabilities
-          })
-        end,
-        ['yamlls'] = function()
-          require('lspconfig').yamlls.setup(cfg)
-        end,
-        ['marksman'] = function()
-          require('lspconfig').marksman.setup({
-            on_attach = Lsp.on_attach,
-          })
-        end,
-        ['clangd'] = function()
-          require("lspconfig").clangd.setup {
-            on_attach = Lsp.on_attach,
-            capabilities = capabilities,
-            cmd = {
-              "clangd",
-              "--offset-encoding=utf-16",
-            },
-          }
-        end,
-        ['tailwindcss'] = function()
-          require('lspconfig').tailwindcss.setup {
-            on_attach = Lsp.on_attach,
-            capabilities = capabilities,
-            filetypes = { 'html', 'css', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' } -- Disable for markdown
-          }
-        end,
-        ['remark_ls'] = function()
-          require('lspconfig').remark_ls.setup {
-            on_attach = Lsp.on_attach,
-            capabilities = capabilities,
-            settings = {
-              remark = {
-                requireConfig = true
-              }
-            }
-          }
-        end,
-      })
-    end,
     opts = {
       ensure_installed = {
         'bashls',

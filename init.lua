@@ -1,7 +1,6 @@
 require('config.neovide')
 require('config.options')
 require('config.keymaps')
-Lsp = require('config.lsp')
-Lsp.init()
+require('config.lsp')
 require('config.lazy')
 require('config.autocmds')

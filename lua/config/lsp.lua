@@ -1,114 +1,87 @@
-local M = {}
+local new_signs = {
+  text = {
+    [vim.diagnostic.severity.ERROR] = '',
+    [vim.diagnostic.severity.WARN] = '',
+    [vim.diagnostic.severity.INFO] = '',
+    [vim.diagnostic.severity.HINT] = '',
+    DiagnosticSignError = '',
+    DiagnosticSignWarn = '',
+    DiagnosticSignHint = '',
+    DiagnosticSignInfo = '',
+    DapBreakpoint = '',
+    DapBreakpointCondition = '',
+    DapStopped = '',
+  },
+  linehl = {
+    DapBreakpoint = 'DiagnosticVirtualTextWarn',
+    DapBreakpointCondition = 'DiagnosticVirtualTextError',
+    DapStopped = 'BufferAlternateHINT',
+  },
+  texthl = {
+    DapBreakpoint = 'DiagnosticVirtualTextWarn',
+    DapBreakpointCondition = 'DiagnosticVirtualTextError',
+    DapStopped = 'BufferAlternateHINT',
+  },
+  numhl = {
+    DapBreakpoint = 'DiagnosticVirtualTextWarn',
+    DapBreakpointCondition = 'DiagnosticVirtualTextError',
+    DapStopped = 'BufferAlternateHINT',
+  },
+}
 
-M.init = function()
-  local signs = {
-    { name = 'DiagnosticSignError', text = '' },
-    { name = 'DiagnosticSignWarn', text = '' },
-    { name = 'DiagnosticSignHint', text = '' },
-    { name = 'DiagnosticSignInfo', text = '' },
-  }
+local config = {
+  virtual_text = false,
+  signs = new_signs,
+  underline = true,
+  severity_sort = true,
+  float = {
+    focusable = false,
+    style = 'minimal',
+    source = 'always',
+    header = '',
+    prefix = '',
+  },
+}
 
-  for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = '' })
-  end
+vim.diagnostic.config(config)
 
-  vim.fn.sign_define('DapBreakpoint',
-    {
-      text = '',
-      texthl = 'DiagnosticVirtualTextWarn',
-      linehl = 'DiagnosticVirtualTextWarn',
-      numhl = 'DiagnosticVirtualTextWarn'
-    })
-  vim.fn.sign_define('DapBreakpointCondition',
-    {
-      text = '',
-      texthl = 'DiagnosticVirtualTextError',
-      linehl = 'DiagnosticVirtualTextError',
-      numhl = 'DiagnosticVirtualTextError'
-    })
-  vim.fn.sign_define('DapStopped',
-    { text = '', texthl = 'BufferAlternateHINT', linehl = 'BufferAlternateHINT', numhl = 'BufferAlternateHINT' })
+vim.lsp.config['clangd'] = {
+  cmd = {
+    'clangd',
+    '--background-index',
+    '--limit-results=10000',
+    '--completion-style=detailed',
+  },
+}
 
-  local config = {
-    virtual_text = false,
-    signs = {
-      active = signs,
-    },
-    underline = true,
-    severity_sort = true,
-    float = {
-      focusable = false,
-      style = 'minimal',
-      source = 'always',
-      header = '',
-      prefix = '',
-    },
-  }
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('lsp-attach-custom', {}),
+  callback = function(args)
+    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+    if client.server_capabilities.documentHighlightProvider then
+      -- vim.api.nvim_create_augroup("lsp_highlight_document")
+      -- vim.api.nvim_clear_autocmds({ buffer = bufnr, group = "lsp_highlight_document" })
+      -- vim.api.nvim_create_autocmd("CursorHold", {
+      --   buffer = 0,
+      --   callback = vim.lsp.buf.document_highlight(),
+      --   group = "lsp_highlight_document",
+      -- })
+      -- vim.api.nvim_create_autocmd("CursorMoved", {
+      --   buffer = 0,
+      --   callback = vim.lsp.buf.clear_references(),
+      --   group = "lsp_highlight_document"
+      -- })
 
-  vim.diagnostic.config(config)
-end
-
-M.on_attach = function(client, bufnr)
-  if vim.bo[bufnr].filetype == "NvimTree" then
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-    return
-  end
-
-  -- FIXME: Should use editorconfig or something like that
-  if vim.bo[bufnr].filetype == "cpp" then
-    vim.bo[bufnr].shiftwidth = 4
-    vim.bo[bufnr].tabstop = 4
-  end
-
-  M.lsp_keymaps(bufnr)
-  M.lsp_highlight_document(client, bufnr)
-end
-
-M.lsp_keymaps = function(bufnr)
-  local opts = { noremap = true, silent = true }
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>',
-    opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>',
-    opts)
-end
-
-M.lsp_highlight_document = function(client, bufnr)
-  -- Set autocommands conditional on server_capabilities
-  if client.server_capabilities.documentHighlightProvider then
-    -- vim.api.nvim_create_augroup("lsp_highlight_document")
-    -- vim.api.nvim_clear_autocmds({ buffer = bufnr, group = "lsp_highlight_document" })
-    -- vim.api.nvim_create_autocmd("CursorHold", {
-    --   buffer = 0,
-    --   callback = vim.lsp.buf.document_highlight(),
-    --   group = "lsp_highlight_document",
-    -- })
-    -- vim.api.nvim_create_autocmd("CursorMoved", {
-    --   buffer = 0,
-    --   callback = vim.lsp.buf.clear_references(),
-    --   group = "lsp_highlight_document"
-    -- })
-
-
-    vim.api.nvim_exec2(
-      [[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-      ]],
-      {}
-    )
-  end
-end
-
-return M
+      vim.api.nvim_exec2(
+        [[
+          augroup lsp_document_highlight
+            autocmd! * <buffer>
+            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+          augroup END
+          ]],
+        {}
+      )
+    end
+  end,
+})
