@@ -1,4 +1,4 @@
-local new_signs = {
+local signs = {
   text = {
     [vim.diagnostic.severity.ERROR] = '',
     [vim.diagnostic.severity.WARN] = '',
@@ -31,7 +31,7 @@ local new_signs = {
 
 local config = {
   virtual_text = false,
-  signs = new_signs,
+  signs = signs,
   underline = true,
   severity_sort = true,
   float = {
