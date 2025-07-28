@@ -72,6 +72,7 @@ return {
       end
     end,
     opts = {
+      sticky = { '#files:**/*', '#buffer', '$claude-3.7-sonnet-thought' },
       mappings = {
         reset = {
           normal = '<C-x>',
