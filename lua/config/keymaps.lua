@@ -61,17 +61,13 @@ map('t', '<C-Esc>', '<C-\\><C-n>', { noremap = true, silent = true, desc = 'Exit
 map('t', '<C-Up>', '<cmd>resize +2<CR>', { noremap = true, silent = true, desc = 'Resize window upwards' })
 map('t', '<C-Down>', '<cmd>resize -2<CR>', { noremap = true, silent = true, desc = 'Resize window downwards' })
 
--- Function to yank the current terminal command without the prompt
-function YankCurrentCommand()
-  local line = vim.api.nvim_get_current_line()
-  -- Extract the command part by removing everything before the last $
-  local command = string.match(line, '.-%$%s*(.*)')
-  -- Yank the command to the unnamed register
-  vim.fn.setreg('+', command)
-end
-
 -- Keymap to call the function in terminal mode
-vim.api.nvim_set_keymap('t', '<C-y>', '<C-\\><C-n>:lua YankCurrentCommand()<CR>i', { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+  't',
+  '<C-y>',
+  '<C-\\><C-n>:lua require("utils.keymap-functions").yank_current_command()<CR>i',
+  { noremap = true, silent = true }
+)
 
 -- Lazy (Not sure of a better place)
 map('n', '<leader>hj', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = 'Plugin (Lazy) Menu' })
@@ -99,3 +95,11 @@ vim.api.nvim_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<C
 vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
 vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
 vim.api.nvim_set_keymap('n', '<leader>li', '<cmd>LspInfo<CR>', opts)
+
+-- Keymap to copy git branch name
+map(
+  'n',
+  '<leader>gyy',
+  '<cmd>lua require("utils.git").copy_branch_name()<CR>',
+  { noremap = true, silent = true, desc = 'Copy git branch name' }
+)
