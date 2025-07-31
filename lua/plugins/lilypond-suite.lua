@@ -4,7 +4,8 @@ return {
     require('nvls').setup({
       lilypond = {
         mappings = {
-          player = "<C-1>"
+          player = "<C-1>",
+          compile = "<C-y>"
         }
       }
     })

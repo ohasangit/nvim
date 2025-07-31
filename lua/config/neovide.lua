@@ -11,6 +11,8 @@ if vim.g.neovide then
 
   vim.fn.setenv("GOPATH", home_dir .. "/go")
   vim.fn.setenv("PATH",
-    path .. ":/usr/local/go/bin:" .. home_dir .. "/.local/bin:" .. home_dir .. "/go/bin:" .. home_dir .. "/.tfenv/bin")
+    path ..
+    ":/usr/local/go/bin:" ..
+    home_dir .. "/.local/bin:" .. home_dir .. "/go/bin:" .. home_dir .. "/.tfenv/bin:" .. home_dir .. "/.cargo/bin")
   vim.fn.setenv("PYENV_ROOT", home_dir .. "/.pyenv")
 end
