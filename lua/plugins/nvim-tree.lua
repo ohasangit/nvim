@@ -51,7 +51,6 @@ return {
       vim.keymap.set('n', 'K', api.node.navigate.sibling.first, opts('First Sibling'))
       vim.keymap.set('n', 'm', api.marks.toggle, opts('Toggle Bookmark'))
       vim.keymap.set('n', 'o', api.node.open.edit, opts('Open'))
-      vim.keymap.set('n', 'O', api.node.open.no_window_picker, opts('Open: No Window Picker'))
       vim.keymap.set('n', 'p', api.fs.paste, opts('Paste'))
       vim.keymap.set('n', 'P', api.node.navigate.parent, opts('Parent Directory'))
       vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
@@ -70,6 +69,12 @@ return {
       vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
       vim.keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))
       vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close Directory'))
+      vim.keymap.set('n', 'O', function()
+        local node = api.tree.get_node_under_cursor()
+        if node and node.absolute_path and node.type ~= 'directory' then
+          vim.fn.jobstart({'xdg-open', node.absolute_path}, {detach = true})
+        end
+      end, opts('Open with system app'))
     end
 
     return {
@@ -79,6 +84,9 @@ return {
       view = {
         width = 50,
         side = 'right',
+      },
+      git = {
+        enable = false,
       },
       renderer = {
         icons = {
