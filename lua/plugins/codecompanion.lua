@@ -2,7 +2,13 @@ return {
   'olimorris/codecompanion.nvim',
   ---@module "codecompanion"
   ---@type CodeCompanion.Config
+  keys = {
+    { '<leader>cc', '<cmd>CodeCompanionChat toggle<cr>', desc = 'Toggle CodeCompanion Chat' },
+  },
   opts = {
+    opts = {
+      log_level = 'DEBUG',
+    },
     strategies = {
       chat = {
         adapter = {
