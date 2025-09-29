@@ -9,6 +9,20 @@ return {
     opts = {
       log_level = 'DEBUG',
     },
+    adapters = {
+      http = {
+        copilot = function()
+          return require('codecompanion.adapters').extend('copilot', {
+            raw = { '--http1.1', '--max-time', '25' },
+            opts = { stream = false },
+          })
+        end,
+        -- opts = {
+        --   proxy = 'socks5://127.0.0.1:9999',
+        --   allow_insecure = false,
+        -- },
+      },
+    },
     strategies = {
       chat = {
         adapter = {
