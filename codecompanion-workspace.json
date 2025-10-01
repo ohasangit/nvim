@@ -1,0 +1,174 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "name": "nvim-config",
+  "version": "0.1.0",
+  "description": "You are assisting with a Neovim configuration. Provide clear, incremental guidance. When the user asks about adding or configuring a plugin, explain the intention, reference existing patterns in this repo (lazy.nvim one-file-per-plugin spec), and propose minimal diffs. When adding keymaps, avoid collisions by checking existing mappings (see keymaps.lua and any plugin provided defaults).",
+  "system_prompt": "Act as an expert Neovim/Lua configuration helper. Goals: (1) Explain or adjust plugin specs for lazy.nvim. (2) Suggest non-conflicting keymaps (check existing definitions). (3) Help with LSP/diagnostics, Treesitter, formatting, linting. (4) Optimize startup minimally and safely. Always reference concrete files in this workspace when proposing changes and prefer small, reversible edits.",
+  "vars": {
+    "config_root": ".",
+    "plugin_dir": "lua/plugins"
+  },
+  "data": {
+    "init_lua": { "type": "file", "path": "init.lua", "description": "Entry point requiring core config modules" },
+    "config_lazy": { "type": "file", "path": "lua/config/lazy.lua", "description": "lazy.nvim bootstrap and setup call" },
+    "config_options": { "type": "file", "path": "lua/config/options.lua", "description": "Core vim options and globals" },
+    "config_keymaps": { "type": "file", "path": "lua/config/keymaps.lua", "description": "Global key mappings including LSP, window management, formatting" },
+    "config_lsp": { "type": "file", "path": "lua/config/lsp.lua", "description": "Diagnostic signs and basic LSP client configuration" },
+    "config_autocmds": { "type": "file", "path": "lua/config/autocmds.lua", "description": "Autocommands for filetype detection and misc events" },
+    "config_neovide": { "type": "file", "path": "lua/config/neovide.lua", "description": "Neovide-specific tweaks (GUI)" },
+    "utils_keymap_functions": { "type": "file", "path": "lua/utils/keymap-functions.lua", "description": "Helper functions for keymap commands (e.g., yank current terminal command)" },
+    "utils_git": { "type": "file", "path": "lua/utils/git.lua", "description": "Utility to copy git branch name and related git helpers" },
+
+    "plugin_autopairs": { "type": "file", "path": "lua/plugins/autopairs.lua", "description": "nvim-autopairs configuration" },
+    "plugin_bazel": { "type": "file", "path": "lua/plugins/bazel.lua", "description": "Bazel integration plugin spec" },
+    "plugin_cellular_automation": { "type": "file", "path": "lua/plugins/cellular-automation.lua", "description": "Cellular automation fun plugin" },
+    "plugin_codecompanion": { "type": "file", "path": "lua/plugins/codecompanion.lua", "description": "CodeCompanion plugin spec" },
+    "plugin_comment": { "type": "file", "path": "lua/plugins/comment.lua", "description": "Comment toggling plugin spec" },
+    "plugin_conform": { "type": "file", "path": "lua/plugins/conform.lua", "description": "Formatter (conform.nvim) configuration" },
+    "plugin_copilot_chat": { "type": "file", "path": "lua/plugins/copilot-chat.lua", "description": "GitHub Copilot Chat integration" },
+    "plugin_copilot": { "type": "file", "path": "lua/plugins/copilot.lua", "description": "GitHub Copilot core plugin spec" },
+    "plugin_everblush": { "type": "file", "path": "lua/plugins/everblush.lua", "description": "Everblush colorscheme" },
+    "plugin_git_conflict": { "type": "file", "path": "lua/plugins/git-conflict.lua", "description": "Git conflict resolution helpers" },
+    "plugin_git_fugitive": { "type": "file", "path": "lua/plugins/git-fugitive.lua", "description": "vim-fugitive plugin spec" },
+    "plugin_gitlinker": { "type": "file", "path": "lua/plugins/gitlinker.lua", "description": "Generate repository shareable links" },
+    "plugin_gitsigns": { "type": "file", "path": "lua/plugins/gitsigns.lua", "description": "Git changes in sign column configuration" },
+    "plugin_goto_preview": { "type": "file", "path": "lua/plugins/goto-preview.lua", "description": "Peek definitions/implementations plugin" },
+    "plugin_gp": { "type": "file", "path": "lua/plugins/gp.lua", "description": "gp.nvim AI assistant plugin spec" },
+    "plugin_helpview": { "type": "file", "path": "lua/plugins/helpview.lua", "description": "Enhanced help buffer plugin" },
+    "plugin_lazydev": { "type": "file", "path": "lua/plugins/lazydev.lua", "description": "LazyDev plugin for improved Lua dev experience" },
+    "plugin_lilypond_suite": { "type": "file", "path": "lua/plugins/lilypond-suite.lua", "description": "LilyPond Suite integration" },
+    "plugin_lualine": { "type": "file", "path": "lua/plugins/lualine.lua", "description": "Statusline configuration" },
+    "plugin_markdown_previewer": { "type": "file", "path": "lua/plugins/markdown-previewer.lua", "description": "Live Markdown preview plugin" },
+    "plugin_markdown": { "type": "file", "path": "lua/plugins/markdown.lua", "description": "Markdown related enhancements" },
+    "plugin_mason": { "type": "file", "path": "lua/plugins/mason.lua", "description": "Mason tool installer config" },
+    "plugin_neogit": { "type": "file", "path": "lua/plugins/neogit.lua", "description": "Neogit UI plugin" },
+    "plugin_neotest": { "type": "file", "path": "lua/plugins/neotest.lua", "description": "Test runner integration" },
+    "plugin_notify": { "type": "file", "path": "lua/plugins/notify.lua", "description": "Notification UI plugin" },
+    "plugin_nvim_cmp": { "type": "file", "path": "lua/plugins/nvim-cmp.lua", "description": "Completion engine configuration" },
+    "plugin_nvim_colorizer": { "type": "file", "path": "lua/plugins/nvim-colorizer.lua", "description": "Color highlighter plugin" },
+    "plugin_nvim_dap": { "type": "file", "path": "lua/plugins/nvim-dap.lua", "description": "Debug Adapter Protocol (DAP) setup" },
+    "plugin_nvim_lastplace": { "type": "file", "path": "lua/plugins/nvim-lastplace.lua", "description": "Reopen files at last edit position" },
+    "plugin_nvim_lint": { "type": "file", "path": "lua/plugins/nvim-lint.lua", "description": "Asynchronous linter configuration" },
+    "plugin_nvim_tree": { "type": "file", "path": "lua/plugins/nvim-tree.lua", "description": "File explorer configuration" },
+    "plugin_octo": { "type": "file", "path": "lua/plugins/octo.lua", "description": "Octo GitHub integration" },
+    "plugin_omar_plugin": { "type": "file", "path": "lua/plugins/omar-plugin.lua", "description": "Custom/experimental plugin spec" },
+    "plugin_open_browser": { "type": "file", "path": "lua/plugins/open-browser.lua", "description": "Open URLs in browser plugin" },
+    "plugin_project": { "type": "file", "path": "lua/plugins/project.lua", "description": "Project root detection plugin" },
+    "plugin_py_bazel": { "type": "file", "path": "lua/plugins/py-bazel.lua", "description": "Python Bazel helper plugin" },
+    "plugin_ros2": { "type": "file", "path": "lua/plugins/ros2.lua", "description": "ROS2 development helpers" },
+    "plugin_sniprun": { "type": "file", "path": "lua/plugins/sniprun.lua", "description": "Sniprun code snippet runner" },
+    "plugin_telescope": { "type": "file", "path": "lua/plugins/telescope.lua", "description": "Telescope fuzzy finder configuration" },
+    "plugin_toggleterm": { "type": "file", "path": "lua/plugins/toggleterm.lua", "description": "Toggleable terminal integration" },
+    "plugin_tokyonight": { "type": "file", "path": "lua/plugins/tokyonight.lua", "description": "Tokyonight colorscheme" },
+    "plugin_treesitter": { "type": "file", "path": "lua/plugins/treesitter.lua", "description": "Treesitter parsers and features configuration" },
+    "plugin_trouble": { "type": "file", "path": "lua/plugins/trouble.lua", "description": "Diagnostics/location list UI (trouble.nvim)" },
+    "plugin_venv_selector": { "type": "file", "path": "lua/plugins/venv-selector.lua", "description": "Python virtualenv selector" },
+    "plugin_which_key": { "type": "file", "path": "lua/plugins/which-key.lua", "description": "which-key keybinding hint plugin" },
+    "plugin_yaml_companion": { "type": "file", "path": "lua/plugins/yaml-companion.lua", "description": "YAML schema companion plugin" },
+
+    "ftplugin_octo": { "type": "file", "path": "plugin/ftplugin/octo.lua", "description": "Filetype specific settings for Octo buffers" },
+
+    "tests_init": { "type": "file", "path": "lua/test/init.lua", "description": "Test initialization file" },
+
+    "readme": { "type": "file", "path": "README.md", "description": "Project documentation" }
+  },
+  "groups": [
+    {
+      "name": "Bootstrap & Core",
+      "description": "Entry points and bootstrap logic for Neovim (init, lazy setup, GUI tweaks). Use when adjusting startup sequence or adding global requires.",
+      "system_prompt": "Focus on startup order and lazy.nvim bootstrapping. Ensure new requirements are added idempotently.",
+      "data": ["init_lua", "config_lazy", "config_neovide"]
+    },
+    {
+      "name": "Editor Options & UX",
+      "description": "Global options, keymaps, and autocmds influencing core editing behavior.",
+      "system_prompt": "When adding keymaps, avoid conflicts: search existing mappings first. Keep changes minimal and documented in comments if non-obvious.",
+      "data": ["config_options", "config_keymaps", "config_autocmds", "utils_keymap_functions"]
+    },
+    {
+      "name": "LSP & Diagnostics",
+      "description": "LSP core configuration, diagnostics visuals, tooling install (mason), formatting & linting integration.",
+      "system_prompt": "Ensure diagnostic and LSP adjustments remain consistent with existing sign and virtual text settings. Prefer augroup usage for autocmd additions.",
+      "data": ["config_lsp", "plugin_mason", "plugin_conform", "plugin_nvim_lint", "plugin_treesitter", "plugin_trouble", "plugin_lazydev"]
+    },
+    {
+      "name": "Completion & Snippets",
+      "description": "Completion engine and related enhancements.",
+      "system_prompt": "When adjusting completion, ensure snippet, source ordering, and keymaps do not override critical existing ones.",
+      "data": ["plugin_nvim_cmp"]
+    },
+    {
+      "name": "Navigation & Search",
+      "description": "Tools for moving through code: fuzzy finding, project roots, file tree, previews, key discovery.",
+      "system_prompt": "Optimize discoverability while avoiding redundant keymaps. Cross-reference which-key hints when adding new navigation shortcuts.",
+      "data": ["plugin_telescope", "plugin_project", "plugin_nvim_tree", "plugin_goto_preview", "plugin_which_key"]
+    },
+    {
+      "name": "Git & VCS",
+      "description": "Git integrations and UI helpers.",
+      "system_prompt": "Ensure git-related keymaps are namespaced under <leader>g where possible.",
+      "data": ["plugin_gitsigns", "plugin_gitlinker", "plugin_git_conflict", "plugin_git_fugitive", "plugin_neogit", "plugin_octo", "utils_git", "ftplugin_octo"]
+    },
+    {
+      "name": "Debug & Test",
+      "description": "Debug adapter and test running tools.",
+      "system_prompt": "When adding language-specific DAP configs keep them modular. Encourage lazy loading where possible.",
+      "data": ["plugin_nvim_dap", "plugin_neotest", "plugin_sniprun"]
+    },
+    {
+      "name": "UI & Aesthetics",
+      "description": "Visual polish: statusline, notifications, colorschemes, cursor/position helpers, color highlighting.",
+      "system_prompt": "Preserve consistent theme integration across colorschemes; suggest minimal adjustments.",
+      "data": ["plugin_lualine", "plugin_notify", "plugin_tokyonight", "plugin_everblush", "plugin_nvim_colorizer", "plugin_nvim_lastplace"]
+    },
+    {
+      "name": "Editing Enhancements",
+      "description": "Quality-of-life editing features (pairs, comments, structural parsing).",
+      "system_prompt": "Ensure enhancements do not introduce performance regressions; reference Treesitter settings for any parser-related advice.",
+      "data": ["plugin_autopairs", "plugin_comment", "plugin_treesitter"]
+    },
+    {
+      "name": "Language / Domain Specific",
+      "description": "Language-targeted or domain-specific tooling (Bazel, ROS2, YAML, Markdown, LilyPond).",
+      "system_prompt": "When adding language tools, align with existing patterns (e.g., mason vs external manager).",
+      "data": ["plugin_bazel", "plugin_py_bazel", "plugin_ros2", "plugin_yaml_companion", "plugin_markdown", "plugin_markdown_previewer", "plugin_lilypond_suite", "plugin_venv_selector"]
+    },
+    {
+      "name": "AI / Assistant",
+      "description": "AI-assisted coding and chat plugins.",
+      "system_prompt": "Clarify differences between AI tools; avoid overlapping keymaps and advise on secure usage (no secret leakage).",
+      "data": ["plugin_copilot", "plugin_copilot_chat", "plugin_codecompanion", "plugin_gp"]
+    },
+    {
+      "name": "Utilities & Misc",
+      "description": "Terminal integration, browser helpers, experimental plugins, custom plugin, session/project helpers, fun tools.",
+      "system_prompt": "Group miscellaneous utilities logically if expanded; encourage lazy loading for rarely used tools.",
+      "data": ["plugin_toggleterm", "plugin_open_browser", "plugin_helpview", "plugin_cellular_automation", "plugin_omar_plugin"]
+    },
+    {
+      "name": "Utilities (Lua Modules)",
+      "description": "Internal helper Lua modules for reuse.",
+      "system_prompt": "Keep utility modules stateless or document side-effects clearly.",
+      "data": ["utils_git", "utils_keymap_functions"]
+    },
+    {
+      "name": "Filetype Overrides",
+      "description": "Filetype-specific ftplugin overrides.",
+      "system_prompt": "Ensure ftplugin files remain lightweight and scoped to their filetype.",
+      "data": ["ftplugin_octo"]
+    },
+    {
+      "name": "Tests",
+      "description": "Test initialization and future test helpers.",
+      "system_prompt": "Encourage adding focused tests for utility modules or plugin config behaviors if applicable.",
+      "data": ["tests_init"]
+    },
+    {
+      "name": "Docs",
+      "description": "Project documentation and notes.",
+      "system_prompt": "Summarize existing documented patterns before proposing structural changes.",
+      "data": ["readme"]
+    }
+  ],
+  "data_note": "Excluded lua/config/api-keys.lua intentionally due to sensitivity. Add external URLs later as needed."
+}
