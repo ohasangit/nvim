@@ -29,6 +29,33 @@ local signs = {
   },
 }
 
+do
+  local function hl(tbl, key, fallback)
+    return (tbl and tbl[key]) or fallback
+  end
+
+  vim.fn.sign_define("DapBreakpoint", {
+    text   = signs.text.DapBreakpoint or "",
+    texthl = hl(signs.texthl, "DapBreakpoint", "DiagnosticVirtualTextWarn"),
+    linehl = hl(signs.linehl, "DapBreakpoint", nil),
+    numhl  = hl(signs.numhl, "DapBreakpoint", nil),
+  })
+
+  vim.fn.sign_define("DapBreakpointCondition", {
+    text   = signs.text.DapBreakpointCondition or "",
+    texthl = hl(signs.texthl, "DapBreakpointCondition", "DiagnosticVirtualTextError"),
+    linehl = hl(signs.linehl, "DapBreakpointCondition", nil),
+    numhl  = hl(signs.numhl, "DapBreakpointCondition", nil),
+  })
+
+  vim.fn.sign_define("DapStopped", {
+    text   = signs.text.DapStopped or "",
+    texthl = hl(signs.texthl, "DapStopped", "DiagnosticInfo"),
+    linehl = hl(signs.linehl, "DapStopped", nil),
+    numhl  = hl(signs.numhl, "DapStopped", nil),
+  })
+end
+
 local config = {
   virtual_text = false,
   signs = signs,
