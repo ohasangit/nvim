@@ -26,6 +26,7 @@ return {
         'bashls',
         'bzl',
         'docker_compose_language_service',
+        'clangd',
         'dockerls',
         'eslint',
         'gopls',
