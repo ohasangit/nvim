@@ -34,25 +34,25 @@ do
     return (tbl and tbl[key]) or fallback
   end
 
-  vim.fn.sign_define("DapBreakpoint", {
-    text   = signs.text.DapBreakpoint or "",
-    texthl = hl(signs.texthl, "DapBreakpoint", "DiagnosticVirtualTextWarn"),
-    linehl = hl(signs.linehl, "DapBreakpoint", nil),
-    numhl  = hl(signs.numhl, "DapBreakpoint", nil),
+  vim.fn.sign_define('DapBreakpoint', {
+    text = signs.text.DapBreakpoint or '',
+    texthl = hl(signs.texthl, 'DapBreakpoint', 'DiagnosticVirtualTextWarn'),
+    linehl = hl(signs.linehl, 'DapBreakpoint', nil),
+    numhl = hl(signs.numhl, 'DapBreakpoint', nil),
   })
 
-  vim.fn.sign_define("DapBreakpointCondition", {
-    text   = signs.text.DapBreakpointCondition or "",
-    texthl = hl(signs.texthl, "DapBreakpointCondition", "DiagnosticVirtualTextError"),
-    linehl = hl(signs.linehl, "DapBreakpointCondition", nil),
-    numhl  = hl(signs.numhl, "DapBreakpointCondition", nil),
+  vim.fn.sign_define('DapBreakpointCondition', {
+    text = signs.text.DapBreakpointCondition or '',
+    texthl = hl(signs.texthl, 'DapBreakpointCondition', 'DiagnosticVirtualTextError'),
+    linehl = hl(signs.linehl, 'DapBreakpointCondition', nil),
+    numhl = hl(signs.numhl, 'DapBreakpointCondition', nil),
   })
 
-  vim.fn.sign_define("DapStopped", {
-    text   = signs.text.DapStopped or "",
-    texthl = hl(signs.texthl, "DapStopped", "DiagnosticInfo"),
-    linehl = hl(signs.linehl, "DapStopped", nil),
-    numhl  = hl(signs.numhl, "DapStopped", nil),
+  vim.fn.sign_define('DapStopped', {
+    text = signs.text.DapStopped or '',
+    texthl = hl(signs.texthl, 'DapStopped', 'DiagnosticInfo'),
+    linehl = hl(signs.linehl, 'DapStopped', nil),
+    numhl = hl(signs.numhl, 'DapStopped', nil),
   })
 end
 
@@ -99,12 +99,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.api.nvim_create_autocmd('CursorHold', {
         buffer = args.buf,
         callback = vim.lsp.buf.document_highlight,
-        group = lsp_highlight_document_autogroup
+        group = lsp_highlight_document_autogroup,
       })
       vim.api.nvim_create_autocmd('CursorMoved', {
         buffer = args.buf,
         callback = vim.lsp.buf.clear_references,
-        group = lsp_highlight_document_autogroup
+        group = lsp_highlight_document_autogroup,
       })
     end
   end,

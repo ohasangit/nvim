@@ -18,13 +18,12 @@ return {
     'williamboman/mason-lspconfig.nvim',
     dependencies = {
       { 'williamboman/mason.nvim' },
-      { 'neovim/nvim-lspconfig', },
-      { 'cmp-nvim-lsp' }
+      { 'neovim/nvim-lspconfig' },
+      { 'cmp-nvim-lsp' },
     },
     opts = {
       ensure_installed = {
         'bashls',
-        'bzl',
         'docker_compose_language_service',
         'clangd',
         'dockerls',
@@ -40,8 +39,8 @@ return {
         'taplo',
         'terraformls',
         'tflint',
-        'yamlls'
+        'yamlls',
       },
     },
-  }
+  },
 }
