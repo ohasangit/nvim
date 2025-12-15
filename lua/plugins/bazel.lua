@@ -19,8 +19,9 @@ end
 return {
   'alexander-born/bazel.nvim',
   dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  enabled = false,
   keys = {
-    { '<leader>ba', '<cmd>lua require("bazel").run_here("build", vim.g.bazel_config)<CR>', desc = 'Bazel build' },
+    -- { '<leader>ba', '<cmd>lua require("bazel").run_here("build", vim.g.bazel_config)<CR>', desc = 'Bazel build' },
     { '<leader>br', '<cmd>lua require("bazel").run_here("run", vim.g.bazel_config)<CR>',   desc = 'Bazel run' },
     { '<leader>bc', '<cmd>lua require("bazel").run_here("clean", vim.g.bazel_config)<CR>', desc = 'Bazel clean' },
     { '<leader>bt', '<cmd>lua require("bazel").run_here("test", vim.g.bazel_config)<CR>',  desc = 'Bazel test' },

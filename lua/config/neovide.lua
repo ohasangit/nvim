@@ -15,6 +15,7 @@ if vim.g.neovide then
     ":/usr/local/go/bin:" ..
     home_dir .. "/.local/bin:" .. home_dir .. "/go/bin:" .. home_dir .. "/.tfenv/bin:" .. home_dir .. "/.cargo/bin")
   vim.fn.setenv("PYENV_ROOT", home_dir .. "/.pyenv")
+  vim.fn.setenv("USE_BAZEL_VERSION", "7.6.1")
 
   -- Prefer Node.js from nvm (needed for Copilot / LLM plugins needing Node >= 22)
   -- This handles GUI startup where shell init files are not sourced.
