@@ -25,11 +25,10 @@ return {
       ensure_installed = {
         'bashls',
         'docker_compose_language_service',
-        'clangd',
+        -- 'clangd',
         'dockerls',
         'eslint',
         'gopls',
-        'groovyls',
         'jsonls',
         'lua_ls',
         'pyright',
