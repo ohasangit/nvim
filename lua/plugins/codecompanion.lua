@@ -3,7 +3,7 @@ return {
   keys = {
     { '<leader>cc', '<cmd>CodeCompanionChat toggle<cr>', desc = 'Toggle CodeCompanion Chat' },
   },
-  tag = "v17.22.1",
+  tag = 'v19.12.0',
   opts = {
     ---@module "codecompanion"
     ---@type CodeCompanion.Config
@@ -14,7 +14,7 @@ return {
       http = {
         copilot = function()
           return require('codecompanion.adapters').extend('copilot', {
-            raw = { '--http1.1', '--max-time', '25' },
+            raw = { '--http1.1', '--max-time', '200' },
             opts = { stream = false },
           })
         end,
@@ -26,13 +26,23 @@ return {
     },
     strategies = {
       chat = {
-        adapter = {
-          name = 'copilot',
-          model = 'gpt-5',
-        },
+        adapter = 'copilot',
       },
     },
     extensions = {
+      history = {
+        enabled = true,
+        opts = {
+          keymap = 'gh',
+          save_chat_keymap = 'sc', -- manually save current chat
+          auto_save = true, -- save all chats automatically
+          auto_generate_title = true,
+          continue_last_chat = false,
+          delete_on_clearing_chat = false,
+          picker = 'telescope', -- "telescope" | "snacks" | "fzf-lua" | "default"
+          enable_logging = false,
+        },
+      },
       vectorcode = {
         ---@type VectorCode.CodeCompanion.ExtensionOpts
         opts = {
@@ -78,6 +88,7 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     'j-hui/fidget.nvim',
+    'ravitemer/codecompanion-history.nvim',
     {
       'Davidyz/VectorCode',
       version = '*',
