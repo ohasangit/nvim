@@ -75,6 +75,7 @@ vim.diagnostic.config(config)
 vim.lsp.config('clangd', {
   cmd = {
     'clangd',
+    -- 'clangd-18', Use only on ARM arch's since clangd isn't released normally via mason on that arch
     '--background-index',
     '--limit-results=10000',
     '--completion-style=detailed',
@@ -97,6 +98,10 @@ vim.lsp.config('clangd', {
     '.git',
   },
 })
+
+-- If using clangd via mason, it should be automatically enabled by mason-lspconfig. This is only needed if you want to
+-- enable it manually without mason, like for the clangd-18 config above.
+-- vim.lsp.enable('clangd')
 
 vim.lsp.config['remark_ls'] = {
   settings = {
