@@ -7,5 +7,6 @@ return {
   end,
   keys = {
     { '<leader>bl', '<cmd>BazelBuildUnderCursor<CR>', desc = 'Bazel build' },
+    { '<leader>br', '<cmd>BazelRunUnderCursor<CR>', desc = 'Bazel run' },
   },
 }
