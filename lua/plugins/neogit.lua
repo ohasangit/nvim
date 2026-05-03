@@ -13,6 +13,7 @@ return {
         return require('telescope').extensions.fzf.native_fzf_sorter()
       end,
       disable_hint = true,
+      auto_refresh = false,
       integrations = {
         diffview = true,
       },
