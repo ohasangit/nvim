@@ -220,7 +220,8 @@ function M.setup()
     end
     local target_name = M.get_keyword_string_arg(call_node, 'name', 0)
     if target_name then
-      -- vim.notify('Target name: ' .. target_name)
+      vim.fn.setreg('+', target_name)
+      vim.notify('Copied target name to clipboard: ' .. target_name, vim.log.levels.INFO)
     else
       vim.notify('No target name found in call node', vim.log.levels.WARN)
     end
@@ -228,6 +229,7 @@ function M.setup()
   vim.api.nvim_create_user_command('BazelGetTargetLabelUnderCursor', function()
     local label, err = get_bazel_target_under_cursor()
     if label then
+      vim.fn.setreg('+', label)
       -- vim.notify('Bazel target label: ' .. label)
     else
       vim.notify('Error: ' .. err, vim.log.levels.ERROR)
