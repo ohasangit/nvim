@@ -161,6 +161,23 @@ vim.lsp.config['starpls'] = {
 
 local lsp_highlight_document_autogroup = vim.api.nvim_create_augroup('lsp_highlight_document', {})
 
+-- Helper: safely highlight only if any client supports the method at call time
+local function safe_document_highlight(bufnr)
+  bufnr = bufnr or vim.api.nvim_get_current_buf()
+  -- Neovim 0.11: filter clients by method
+  local clients = vim.lsp.get_clients({ bufnr = bufnr, method = 'textDocument/documentHighlight' })
+  if #clients == 0 then
+    return
+  end
+  vim.lsp.buf.document_highlight()
+end
+
+local function safe_clear_references(bufnr)
+  bufnr = bufnr or vim.api.nvim_get_current_buf()
+  -- Clearing is harmless; keep as a separate helper for symmetry
+  vim.lsp.buf.clear_references()
+end
+
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach-custom', {}),
   callback = function(args)
@@ -168,14 +185,28 @@ vim.api.nvim_create_autocmd('LspAttach', {
     if client.server_capabilities.documentHighlightProvider then
       vim.api.nvim_create_autocmd('CursorHold', {
         buffer = args.buf,
-        callback = vim.lsp.buf.document_highlight,
+        callback = function()
+          safe_document_highlight(args.buf)
+        end,
         group = lsp_highlight_document_autogroup,
       })
       vim.api.nvim_create_autocmd('CursorMoved', {
         buffer = args.buf,
-        callback = vim.lsp.buf.clear_references,
+        callback = function()
+          safe_clear_references(args.buf)
+        end,
         group = lsp_highlight_document_autogroup,
       })
     end
+  end,
+})
+
+-- Clear highlight autocmds when an LSP client detaches to avoid stale callbacks
+vim.api.nvim_create_autocmd('LspDetach', {
+  group = lsp_highlight_document_autogroup,
+  callback = function(args)
+    -- Remove autocmds for this buffer from the group and clear references
+    vim.api.nvim_clear_autocmds({ group = lsp_highlight_document_autogroup, buffer = args.buf })
+    safe_clear_references(args.buf)
   end,
 })
