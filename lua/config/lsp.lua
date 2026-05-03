@@ -72,14 +72,31 @@ local config = {
 
 vim.diagnostic.config(config)
 
-vim.lsp.config['clangd'] = {
+vim.lsp.config('clangd', {
   cmd = {
     'clangd',
     '--background-index',
     '--limit-results=10000',
     '--completion-style=detailed',
+    '--log=verbose',
+
+    -- Add the actual compiler paths that appear in compile_commands.json.
+    -- Start broad, then tighten later.
+    -- '--query-driver=/usr/bin/clang++-18,/usr/bin/clang-18,/usr/bin/g++*,/usr/bin/gcc*,/usr/bin/aarch64-linux-gnu-g++*,/usr/bin/aarch64-linux-gnu-gcc*',
   },
-}
+
+  filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
+
+  root_markers = {
+    '.clangd',
+    'compile_commands.json',
+    'compile_flags.txt',
+    'WORKSPACE',
+    'WORKSPACE.bazel',
+    'MODULE.bazel',
+    '.git',
+  },
+})
 
 vim.lsp.config['remark_ls'] = {
   settings = {
