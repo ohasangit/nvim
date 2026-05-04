@@ -79,7 +79,6 @@ vim.lsp.config('clangd', {
     '--background-index',
     '--limit-results=10000',
     '--completion-style=detailed',
-    '--log=verbose',
 
     -- Add the actual compiler paths that appear in compile_commands.json.
     -- Start broad, then tighten later.
