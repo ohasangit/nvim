@@ -35,9 +35,9 @@ if vim.g.neovide then
         end
       end
     end
-    -- Fallback: grab the newest v22.* directory if alias missing
+    -- Fallback: grab the newest available Node.js version if alias missing
     if not node_bin then
-      local matches = vim.fn.glob(nvm_dir .. '/versions/node/v22.*', 0, 1)
+      local matches = vim.fn.glob(nvm_dir .. '/versions/node/v*', 0, 1)
       if type(matches) == 'table' and #matches > 0 then
         table.sort(matches)
         node_bin = matches[#matches] .. '/bin'
