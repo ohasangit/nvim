@@ -1,0 +1,169 @@
+---
+- name: Install latest Neovim and user config
+  hosts: nvim_hosts
+  gather_facts: true
+
+  vars_files:
+    - secrets.local.yml
+
+  vars:
+    github_repo: "omar-hasan_torc/nvim"
+
+    local_cache_dir: "{{ playbook_dir }}/.cache"
+    local_nvim_repo: "{{ local_cache_dir }}/nvim"
+
+    remote_nvim_config: "{{ ansible_env.HOME }}/.config/nvim"
+    nvim_install_dir: /opt/nvim
+
+    nvim_arch_map:
+      x86_64: x86_64
+      amd64: x86_64
+      aarch64: arm64
+      arm64: arm64
+
+    nvim_arch: "{{ nvim_arch_map[ansible_architecture] }}"
+    nvim_version: "0.11.7"
+    nvim_tarball_url: "https://github.com/neovim/neovim/releases/download/v{{ nvim_version }}/nvim-linux-{{ nvim_arch }}.tar.gz"
+
+  pre_tasks:
+    - name: Check that gh CLI is available locally
+      delegate_to: localhost
+      run_once: true
+      command: gh --version
+      changed_when: false
+
+    - name: Check that local GitHub auth works
+      delegate_to: localhost
+      run_once: true
+      command: gh auth status
+      changed_when: false
+
+    - name: Create local cache dir
+      delegate_to: localhost
+      run_once: true
+      file:
+        path: "{{ local_cache_dir }}"
+        state: directory
+        mode: "0755"
+
+    - name: Check whether local Neovim config repo already exists
+      delegate_to: localhost
+      run_once: true
+      stat:
+        path: "{{ local_nvim_repo }}/.git"
+      register: local_nvim_repo_git
+
+    - name: Clone Neovim config locally using gh
+      delegate_to: localhost
+      run_once: true
+      command:
+        cmd: "gh repo clone {{ github_repo }} {{ local_nvim_repo }}"
+      when: not local_nvim_repo_git.stat.exists
+
+    - name: Update local Neovim config repo
+      delegate_to: localhost
+      run_once: true
+      command:
+        cmd: "git -C {{ local_nvim_repo }} pull --ff-only"
+      when: local_nvim_repo_git.stat.exists
+
+  tasks:
+    - name: Ensure host architecture is supported
+      assert:
+        that:
+          - ansible_architecture in nvim_arch_map
+        fail_msg: "Unsupported architecture: {{ ansible_architecture }}"
+
+    - name: Install required packages on remote
+      become: true
+      apt:
+        name:
+          - git
+          - curl
+          - ca-certificates
+          - tar
+          - gzip
+          - rsync
+        state: present
+        update_cache: true
+
+    - name: Check currently installed Neovim version
+      command: /usr/local/bin/nvim --version
+      register: installed_nvim
+      failed_when: false
+      changed_when: false
+
+    - name: Decide whether Neovim install is needed
+      set_fact:
+        nvim_needs_install: "{{ installed_nvim.rc != 0 or ('NVIM v' ~ nvim_version) not in installed_nvim.stdout }}"
+
+    - name: Remove existing Neovim install when version differs
+      become: true
+      file:
+        path: "{{ nvim_install_dir }}"
+        state: absent
+      when: nvim_needs_install
+
+    - name: Recreate Neovim install directory
+      become: true
+      file:
+        path: "{{ nvim_install_dir }}"
+        state: directory
+        mode: "0755"
+      when: nvim_needs_install
+
+    - name: Download Neovim release
+      get_url:
+        url: "{{ nvim_tarball_url }}"
+        dest: "/tmp/nvim-linux-{{ nvim_version }}-{{ nvim_arch }}.tar.gz"
+        mode: "0644"
+        force: true
+      when: nvim_needs_install
+
+    - name: Extract Neovim
+      become: true
+      unarchive:
+        src: "/tmp/nvim-linux-{{ nvim_version }}-{{ nvim_arch }}.tar.gz"
+        dest: "{{ nvim_install_dir }}"
+        remote_src: true
+        extra_opts:
+          - --strip-components=1
+      when: nvim_needs_install
+
+    - name: Symlink nvim into PATH
+      become: true
+      file:
+        src: "{{ nvim_install_dir }}/bin/nvim"
+        dest: /usr/local/bin/nvim
+        state: link
+        force: true
+
+    - name: Ensure remote ~/.config exists
+      file:
+        path: "{{ ansible_env.HOME }}/.config"
+        state: directory
+        mode: "0755"
+
+    - name: Copy local Neovim config to remote
+      ansible.posix.synchronize:
+        src: "{{ local_nvim_repo }}/"
+        dest: "{{ remote_nvim_config }}/"
+        delete: true
+        recursive: true
+        rsync_opts:
+          - "--exclude=.git"
+
+    - name: Check Neovim version
+      command: /usr/local/bin/nvim --version
+      register: nvim_version_output
+      changed_when: false
+
+    - name: Ensure expected Neovim version is installed
+      assert:
+        that:
+          - "'NVIM v' ~ nvim_version in nvim_version_output.stdout"
+        fail_msg: "Expected NVIM v{{ nvim_version }}, got: {{ nvim_version_output.stdout_lines[0] }}"
+
+    - name: Print Neovim version
+      debug:
+        msg: "{{ nvim_version_output.stdout_lines[0] }}"

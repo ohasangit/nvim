@@ -1,0 +1,316 @@
+---
+- name: Install developer tools for Neovim
+  hosts: nvim_hosts
+  gather_facts: true
+
+  vars:
+    nvm_version: "v0.40.4"
+    node_version: "lts/*"
+
+    nvm_dir: "{{ ansible_env.HOME }}/.nvm"
+
+    go_version: "1.26.2"
+    go_install_dir: /usr/local/go
+
+    go_arch_map:
+      x86_64: amd64
+      amd64: amd64
+      aarch64: arm64
+      arm64: arm64
+
+    go_arch: "{{ go_arch_map[ansible_architecture] }}"
+    go_tarball: "go{{ go_version }}.linux-{{ go_arch }}.tar.gz"
+    go_url: "https://go.dev/dl/{{ go_tarball }}"
+
+  pre_tasks:
+    - name: Check for local secrets file
+      delegate_to: localhost
+      run_once: true
+      stat:
+        path: "{{ playbook_dir }}/secrets.local.yml"
+      register: secrets_local
+      tags: [copilot-deps]
+
+    - name: Load local secrets file if present
+      include_vars:
+        file: "{{ playbook_dir }}/secrets.local.yml"
+      when: secrets_local.stat.exists
+      no_log: true
+      tags: [copilot-deps]
+
+  tasks:
+    - name: Ensure host architecture is supported for Go
+      assert:
+        that:
+          - ansible_architecture in go_arch_map
+        fail_msg: "Unsupported architecture for Go: {{ ansible_architecture }}"
+
+    - name: Bootstrap apt trust packages if repo auth is broken
+      become: true
+      apt:
+        name:
+          - ubuntu-keyring
+          - ca-certificates
+        state: present
+        update_cache: true
+        allow_unauthenticated: true
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Refresh apt cache after trust bootstrap
+      become: true
+      apt:
+        update_cache: true
+
+    - name: Install base dev packages
+      become: true
+      apt:
+        name:
+          - bash
+          - curl
+          - git
+          - ca-certificates
+          - tar
+          - gzip
+          - xz-utils
+          - unzip
+          - build-essential
+          - pkg-config
+          - ripgrep
+          - fd-find
+          - python3
+          - python3-pip
+          - clangd-18
+        allow_unauthenticated: true
+        state: present
+        update_cache: true
+
+    - name: Ensure ~/.local/bin exists
+      file:
+        path: "{{ ansible_env.HOME }}/.local/bin"
+        state: directory
+        mode: "0755"
+
+    - name: Symlink fd to fdfind on Ubuntu/Debian
+      file:
+        src: /usr/bin/fdfind
+        dest: "{{ ansible_env.HOME }}/.local/bin/fd"
+        state: link
+      when: ansible_os_family == "Debian"
+
+    # ----------------------------
+    # nvm + Node
+    # ----------------------------
+
+    - name: Check if nvm is installed
+      stat:
+        path: "{{ nvm_dir }}/nvm.sh"
+      register: nvm_sh
+
+    - name: Install nvm
+      shell: |
+        set -euo pipefail
+        export PROFILE="{{ ansible_env.HOME }}/.bashrc"
+        curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_version }}/install.sh" | bash
+      args:
+        executable: /bin/bash
+      when: not nvm_sh.stat.exists
+
+    - name: Ensure nvm is loaded from .bashrc
+      blockinfile:
+        path: "{{ ansible_env.HOME }}/.bashrc"
+        marker: "# {mark} ANSIBLE MANAGED NVM BLOCK"
+        create: true
+        block: |
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+    - name: Install Node via nvm
+      shell: |
+        set -euo pipefail
+        export NVM_DIR="{{ nvm_dir }}"
+        . "$NVM_DIR/nvm.sh"
+        nvm install "{{ node_version }}"
+        nvm alias default "{{ node_version }}"
+        nvm use default
+        node --version
+        npm --version
+      args:
+        executable: /bin/bash
+      register: node_install
+      changed_when: "'Now using' in node_install.stdout or 'Downloading' in node_install.stdout"
+
+    # ----------------------------
+    # tree-sitter CLI
+    # ----------------------------
+
+    - name: Install tree-sitter CLI globally through npm
+      shell: |
+        set -euo pipefail
+        export NVM_DIR="{{ nvm_dir }}"
+        . "$NVM_DIR/nvm.sh"
+        nvm use default
+        npm install -g tree-sitter-cli@0.25.10
+        tree-sitter --version
+      args:
+        executable: /bin/bash
+      register: tree_sitter_install
+      changed_when: "'changed' in tree_sitter_install.stdout or 'added' in tree_sitter_install.stdout"
+
+    # ----------------------------
+    # Go
+    # ----------------------------
+
+    - name: Check installed Go version
+      command: "{{ go_install_dir }}/bin/go version"
+      register: installed_go
+      failed_when: false
+      changed_when: false
+
+    - name: Remove old Go install if version differs
+      become: true
+      file:
+        path: "{{ go_install_dir }}"
+        state: absent
+      when: installed_go.rc != 0 or ('go' + go_version) not in installed_go.stdout
+
+    - name: Download Go tarball
+      get_url:
+        url: "{{ go_url }}"
+        dest: "/tmp/{{ go_tarball }}"
+        mode: "0644"
+      when: installed_go.rc != 0 or ('go' + go_version) not in installed_go.stdout
+
+    - name: Extract Go to /usr/local
+      become: true
+      unarchive:
+        src: "/tmp/{{ go_tarball }}"
+        dest: /usr/local
+        remote_src: true
+      when: installed_go.rc != 0 or ('go' + go_version) not in installed_go.stdout
+
+    - name: Symlink go into /usr/local/bin
+      become: true
+      file:
+        src: "{{ go_install_dir }}/bin/go"
+        dest: /usr/local/bin/go
+        state: link
+        force: true
+
+    - name: Symlink gofmt into /usr/local/bin
+      become: true
+      file:
+        src: "{{ go_install_dir }}/bin/gofmt"
+        dest: /usr/local/bin/gofmt
+        state: link
+        force: true
+
+    - name: Ensure Go paths are in .bashrc
+      blockinfile:
+        path: "{{ ansible_env.HOME }}/.bashrc"
+        marker: "# {mark} ANSIBLE MANAGED GO BLOCK"
+        create: true
+        block: |
+          export GOPATH="$HOME/go"
+          export PATH="/usr/local/go/bin:$GOPATH/bin:$HOME/.local/bin:$PATH"
+
+    - name: Print installed tool versions
+      shell: |
+        set -e
+        export NVM_DIR="{{ nvm_dir }}"
+        . "$NVM_DIR/nvm.sh"
+        nvm use default >/dev/null
+        echo "node: $(node --version)"
+        echo "npm: $(npm --version)"
+        echo "tree-sitter: $(tree-sitter --version)"
+        echo "go: $(go version)"
+      args:
+        executable: /bin/bash
+      register: tool_versions
+      changed_when: false
+
+    - name: Show installed tool versions
+      debug:
+        msg: "{{ tool_versions.stdout_lines }}"
+
+    # ----------------------------
+    # Lua
+    # ----------------------------
+
+    - name: Install Lua tooling
+      become: true
+      apt:
+        name:
+          - lua5.4
+          - liblua5.4-dev
+          - luarocks
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+        allow_unauthenticated: true
+
+    - name: Ensure ~/.local/bin exists
+      file:
+        path: "{{ ansible_env.HOME }}/.local/bin"
+        state: directory
+        mode: "0755"
+
+    - name: Ensure ~/.local/bin is in .bashrc
+      blockinfile:
+        path: "{{ ansible_env.HOME }}/.bashrc"
+        marker: "# {mark} ANSIBLE MANAGED LOCAL BIN BLOCK"
+        create: true
+        block: |
+          export PATH="$HOME/.local/bin:$PATH"
+
+    - name: Symlink lua to lua5.4 in user PATH
+      file:
+        src: /usr/bin/lua5.4
+        dest: "{{ ansible_env.HOME }}/.local/bin/lua"
+        state: link
+        force: true
+
+    - name: Check Lua version
+      command: "{{ ansible_env.HOME }}/.local/bin/lua -v"
+      register: lua_version
+      changed_when: false
+
+    - name: Check LuaRocks version
+      command: luarocks --version
+      register: luarocks_version
+      changed_when: false
+
+    - name: Print Lua versions
+      debug:
+        msg:
+          - "{{ lua_version.stderr | default(lua_version.stdout) }}"
+          - "{{ luarocks_version.stdout_lines[0] }}"
+
+    - name: Ensure pipx is installed (Debian/Ubuntu)
+      become: true
+      apt:
+        name: pipx
+        state: present
+        update_cache: true
+        allow_unauthenticated: true
+      tags: [copilot-deps]
+
+    - name: Ensure ~/.local/bin is in PATH for pipx
+      blockinfile:
+        path: "{{ ansible_env.HOME }}/.bashrc"
+        marker: "# {mark} ANSIBLE MANAGED PIPX BLOCK"
+        create: true
+        block: |
+          export PATH="$HOME/.local/bin:$PATH"
+      tags: [copilot-deps]
+
+    - name: Install uv Python package manager via pipx
+      become: true
+      shell: |
+        set -euo pipefail
+        pipx install --force uv
+      args:
+        executable: /bin/bash
+      register: uv_install
+      changed_when: "'already installed' not in uv_install.stdout and 'installed package uv' in uv_install.stdout"
+      tags: [copilot-deps]
