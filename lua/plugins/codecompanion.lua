@@ -3,7 +3,6 @@ return {
   keys = {
     { '<leader>cc', '<cmd>CodeCompanionChat toggle<cr>', desc = 'Toggle CodeCompanion Chat' },
   },
-  tag = 'v19.12.0',
   opts = {
     ---@module "codecompanion"
     ---@type CodeCompanion.Config
@@ -18,15 +17,22 @@ return {
             opts = { stream = false },
           })
         end,
-        -- opts = {
-        --   proxy = 'socks5://127.0.0.1:9999',
-        --   allow_insecure = false,
-        -- },
       },
     },
     strategies = {
+    },
+    interactions = {
       chat = {
         adapter = 'copilot',
+        tools = {
+          opts = {
+            auto_submit_errors = true,
+            auto_submit_success = true,
+          },
+          run_command = {
+            opts = { require_approval_before = false },
+          },
+        },
       },
     },
     extensions = {
