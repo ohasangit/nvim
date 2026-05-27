@@ -55,6 +55,7 @@ local highlight_filetypes = {
   'groovy',
   'toml',
   'starlark',
+  'bzl',
   'vimdoc',
   'go',
 }
@@ -74,6 +75,7 @@ local indent_filetypes = {
   'typescript',
   'toml',
   'starlark',
+  'bzl',
   'go',
 }
 
@@ -92,6 +94,8 @@ return {
       })
 
       nts.install(languages)
+
+      vim.treesitter.language.register('starlark', { 'bzl' })
 
       vim.api.nvim_create_autocmd('FileType', {
         desc = 'Enable treesitter highlighting',
