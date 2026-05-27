@@ -22,7 +22,7 @@
       arm64: arm64
 
     nvim_arch: "{{ nvim_arch_map[ansible_architecture] }}"
-    nvim_version: "0.11.7"
+    nvim_version: "0.12.2"
     nvim_tarball_url: "https://github.com/neovim/neovim/releases/download/v{{ nvim_version }}/nvim-linux-{{ nvim_arch }}.tar.gz"
 
   pre_tasks:

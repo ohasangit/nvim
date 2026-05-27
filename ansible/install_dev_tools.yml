@@ -80,6 +80,7 @@
           - python3
           - python3-pip
           - clangd-18
+          - libclang-dev
         allow_unauthenticated: true
         state: present
         update_cache: true
@@ -150,7 +151,7 @@
         export NVM_DIR="{{ nvm_dir }}"
         . "$NVM_DIR/nvm.sh"
         nvm use default
-        npm install -g tree-sitter-cli@0.25.10
+        npm install -g tree-sitter-cli@latest
         tree-sitter --version
       args:
         executable: /bin/bash
