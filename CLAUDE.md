@@ -29,7 +29,7 @@ To verify a change, launch `nvim` and check `:Lazy` (`<leader>hj`), `:Mason` (`<
 
 ## AI / CodeCompanion
 
-`codecompanion.nvim` + `mcphub.nvim` are configured (`lua/plugins/`) and are the actively-edited part of this repo. `codecompanion-workspace.json` is a CodeCompanion *workspace* file — it defines a system prompt and a map of this repo's key files for AI-assisted config editing; keep its `data` file list in sync when core files move.
+`codecompanion.nvim` is configured (`lua/plugins/codecompanion.lua`) and is the actively-edited part of this repo. MCP servers are wired up via CodeCompanion's native `mcp.servers` config (not `mcphub.nvim`, which was removed after its tool-schema shape proved incompatible with this codecompanion version's `Tools.resolve()`). `codecompanion-workspace.json` is a CodeCompanion *workspace* file — it defines a system prompt and a map of this repo's key files for AI-assisted config editing; keep its `data` file list in sync when core files move.
 
 ## Deployment (ansible/)
 
