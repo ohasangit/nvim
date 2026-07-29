@@ -110,22 +110,6 @@ vim.lsp.config['remark_ls'] = {
   },
 }
 
--- Helper: find Bazel workspace root (WORKSPACE / WORKSPACE.bazel / MODULE.bazel)
-local function find_bazel_root(startpath)
-  local root = vim.fs.find(
-    { 'WORKSPACE', 'WORKSPACE.bazel', 'MODULE.bazel' },
-    { upward = true, path = startpath or vim.loop.cwd(), type = 'file' }
-  )[1]
-
-  vim.notify('Bazel root: ' .. (root or 'not found'), vim.log.levels.INFO)
-
-  if not root then
-    return nil
-  end
-
-  return vim.fs.dirname(root)
-end
-
 -- vim.lsp.config("starpls", {
 --   cmd = { "starpls" },
 --   filetypes = { "bzl", "starlark", "bazel", "BUILD", "workspace" },
@@ -144,18 +128,13 @@ end
 --   },
 -- }
 
-local function bazel_workspace_root()
-  local root = vim.fs.find(
-    { 'WORKSPACE', 'WORKSPACE.bazel', 'MODULE.bazel' },
-    { upward = true, path = vim.loop.cwd(), type = 'file' }
-  )[1]
-  return root and vim.fs.dirname(root) or nil
-end
-
-local ws = bazel_workspace_root()
-
+-- starpls: let root_markers supply the LSP rootUri; starpls uses that
+-- (not its cwd) to discover the Bazel workspace. The old 'sh -c cd &&
+-- exec starpls' workaround was evaluated once at startup from
+-- vim.loop.cwd(), so it had no effect when Nvim was opened outside a
+-- Bazel project, and it didn't influence the rootUri either way.
 vim.lsp.config['starpls'] = {
-  cmd = ws and { 'sh', '-c', ('cd %q && exec starpls'):format(ws) } or { 'starpls' },
+  cmd = { 'starpls' },
   filetypes = { 'bzl', 'starlark', 'bazel' },
   root_markers = {
     { 'WORKSPACE', 'WORKSPACE.bazel', 'MODULE.bazel' },

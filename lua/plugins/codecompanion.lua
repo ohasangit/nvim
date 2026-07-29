@@ -121,7 +121,7 @@ return {
         },
       },
       opts = {
-        default_servers = { 'atlassian', 'fetch', 'github', 'memory' },
+        default_servers = { 'atlassian', 'github', 'memory' },
       },
     },
     extensions = {
