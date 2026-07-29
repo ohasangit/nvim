@@ -27,6 +27,8 @@ local languages = {
   'starlark',
   'vimdoc',
   'go',
+  'doxygen',
+  'comment'
 }
 
 local highlight_filetypes = {
